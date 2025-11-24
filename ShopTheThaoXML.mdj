@@ -36,11 +36,11 @@
 										"$ref": "AAAAAAGabmdqxry/0OM="
 									},
 									"font": "Arial;13;1",
-									"left": 368,
+									"left": 360,
 									"top": 485,
 									"width": 255.82421875,
 									"height": 13,
-									"text": "NguoiDung"
+									"text": "KhachHang"
 								},
 								{
 									"_type": "ERDColumnCompartmentView",
@@ -62,7 +62,7 @@
 												"$ref": "AAAAAAGabmlq/r0VyOY="
 											},
 											"font": "Arial;13;0",
-											"left": 373,
+											"left": 365,
 											"top": 508,
 											"width": 245.82421875,
 											"height": 13
@@ -77,7 +77,7 @@
 												"$ref": "AAAAAAGabmnsjr0cDHg="
 											},
 											"font": "Arial;13;0",
-											"left": 373,
+											"left": 365,
 											"top": 523,
 											"width": 245.82421875,
 											"height": 13
@@ -92,7 +92,7 @@
 												"$ref": "AAAAAAGabmnzYL0irLM="
 											},
 											"font": "Arial;13;0",
-											"left": 373,
+											"left": 365,
 											"top": 538,
 											"width": 245.82421875,
 											"height": 13
@@ -107,7 +107,7 @@
 												"$ref": "AAAAAAGabmn0i70oO3g="
 											},
 											"font": "Arial;13;0",
-											"left": 373,
+											"left": 365,
 											"top": 553,
 											"width": 245.82421875,
 											"height": 13
@@ -122,7 +122,7 @@
 												"$ref": "AAAAAAGabmn1jr0uga4="
 											},
 											"font": "Arial;13;0",
-											"left": 373,
+											"left": 365,
 											"top": 568,
 											"width": 245.82421875,
 											"height": 13
@@ -137,7 +137,7 @@
 												"$ref": "AAAAAAGabmn2lL00jSk="
 											},
 											"font": "Arial;13;0",
-											"left": 373,
+											"left": 365,
 											"top": 583,
 											"width": 245.82421875,
 											"height": 13
@@ -152,7 +152,7 @@
 												"$ref": "AAAAAAGabmrR1r1AkVI="
 											},
 											"font": "Arial;13;0",
-											"left": 373,
+											"left": 365,
 											"top": 598,
 											"width": 245.82421875,
 											"height": 13
@@ -167,21 +167,21 @@
 												"$ref": "AAAAAAGabmsUib1zBsA="
 											},
 											"font": "Arial;13;0",
-											"left": 373,
+											"left": 365,
 											"top": 613,
 											"width": 245.82421875,
 											"height": 13
 										}
 									],
 									"font": "Arial;13;0",
-									"left": 368,
+									"left": 360,
 									"top": 503,
 									"width": 255.82421875,
 									"height": 128
 								}
 							],
 							"font": "Arial;13;0",
-							"left": 368,
+							"left": 360,
 							"top": 480,
 							"width": 255.82421875,
 							"height": 151,
@@ -1006,7 +1006,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 663,
+									"left": 659,
 									"top": 539,
 									"height": 13,
 									"alpha": 1.5707963267948966,
@@ -1023,7 +1023,7 @@
 										"$ref": "AAAAAAGaboAVxL+jZBo="
 									},
 									"font": "Arial;13;0",
-									"left": 648,
+									"left": 640,
 									"top": 539,
 									"height": 13,
 									"alpha": 0.5235987755982988,
@@ -1058,7 +1058,7 @@
 								"$ref": "AAAAAAGabmdqxry/0OM="
 							},
 							"lineStyle": 2,
-							"points": "623:560;704:560",
+							"points": "615:560;704:560",
 							"nameLabel": {
 								"$ref": "AAAAAAGaboAVxL+k0MA="
 							},
@@ -1087,7 +1087,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 321,
+									"left": 317,
 									"top": 544,
 									"height": 13,
 									"alpha": 1.5707963267948966,
@@ -1104,7 +1104,7 @@
 										"$ref": "AAAAAAGaboBQFr+7EPM="
 									},
 									"font": "Arial;13;0",
-									"left": 342,
+									"left": 334,
 									"top": 543,
 									"height": 13,
 									"alpha": 0.5235987755982988,
@@ -1139,7 +1139,7 @@
 								"$ref": "AAAAAAGabmdqxry/0OM="
 							},
 							"lineStyle": 2,
-							"points": "368:535;277:535",
+							"points": "360:535;277:535",
 							"nameLabel": {
 								"$ref": "AAAAAAGaboBQFr+8isY="
 							},
@@ -1401,7 +1401,7 @@
 					"_parent": {
 						"$ref": "AAAAAAGabmda3ry43Yc="
 					},
-					"name": "NguoiDung",
+					"name": "KhachHang",
 					"ownedElements": [
 						{
 							"_type": "ERDRelationship",
@@ -1488,7 +1488,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGabmdqxry9KpI="
 							},
-							"name": "password",
+							"name": "MatKhau",
 							"type": "VARCHAR",
 							"length": "50"
 						},
@@ -1498,7 +1498,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGabmdqxry9KpI="
 							},
-							"name": "sdt",
+							"name": "SDT",
 							"type": "VARCHAR",
 							"length": "10"
 						},
@@ -1538,7 +1538,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGabmdqxry9KpI="
 							},
-							"name": "gioitinh",
+							"name": "GioiTinh",
 							"type": "NVARCHAR",
 							"length": "3"
 						}
@@ -1627,7 +1627,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGabmeFk7zKUiI="
 							},
-							"name": "IddanhMuc",
+							"name": "IDDanhMuc",
 							"type": "INT",
 							"length": 0,
 							"foreignKey": true
@@ -1658,7 +1658,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGabmeFk7zKUiI="
 							},
-							"name": "mausac",
+							"name": "MauSac",
 							"type": "NVARCHAR",
 							"length": "100"
 						},
@@ -1668,7 +1668,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGabmeFk7zKUiI="
 							},
-							"name": "mota",
+							"name": "MoTa",
 							"type": "NVARCHAR",
 							"length": "255"
 						},
@@ -1678,7 +1678,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGabmeFk7zKUiI="
 							},
-							"name": "hinhanh",
+							"name": "HinhAnh",
 							"type": "VARCHAR",
 							"length": "255"
 						},
@@ -1759,7 +1759,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGabmexEbzXb7c="
 							},
-							"name": "IdUser",
+							"name": "IDNguoiDung",
 							"type": "INT",
 							"length": 0,
 							"foreignKey": true
@@ -1842,7 +1842,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGabmfQ9Lzk+5A="
 							},
-							"name": "IdSanPham",
+							"name": "IDSanPham",
 							"type": "INT",
 							"length": 0,
 							"foreignKey": true
@@ -1934,7 +1934,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGabmgJs7zxdgc="
 							},
-							"name": "TenDanhmuc",
+							"name": "TenDanhMuc",
 							"type": "NVARCHAR",
 							"length": "255"
 						},
@@ -1985,7 +1985,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGabmhoULz/+7Y="
 							},
-							"name": "IdHoaDon",
+							"name": "IDHoaDon",
 							"type": "INT",
 							"length": 0,
 							"foreignKey": true
@@ -1996,7 +1996,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGabmhoULz/+7Y="
 							},
-							"name": "IdSanPham",
+							"name": "IDSanPham",
 							"type": "INT",
 							"length": 0,
 							"foreignKey": true
@@ -2134,19 +2134,19 @@
 										"$ref": "AAAAAAGabnMOSr7jhQk="
 									},
 									"font": "Arial;20;0",
-									"left": 210,
-									"top": 274,
-									"width": 749,
+									"left": 202,
+									"top": 307,
+									"width": 781,
 									"height": 20,
-									"text": "Quản lý shop bán đồ Bóng đá",
+									"text": "Quản lý cửa hàng bán đồ bóng đá",
 									"wordWrap": true
 								}
 							],
 							"font": "Arial;20;0",
-							"left": 200,
-							"top": 264,
-							"width": 769,
-							"height": 65,
+							"left": 192,
+							"top": 297,
+							"width": 801,
+							"height": 40,
 							"nameLabel": {
 								"$ref": "AAAAAAGabnMOSr7khoQ="
 							}
@@ -2168,19 +2168,19 @@
 										"$ref": "AAAAAAGabnO2ob7uOR4="
 									},
 									"font": "Arial;13;0",
-									"left": 338,
+									"left": 362,
 									"top": 394,
-									"width": 61,
+									"width": 77,
 									"height": 26,
-									"text": "Quản lý Danh mục",
+									"text": "Quản lý danh mục",
 									"wordWrap": true
 								}
 							],
 							"font": "Arial;13;0",
-							"left": 328,
+							"left": 352,
 							"top": 384,
-							"width": 81,
-							"height": 57,
+							"width": 97,
+							"height": 49,
 							"nameLabel": {
 								"$ref": "AAAAAAGabnO2ob7v1aU="
 							}
@@ -2202,19 +2202,19 @@
 										"$ref": "AAAAAAGabnPZur73UFM="
 									},
 									"font": "Arial;13;0",
-									"left": 498,
+									"left": 522,
 									"top": 394,
-									"width": 54.18994140625,
-									"height": 39,
-									"text": "Quản lý Sản phẩm",
+									"width": 77,
+									"height": 26,
+									"text": "Quản lý sản phẩm",
 									"wordWrap": true
 								}
 							],
 							"font": "Arial;13;0",
-							"left": 488,
+							"left": 512,
 							"top": 384,
-							"width": 74.18994140625,
-							"height": 59,
+							"width": 97,
+							"height": 49,
 							"nameLabel": {
 								"$ref": "AAAAAAGabnPZur742J8="
 							}
@@ -2237,18 +2237,18 @@
 									},
 									"font": "Arial;13;0",
 									"left": 690,
-									"top": 402,
-									"width": 54.18994140625,
-									"height": 39,
+									"top": 394,
+									"width": 85,
+									"height": 26,
 									"text": "Quản lý Khách hàng",
 									"wordWrap": true
 								}
 							],
 							"font": "Arial;13;0",
 							"left": 680,
-							"top": 392,
-							"width": 74.18994140625,
-							"height": 59,
+							"top": 384,
+							"width": 105,
+							"height": 49,
 							"nameLabel": {
 								"$ref": "AAAAAAGabnP6Gb8CcF0="
 							}
@@ -2270,19 +2270,19 @@
 										"$ref": "AAAAAAGabnQbjb8LcBY="
 									},
 									"font": "Arial;13;0",
-									"left": 898,
-									"top": 402,
-									"width": 54.18994140625,
+									"left": 850,
+									"top": 394,
+									"width": 85,
 									"height": 26,
-									"text": "Quản lý Hóa đơn",
+									"text": "Quản lý hóa đơn",
 									"wordWrap": true
 								}
 							],
 							"font": "Arial;13;0",
-							"left": 888,
-							"top": 392,
-							"width": 74.18994140625,
-							"height": 46,
+							"left": 840,
+							"top": 384,
+							"width": 105,
+							"height": 49,
 							"nameLabel": {
 								"$ref": "AAAAAAGabnQbjb8MfMs="
 							}
@@ -2304,19 +2304,19 @@
 										"$ref": "AAAAAAGabnUTsb8bcc8="
 									},
 									"font": "Arial;13;0",
-									"left": 226,
+									"left": 210,
 									"top": 392,
-									"width": 54.18994140625,
-									"height": 39,
-									"text": " Quản lý Bình Luận",
+									"width": 85,
+									"height": 26,
+									"text": " Quản lý bình luận",
 									"wordWrap": true
 								}
 							],
 							"font": "Arial;13;0",
-							"left": 216,
+							"left": 200,
 							"top": 382,
-							"width": 74.18994140625,
-							"height": 59,
+							"width": 105,
+							"height": 51,
 							"nameLabel": {
 								"$ref": "AAAAAAGabnUTsb8cgSo="
 							}
@@ -2338,19 +2338,19 @@
 										"$ref": "AAAAAAGabnYl8L8u2r8="
 									},
 									"font": "Arial;13;0",
-									"left": 226,
-									"top": 506,
-									"width": 54.18994140625,
-									"height": 52,
-									"text": "duyệt hoặc từ chối bình luận",
+									"left": 210,
+									"top": 498,
+									"width": 85,
+									"height": 26,
+									"text": "Duyệt hoặc từ chối bình luận",
 									"wordWrap": true
 								}
 							],
 							"font": "Arial;13;0",
-							"left": 216,
-							"top": 496,
-							"width": 74.18994140625,
-							"height": 72,
+							"left": 200,
+							"top": 488,
+							"width": 105,
+							"height": 46,
 							"nameLabel": {
 								"$ref": "AAAAAAGabnYl8L8v1fQ="
 							}
@@ -2377,7 +2377,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 270,
-									"top": 348,
+									"top": 352,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 15,
@@ -2395,7 +2395,7 @@
 								"$ref": "AAAAAAGabnMOSr7jhQk="
 							},
 							"lineStyle": 2,
-							"points": "256:328;256:382",
+							"points": "256:336;256:382",
 							"nameLabel": {
 								"$ref": "AAAAAAGabpAUP8CPt/8="
 							}
@@ -2421,8 +2421,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 390,
-									"top": 349,
+									"left": 406,
+									"top": 353,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 15,
@@ -2440,7 +2440,7 @@
 								"$ref": "AAAAAAGabnMOSr7jhQk="
 							},
 							"lineStyle": 2,
-							"points": "376:328;376:384",
+							"points": "392:336;392:384",
 							"nameLabel": {
 								"$ref": "AAAAAAGabpA4JsCh0Ls="
 							}
@@ -2466,7 +2466,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 726,
+									"left": 750,
 									"top": 353,
 									"height": 13,
 									"alpha": 1.5707963267948966,
@@ -2485,7 +2485,7 @@
 								"$ref": "AAAAAAGabnMOSr7jhQk="
 							},
 							"lineStyle": 2,
-							"points": "712:328;712:392",
+							"points": "736:336;736:384",
 							"nameLabel": {
 								"$ref": "AAAAAAGabpBB9sCqFbk="
 							}
@@ -2511,7 +2511,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 934,
+									"left": 902,
 									"top": 353,
 									"height": 13,
 									"alpha": 1.5707963267948966,
@@ -2530,7 +2530,7 @@
 								"$ref": "AAAAAAGabnMOSr7jhQk="
 							},
 							"lineStyle": 2,
-							"points": "920:328;920:392",
+							"points": "888:336;888:384",
 							"nameLabel": {
 								"$ref": "AAAAAAGabpBK1MCzOcg="
 							}
@@ -2556,8 +2556,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 526,
-									"top": 349,
+									"left": 574,
+									"top": 353,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 15,
@@ -2575,7 +2575,7 @@
 								"$ref": "AAAAAAGabnMOSr7jhQk="
 							},
 							"lineStyle": 2,
-							"points": "512:328;512:384",
+							"points": "560:336;560:384",
 							"nameLabel": {
 								"$ref": "AAAAAAGabpBTJsC8MwI="
 							}
@@ -2588,7 +2588,7 @@
 							},
 							"font": "Arial;13;0",
 							"lineStyle": 1,
-							"points": "344:520;344:520"
+							"points": "368:512;368:512"
 						},
 						{
 							"_type": "FreelineEdgeView",
@@ -2598,7 +2598,7 @@
 							},
 							"font": "Arial;13;0",
 							"lineStyle": 1,
-							"points": "256:440;256:496"
+							"points": "256:432;256:488"
 						},
 						{
 							"_type": "FreelineEdgeView",
@@ -2608,7 +2608,7 @@
 							},
 							"font": "Arial;13;0",
 							"lineStyle": 1,
-							"points": "352:440;352:440"
+							"points": "376:440;376:440"
 						},
 						{
 							"_type": "FreelineEdgeView",
@@ -2618,7 +2618,7 @@
 							},
 							"font": "Arial;13;0",
 							"lineStyle": 1,
-							"points": "360:456;360:456"
+							"points": "384:448;384:448"
 						},
 						{
 							"_type": "FreelineEdgeView",
@@ -2628,7 +2628,7 @@
 							},
 							"font": "Arial;13;0",
 							"lineStyle": 1,
-							"points": "352:408;352:408"
+							"points": "376:408;376:408"
 						},
 						{
 							"_type": "FCProcessView",
@@ -2647,17 +2647,17 @@
 										"$ref": "AAAAAAGabp4iD8STYH8="
 									},
 									"font": "Arial;13;0",
-									"left": 338,
+									"left": 378,
 									"top": 442,
 									"width": -19,
 									"wordWrap": true
 								}
 							],
 							"font": "Arial;13;0",
-							"left": 328,
+							"left": 368,
 							"top": 432,
 							"width": 1,
-							"height": 289,
+							"height": 225,
 							"nameLabel": {
 								"$ref": "AAAAAAGabp4iD8SUI8k="
 							}
@@ -2679,19 +2679,19 @@
 										"$ref": "AAAAAAGabp9NQ8SxgcY="
 									},
 									"font": "Arial;13;0",
-									"left": 386,
-									"top": 490,
-									"width": 54.18994140625,
-									"height": 39,
-									"text": "Thêm TT danh Mục",
+									"left": 410,
+									"top": 474,
+									"width": 69,
+									"height": 26,
+									"text": "Thêm TT danh mục",
 									"wordWrap": true
 								}
 							],
 							"font": "Arial;13;0",
-							"left": 376,
-							"top": 480,
-							"width": 74.18994140625,
-							"height": 59,
+							"left": 400,
+							"top": 464,
+							"width": 89,
+							"height": 46,
 							"nameLabel": {
 								"$ref": "AAAAAAGabp9NQ8SyT98="
 							}
@@ -2713,19 +2713,19 @@
 										"$ref": "AAAAAAGabp9dEMS6gvw="
 									},
 									"font": "Arial;13;0",
-									"left": 386,
-									"top": 570,
-									"width": 54.18994140625,
-									"height": 39,
+									"left": 410,
+									"top": 562,
+									"width": 69,
+									"height": 26,
 									"text": "Sửa TT danh mục",
 									"wordWrap": true
 								}
 							],
 							"font": "Arial;13;0",
-							"left": 376,
-							"top": 560,
-							"width": 74.18994140625,
-							"height": 59,
+							"left": 400,
+							"top": 552,
+							"width": 89,
+							"height": 46,
 							"nameLabel": {
 								"$ref": "AAAAAAGabp9dEMS7FXc="
 							}
@@ -2747,19 +2747,19 @@
 										"$ref": "AAAAAAGabp9yzcTDcMU="
 									},
 									"font": "Arial;13;0",
-									"left": 386,
-									"top": 658,
-									"width": 54.18994140625,
-									"height": 39,
+									"left": 410,
+									"top": 642,
+									"width": 69,
+									"height": 26,
 									"text": "Xóa TT danh mục",
 									"wordWrap": true
 								}
 							],
 							"font": "Arial;13;0",
-							"left": 376,
-							"top": 648,
-							"width": 74.18994140625,
-							"height": 59,
+							"left": 400,
+							"top": 632,
+							"width": 89,
+							"height": 46,
 							"nameLabel": {
 								"$ref": "AAAAAAGabp9yzcTELDA="
 							}
@@ -2772,7 +2772,7 @@
 							},
 							"font": "Arial;13;0",
 							"lineStyle": 1,
-							"points": "328:496;376:496"
+							"points": "368:488;400:488"
 						},
 						{
 							"_type": "FreelineEdgeView",
@@ -2782,7 +2782,7 @@
 							},
 							"font": "Arial;13;0",
 							"lineStyle": 1,
-							"points": "328:584;376:584"
+							"points": "368:576;400:576"
 						},
 						{
 							"_type": "FreelineEdgeView",
@@ -2792,7 +2792,7 @@
 							},
 							"font": "Arial;13;0",
 							"lineStyle": 1,
-							"points": "328:672;376:672"
+							"points": "368:656;400:656"
 						},
 						{
 							"_type": "FCProcessView",
@@ -2811,17 +2811,17 @@
 										"$ref": "AAAAAAGabqJ5OsUUTU8="
 									},
 									"font": "Arial;13;0",
-									"left": 498,
+									"left": 546,
 									"top": 442,
 									"width": -19,
 									"wordWrap": true
 								}
 							],
 							"font": "Arial;13;0",
-							"left": 488,
+							"left": 536,
 							"top": 432,
 							"width": 1,
-							"height": 289,
+							"height": 225,
 							"nameLabel": {
 								"$ref": "AAAAAAGabqJ5OsUVUmk="
 							}
@@ -2843,19 +2843,19 @@
 										"$ref": "AAAAAAGabqKz3cUguE4="
 									},
 									"font": "Arial;13;0",
-									"left": 554,
-									"top": 490,
-									"width": 54.18994140625,
-									"height": 39,
-									"text": "Thêm TT Sản Phẩm",
+									"left": 578,
+									"top": 474,
+									"width": 69,
+									"height": 26,
+									"text": "Thêm TT sản phẩm",
 									"wordWrap": true
 								}
 							],
 							"font": "Arial;13;0",
-							"left": 544,
-							"top": 480,
-							"width": 74.18994140625,
-							"height": 59,
+							"left": 568,
+							"top": 464,
+							"width": 89,
+							"height": 46,
 							"nameLabel": {
 								"$ref": "AAAAAAGabqKz3cUh6cY="
 							}
@@ -2877,19 +2877,19 @@
 										"$ref": "AAAAAAGabqLShcUp4YY="
 									},
 									"font": "Arial;13;0",
-									"left": 554,
-									"top": 586,
-									"width": 54.18994140625,
-									"height": 39,
+									"left": 578,
+									"top": 562,
+									"width": 69,
+									"height": 26,
 									"text": "Sửa TT sản phẩm",
 									"wordWrap": true
 								}
 							],
 							"font": "Arial;13;0",
-							"left": 544,
-							"top": 576,
-							"width": 74.18994140625,
-							"height": 59,
+							"left": 568,
+							"top": 552,
+							"width": 89,
+							"height": 46,
 							"nameLabel": {
 								"$ref": "AAAAAAGabqLShcUqhvE="
 							}
@@ -2911,19 +2911,19 @@
 										"$ref": "AAAAAAGabqLmysUyro4="
 									},
 									"font": "Arial;13;0",
-									"left": 554,
-									"top": 666,
-									"width": 54.18994140625,
-									"height": 39,
+									"left": 578,
+									"top": 642,
+									"width": 69,
+									"height": 26,
 									"text": "Xóa TT sản phẩm",
 									"wordWrap": true
 								}
 							],
 							"font": "Arial;13;0",
-							"left": 544,
-							"top": 656,
-							"width": 74.18994140625,
-							"height": 59,
+							"left": 568,
+							"top": 632,
+							"width": 89,
+							"height": 46,
 							"nameLabel": {
 								"$ref": "AAAAAAGabqLmysUzFpo="
 							}
@@ -2936,7 +2936,7 @@
 							},
 							"font": "Arial;13;0",
 							"lineStyle": 1,
-							"points": "488:672;544:672"
+							"points": "536:656;568:656"
 						},
 						{
 							"_type": "FreelineEdgeView",
@@ -2946,7 +2946,7 @@
 							},
 							"font": "Arial;13;0",
 							"lineStyle": 1,
-							"points": "488:592;544:592"
+							"points": "536:576;568:576"
 						},
 						{
 							"_type": "FreelineEdgeView",
@@ -2956,7 +2956,7 @@
 							},
 							"font": "Arial;13;0",
 							"lineStyle": 1,
-							"points": "488:504;544:504"
+							"points": "536:488;568:488"
 						},
 						{
 							"_type": "FCProcessView",
@@ -2975,17 +2975,17 @@
 										"$ref": "AAAAAAGabqQLCsVMCn4="
 									},
 									"font": "Arial;13;0",
-									"left": 690,
-									"top": 458,
+									"left": 706,
+									"top": 442,
 									"width": -19,
 									"wordWrap": true
 								}
 							],
 							"font": "Arial;13;0",
-							"left": 680,
-							"top": 448,
+							"left": 696,
+							"top": 432,
 							"width": 1,
-							"height": 273,
+							"height": 225,
 							"nameLabel": {
 								"$ref": "AAAAAAGabqQLCsVNNH0="
 							}
@@ -3007,19 +3007,19 @@
 										"$ref": "AAAAAAGabqRWgMVY4QE="
 									},
 									"font": "Arial;13;0",
-									"left": 754,
-									"top": 490,
-									"width": 54.18994140625,
-									"height": 39,
-									"text": "Thêm TT Khách Hàng",
+									"left": 738,
+									"top": 474,
+									"width": 77,
+									"height": 26,
+									"text": "Thêm TT khách hàng",
 									"wordWrap": true
 								}
 							],
 							"font": "Arial;13;0",
-							"left": 744,
-							"top": 480,
-							"width": 74.18994140625,
-							"height": 59,
+							"left": 728,
+							"top": 464,
+							"width": 97,
+							"height": 46,
 							"nameLabel": {
 								"$ref": "AAAAAAGabqRWgMVZN5c="
 							}
@@ -3041,19 +3041,19 @@
 										"$ref": "AAAAAAGabqRxNsVhU+8="
 									},
 									"font": "Arial;13;0",
-									"left": 754,
-									"top": 570,
-									"width": 54.18994140625,
-									"height": 39,
+									"left": 738,
+									"top": 562,
+									"width": 77,
+									"height": 26,
 									"text": "Sửa TT khách hàng",
 									"wordWrap": true
 								}
 							],
 							"font": "Arial;13;0",
-							"left": 744,
-							"top": 560,
-							"width": 74.18994140625,
-							"height": 59,
+							"left": 728,
+							"top": 552,
+							"width": 97,
+							"height": 46,
 							"nameLabel": {
 								"$ref": "AAAAAAGabqRxNsVimEI="
 							}
@@ -3075,19 +3075,19 @@
 										"$ref": "AAAAAAGabqSJxsVqp8E="
 									},
 									"font": "Arial;13;0",
-									"left": 754,
-									"top": 658,
-									"width": 54.18994140625,
-									"height": 39,
+									"left": 738,
+									"top": 642,
+									"width": 77,
+									"height": 26,
 									"text": "Xóa TT khách hàng",
 									"wordWrap": true
 								}
 							],
 							"font": "Arial;13;0",
-							"left": 744,
-							"top": 648,
-							"width": 74.18994140625,
-							"height": 59,
+							"left": 728,
+							"top": 632,
+							"width": 97,
+							"height": 46,
 							"nameLabel": {
 								"$ref": "AAAAAAGabqSJxsVr/hU="
 							}
@@ -3109,17 +3109,17 @@
 										"$ref": "AAAAAAGabqVHQsV9jeE="
 									},
 									"font": "Arial;13;0",
-									"left": 898,
+									"left": 874,
 									"top": 442,
 									"width": -19,
 									"wordWrap": true
 								}
 							],
 							"font": "Arial;13;0",
-							"left": 888,
+							"left": 864,
 							"top": 432,
 							"width": 1,
-							"height": 289,
+							"height": 225,
 							"nameLabel": {
 								"$ref": "AAAAAAGabqVHQ8V+/ck="
 							}
@@ -3141,18 +3141,18 @@
 										"$ref": "AAAAAAGabqWGo8WKTxw="
 									},
 									"font": "Arial;13;0",
-									"left": 954,
-									"top": 490,
-									"width": 54.18994140625,
+									"left": 914,
+									"top": 474,
+									"width": 69,
 									"height": 26,
-									"text": "Thêm TT Hóa đơn",
+									"text": "Thêm TT hóa đơn",
 									"wordWrap": true
 								}
 							],
 							"font": "Arial;13;0",
-							"left": 944,
-							"top": 480,
-							"width": 74.18994140625,
+							"left": 904,
+							"top": 464,
+							"width": 89,
 							"height": 46,
 							"nameLabel": {
 								"$ref": "AAAAAAGabqWGo8WL7Dk="
@@ -3175,18 +3175,18 @@
 										"$ref": "AAAAAAGabqWl28WTgfE="
 									},
 									"font": "Arial;13;0",
-									"left": 954,
-									"top": 578,
-									"width": 54.18994140625,
+									"left": 914,
+									"top": 562,
+									"width": 69,
 									"height": 26,
-									"text": "Sửa TT Hóa đơn",
+									"text": "Sửa TT hóa đơn",
 									"wordWrap": true
 								}
 							],
 							"font": "Arial;13;0",
-							"left": 944,
-							"top": 568,
-							"width": 74.18994140625,
+							"left": 904,
+							"top": 552,
+							"width": 89,
 							"height": 46,
 							"nameLabel": {
 								"$ref": "AAAAAAGabqWl28WUIDA="
@@ -3209,18 +3209,18 @@
 										"$ref": "AAAAAAGabqW918WcA/s="
 									},
 									"font": "Arial;13;0",
-									"left": 954,
-									"top": 666,
-									"width": 54.18994140625,
+									"left": 914,
+									"top": 642,
+									"width": 69,
 									"height": 26,
 									"text": "Xóa TT hóa đơn",
 									"wordWrap": true
 								}
 							],
 							"font": "Arial;13;0",
-							"left": 944,
-							"top": 656,
-							"width": 74.18994140625,
+							"left": 904,
+							"top": 632,
+							"width": 89,
 							"height": 46,
 							"nameLabel": {
 								"$ref": "AAAAAAGabqW918WdOqU="
@@ -3234,7 +3234,7 @@
 							},
 							"font": "Arial;13;0",
 							"lineStyle": 1,
-							"points": "680:680;744:680"
+							"points": "696:656;728:656"
 						},
 						{
 							"_type": "FreelineEdgeView",
@@ -3244,7 +3244,7 @@
 							},
 							"font": "Arial;13;0",
 							"lineStyle": 1,
-							"points": "680:584;744:584"
+							"points": "696:576;728:576"
 						},
 						{
 							"_type": "FreelineEdgeView",
@@ -3254,7 +3254,7 @@
 							},
 							"font": "Arial;13;0",
 							"lineStyle": 1,
-							"points": "680:504;744:504"
+							"points": "696:488;728:488"
 						},
 						{
 							"_type": "FreelineEdgeView",
@@ -3264,7 +3264,7 @@
 							},
 							"font": "Arial;13;0",
 							"lineStyle": 1,
-							"points": "888:496;944:496"
+							"points": "864:488;904:488"
 						},
 						{
 							"_type": "FreelineEdgeView",
@@ -3274,7 +3274,7 @@
 							},
 							"font": "Arial;13;0",
 							"lineStyle": 1,
-							"points": "888:584;943:584"
+							"points": "864:576;904:576"
 						},
 						{
 							"_type": "FreelineEdgeView",
@@ -3284,7 +3284,7 @@
 							},
 							"font": "Arial;13;0",
 							"lineStyle": 1,
-							"points": "888:680;944:681"
+							"points": "864:656;904:657"
 						}
 					]
 				},
@@ -3294,7 +3294,7 @@
 					"_parent": {
 						"$ref": "AAAAAAGabnJpUb7Itd0="
 					},
-					"name": "Quản lý shop bán đồ Bóng đá",
+					"name": "Quản lý cửa hàng bán đồ bóng đá",
 					"ownedElements": [
 						{
 							"_type": "FCFlow",
@@ -3369,7 +3369,7 @@
 					"_parent": {
 						"$ref": "AAAAAAGabnJpUb7Itd0="
 					},
-					"name": "Quản lý Danh mục"
+					"name": "Quản lý danh mục"
 				},
 				{
 					"_type": "FCProcess",
@@ -3377,7 +3377,7 @@
 					"_parent": {
 						"$ref": "AAAAAAGabnJpUb7Itd0="
 					},
-					"name": "Quản lý Sản phẩm"
+					"name": "Quản lý sản phẩm"
 				},
 				{
 					"_type": "FCProcess",
@@ -3393,7 +3393,7 @@
 					"_parent": {
 						"$ref": "AAAAAAGabnJpUb7Itd0="
 					},
-					"name": "Quản lý Hóa đơn"
+					"name": "Quản lý hóa đơn"
 				},
 				{
 					"_type": "FCProcess",
@@ -3401,7 +3401,7 @@
 					"_parent": {
 						"$ref": "AAAAAAGabnJpUb7Itd0="
 					},
-					"name": " Quản lý Bình Luận"
+					"name": " Quản lý bình luận"
 				},
 				{
 					"_type": "FCProcess",
@@ -3409,7 +3409,7 @@
 					"_parent": {
 						"$ref": "AAAAAAGabnJpUb7Itd0="
 					},
-					"name": "duyệt hoặc từ chối bình luận"
+					"name": "Duyệt hoặc từ chối bình luận"
 				},
 				{
 					"_type": "FCProcess",
@@ -3424,7 +3424,7 @@
 					"_parent": {
 						"$ref": "AAAAAAGabnJpUb7Itd0="
 					},
-					"name": "Thêm TT danh Mục"
+					"name": "Thêm TT danh mục"
 				},
 				{
 					"_type": "FCProcess",
@@ -3455,7 +3455,7 @@
 					"_parent": {
 						"$ref": "AAAAAAGabnJpUb7Itd0="
 					},
-					"name": "Thêm TT Sản Phẩm"
+					"name": "Thêm TT sản phẩm"
 				},
 				{
 					"_type": "FCProcess",
@@ -3486,7 +3486,7 @@
 					"_parent": {
 						"$ref": "AAAAAAGabnJpUb7Itd0="
 					},
-					"name": "Thêm TT Khách Hàng"
+					"name": "Thêm TT khách hàng"
 				},
 				{
 					"_type": "FCProcess",
@@ -3517,7 +3517,7 @@
 					"_parent": {
 						"$ref": "AAAAAAGabnJpUb7Itd0="
 					},
-					"name": "Thêm TT Hóa đơn"
+					"name": "Thêm TT hóa đơn"
 				},
 				{
 					"_type": "FCProcess",
@@ -3525,7 +3525,7 @@
 					"_parent": {
 						"$ref": "AAAAAAGabnJpUb7Itd0="
 					},
-					"name": "Sửa TT Hóa đơn"
+					"name": "Sửa TT hóa đơn"
 				},
 				{
 					"_type": "FCProcess",
@@ -3574,7 +3574,7 @@
 									"top": 378,
 									"width": 356,
 									"height": 24,
-									"text": "Quản lý shop bán đồ thể thao",
+									"text": "Quản lý shop bán đồ bóng đá",
 									"wordWrap": true
 								}
 							],
@@ -3582,7 +3582,7 @@
 							"left": 320,
 							"top": 368,
 							"width": 376,
-							"height": 57,
+							"height": 44,
 							"nameLabel": {
 								"$ref": "AAAAAAGabnjneL9AxSk="
 							}
@@ -3605,18 +3605,18 @@
 									},
 									"font": "Arial;13;0",
 									"left": 490,
-									"top": 202,
-									"width": 54.18994140625,
-									"height": 26,
+									"top": 210,
+									"width": 77,
+									"height": 13,
 									"text": "Khách hàng",
 									"wordWrap": true
 								}
 							],
 							"font": "Arial;13;0",
 							"left": 480,
-							"top": 192,
-							"width": 74.18994140625,
-							"height": 46,
+							"top": 200,
+							"width": 97,
+							"height": 33,
 							"nameLabel": {
 								"$ref": "AAAAAAGacvsxs90okEc="
 							}
@@ -3661,7 +3661,7 @@
 								"$ref": "AAAAAAGacvsxs90nyJo="
 							},
 							"lineStyle": 2,
-							"points": "553:216;608:216;608:368",
+							"points": "576:216;608:216;608:368",
 							"nameLabel": {
 								"$ref": "AAAAAAGacvuKit0y+SI="
 							}
@@ -3696,7 +3696,7 @@
 										"$ref": "AAAAAAGacvus6d09O28="
 									},
 									"edgePosition": 1,
-									"text": "TT khách hàng"
+									"text": "TT Khách hàng"
 								}
 							],
 							"font": "Arial;13;0",
@@ -3707,7 +3707,7 @@
 								"$ref": "AAAAAAGabnjneL8/K90="
 							},
 							"lineStyle": 2,
-							"points": "608:368;608:216;553:216",
+							"points": "608:368;608:216;576:216",
 							"nameLabel": {
 								"$ref": "AAAAAAGacvus6d0+3mM="
 							}
@@ -3823,16 +3823,16 @@
 									"font": "Arial;13;0",
 									"left": 514,
 									"top": 594,
-									"width": 54.18994140625,
-									"height": 13,
-									"text": "Admin",
+									"width": 56.689453125,
+									"height": 26,
+									"text": "Chủ cửa hàng",
 									"wordWrap": true
 								}
 							],
 							"font": "Arial;13;0",
 							"left": 504,
 							"top": 584,
-							"width": 74.18994140625,
+							"width": 76.689453125,
 							"height": 46,
 							"nameLabel": {
 								"$ref": "AAAAAAGacwBvKd1wS8Y="
@@ -3879,7 +3879,7 @@
 								"$ref": "AAAAAAGabnjneL8/K90="
 							},
 							"lineStyle": 2,
-							"points": "695:400;784:400;784:624;577:624",
+							"points": "695:400;784:400;784:624;580:624",
 							"nameLabel": {
 								"$ref": "AAAAAAGacwEPC92FcwY="
 							}
@@ -3925,7 +3925,7 @@
 								"$ref": "AAAAAAGacwBvKd1voLE="
 							},
 							"lineStyle": 2,
-							"points": "504:608;352:608;352:424",
+							"points": "504:608;352:608;352:411",
 							"nameLabel": {
 								"$ref": "AAAAAAGacwIk9N2neAg="
 							}
@@ -3951,7 +3951,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 414,
-									"top": 503,
+									"top": 496,
 									"width": 80.1962890625,
 									"height": 13,
 									"alpha": -1.464060760230247,
@@ -3960,7 +3960,7 @@
 										"$ref": "AAAAAAGacwMWNN3B7s4="
 									},
 									"edgePosition": 1,
-									"text": "TT Sản Phẩm"
+									"text": "TT Sản phẩm"
 								}
 							],
 							"font": "Arial;13;0",
@@ -3971,7 +3971,7 @@
 								"$ref": "AAAAAAGabnjneL8/K90="
 							},
 							"lineStyle": 2,
-							"points": "511:424;511:584",
+							"points": "511:411;511:584",
 							"nameLabel": {
 								"$ref": "AAAAAAGacwMWNN3CZMM="
 							}
@@ -3997,7 +3997,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 543,
-									"top": 488,
+									"top": 481,
 									"width": 78.74267578125,
 									"height": 13,
 									"alpha": 1.7848568402323737,
@@ -4017,7 +4017,7 @@
 								"$ref": "AAAAAAGabnjneL8/K90="
 							},
 							"lineStyle": 2,
-							"points": "536:424;536:584",
+							"points": "536:411;536:584",
 							"nameLabel": {
 								"$ref": "AAAAAAGacwOQGd3S/tc="
 							}
@@ -4043,7 +4043,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 591,
-									"top": 567,
+									"top": 575,
 									"width": 78.76806640625,
 									"height": 13,
 									"alpha": -0.19739559831142683,
@@ -4052,7 +4052,7 @@
 										"$ref": "AAAAAAGacwQbJt3hzcQ="
 									},
 									"edgePosition": 1,
-									"text": "TT Bình Luận"
+									"text": "TT Bình luận"
 								}
 							],
 							"font": "Arial;13;0",
@@ -4063,7 +4063,7 @@
 								"$ref": "AAAAAAGabnjneL8/K90="
 							},
 							"lineStyle": 2,
-							"points": "680:424;680:584;577:584",
+							"points": "680:411;680:592;580:592",
 							"nameLabel": {
 								"$ref": "AAAAAAGacwQbJt3iSR4="
 							}
@@ -4076,7 +4076,7 @@
 					"_parent": {
 						"$ref": "AAAAAAGabnbYeb83E0I="
 					},
-					"name": "Quản lý shop bán đồ thể thao",
+					"name": "Quản lý shop bán đồ bóng đá",
 					"ownedElements": [
 						{
 							"_type": "FCFlow",
@@ -4084,7 +4084,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGabnjneL89akg="
 							},
-							"name": "TT khách hàng",
+							"name": "TT Khách hàng",
 							"source": {
 								"$ref": "AAAAAAGabnjneL89akg="
 							},
@@ -4126,7 +4126,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGabnjneL89akg="
 							},
-							"name": "TT Sản Phẩm",
+							"name": "TT Sản phẩm",
 							"source": {
 								"$ref": "AAAAAAGabnjneL89akg="
 							},
@@ -4154,7 +4154,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGabnjneL89akg="
 							},
-							"name": "TT Bình Luận",
+							"name": "TT Bình luận",
 							"source": {
 								"$ref": "AAAAAAGabnjneL89akg="
 							},
@@ -4207,7 +4207,7 @@
 					"_parent": {
 						"$ref": "AAAAAAGabnbYeb83E0I="
 					},
-					"name": "Admin",
+					"name": "Chủ cửa hàng",
 					"ownedElements": [
 						{
 							"_type": "FCFlow",
@@ -4467,8 +4467,8 @@
 									"left": 130,
 									"top": 410,
 									"width": 54.18994140625,
-									"height": 13,
-									"text": "Admin",
+									"height": 26,
+									"text": "Chủ cửa hàng",
 									"wordWrap": true
 								}
 							],
@@ -4476,7 +4476,7 @@
 							"left": 120,
 							"top": 400,
 							"width": 74.18994140625,
-							"height": 33,
+							"height": 46,
 							"nameLabel": {
 								"$ref": "AAAAAAGacwqGWN5icNI="
 							}
@@ -4568,7 +4568,7 @@
 								"$ref": "AAAAAAGacwib6N5CU4I="
 							},
 							"lineStyle": 2,
-							"points": "360:528;152:528;152:432",
+							"points": "360:528;152:528;152:445",
 							"nameLabel": {
 								"$ref": "AAAAAAGacwt5hd582hM="
 							}
@@ -4844,7 +4844,7 @@
 								"$ref": "AAAAAAGacwj/R95NQyM="
 							},
 							"lineStyle": 2,
-							"points": "352:616;128:616;128:432",
+							"points": "352:616;128:616;128:445",
 							"nameLabel": {
 								"$ref": "AAAAAAGacw36Z97W5+k="
 							}
@@ -4982,7 +4982,7 @@
 								"$ref": "AAAAAAGacwqGV95h4D8="
 							},
 							"lineStyle": 2,
-							"points": "193:432;193:496;360:496",
+							"points": "193:445;193:496;360:496",
 							"nameLabel": {
 								"$ref": "AAAAAAGacw88dN79iJ0="
 							}
@@ -5269,7 +5269,7 @@
 					"_parent": {
 						"$ref": "AAAAAAGacwa7lN37U0k="
 					},
-					"name": "Admin",
+					"name": "Chủ cửa hàng",
 					"ownedElements": [
 						{
 							"_type": "FCFlow",
