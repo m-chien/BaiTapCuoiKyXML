@@ -1,5 +1,5 @@
 ﻿
-namespace WFA_Quanlyquancafe
+namespace QuanLyShopBanDoDaBong
 {
     partial class Form_ThongKe
     {

@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 
-namespace WFA_Quanlyquancafe
+namespace QuanLyShopBanDoDaBong
 {
     public partial class Form_ThongKe : Form
     {
-        private string connectionString = "Data Source=DESKTOP-ER8LV7D; Initial Catalog=FootballShop; Integrated Security=True";
+        private string connectionString = "Data Source=localhost; Initial Catalog=FootballShop; Integrated Security=True";
 
         public Form_ThongKe()
         {

@@ -12,11 +12,11 @@ using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Xsl;
 
-namespace WFA_Quanlyquancafe
+namespace QuanLyShopBanDoDaBong
 {
     public partial class Form_QLSanpham : Form
     {
-        private string connectionString = "Data Source=DESKTOP-ER8LV7D; Initial Catalog=FootballShop; Integrated Security=True";
+        private string connectionString = "Data Source=localhost; Initial Catalog=FootballShop; Integrated Security=True";
 
         public Form_QLSanpham()
         {

@@ -11,12 +11,12 @@ using System.Xml;
 using System.Xml.Xsl;
 using System.Text;
 
-namespace WFA_Quanlyquancafe
+namespace QuanLyShopBanDoDaBong
 {
     public partial class Form_QLTaiKhoan : Form
     {
         // Chuỗi kết nối tới cơ sở dữ liệu SQL Server
-        private string connectionString = "Data Source=DESKTOP-ER8LV7D; Initial Catalog=FootballShop; Integrated Security=True";
+        private string connectionString = "Data Source=localhost; Initial Catalog=FootballShop; Integrated Security=True";
 
         public Form_QLTaiKhoan()
         {

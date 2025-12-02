@@ -12,3 +12,20 @@ D:\nam 3 dh\ky 1\XML\QuanLyShopBanDoDaBong\QuanLyShopBanDoDaBong\obj\Debug\QuanL
 D:\nam 3 dh\ky 1\XML\QuanLyShopBanDoDaBong\QuanLyShopBanDoDaBong\obj\Debug\QuanLyShopBanDoDaBong.csproj.CoreCompileInputs.cache
 D:\nam 3 dh\ky 1\XML\QuanLyShopBanDoDaBong\QuanLyShopBanDoDaBong\obj\Debug\QuanLyShopBanDoDaBong.exe
 D:\nam 3 dh\ky 1\XML\QuanLyShopBanDoDaBong\QuanLyShopBanDoDaBong\obj\Debug\QuanLyShopBanDoDaBong.pdb
+F:\Nam3\125\BaiTapCuoiKyXML\QuanLyShopBanDoDaBong\QuanLyShopBanDoDaBong\bin\Debug\QuanLyShopBanDoDaBong.exe.config
+F:\Nam3\125\BaiTapCuoiKyXML\QuanLyShopBanDoDaBong\QuanLyShopBanDoDaBong\bin\Debug\QuanLyShopBanDoDaBong.exe
+F:\Nam3\125\BaiTapCuoiKyXML\QuanLyShopBanDoDaBong\QuanLyShopBanDoDaBong\bin\Debug\QuanLyShopBanDoDaBong.pdb
+F:\Nam3\125\BaiTapCuoiKyXML\QuanLyShopBanDoDaBong\QuanLyShopBanDoDaBong\bin\Debug\System.Configuration.ConfigurationManager.dll
+F:\Nam3\125\BaiTapCuoiKyXML\QuanLyShopBanDoDaBong\QuanLyShopBanDoDaBong\bin\Debug\System.Configuration.ConfigurationManager.xml
+F:\Nam3\125\BaiTapCuoiKyXML\QuanLyShopBanDoDaBong\QuanLyShopBanDoDaBong\obj\Debug\QuanLyShopBanDoDaBong.csproj.AssemblyReference.cache
+F:\Nam3\125\BaiTapCuoiKyXML\QuanLyShopBanDoDaBong\QuanLyShopBanDoDaBong\obj\Debug\QuanLyShopBanDoDaBong.Form_DangNhap.resources
+F:\Nam3\125\BaiTapCuoiKyXML\QuanLyShopBanDoDaBong\QuanLyShopBanDoDaBong\obj\Debug\QuanLyShopBanDoDaBong.Form_QLSanpham.resources
+F:\Nam3\125\BaiTapCuoiKyXML\QuanLyShopBanDoDaBong\QuanLyShopBanDoDaBong\obj\Debug\QuanLyShopBanDoDaBong.Form_QLTaiKhoan.resources
+F:\Nam3\125\BaiTapCuoiKyXML\QuanLyShopBanDoDaBong\QuanLyShopBanDoDaBong\obj\Debug\QuanLyShopBanDoDaBong.Form_QuanLy.resources
+F:\Nam3\125\BaiTapCuoiKyXML\QuanLyShopBanDoDaBong\QuanLyShopBanDoDaBong\obj\Debug\QuanLyShopBanDoDaBong.Form_ThongKe.resources
+F:\Nam3\125\BaiTapCuoiKyXML\QuanLyShopBanDoDaBong\QuanLyShopBanDoDaBong\obj\Debug\QuanLyShopBanDoDaBong.Properties.Resources.resources
+F:\Nam3\125\BaiTapCuoiKyXML\QuanLyShopBanDoDaBong\QuanLyShopBanDoDaBong\obj\Debug\QuanLyShopBanDoDaBong.csproj.GenerateResource.cache
+F:\Nam3\125\BaiTapCuoiKyXML\QuanLyShopBanDoDaBong\QuanLyShopBanDoDaBong\obj\Debug\QuanLyShopBanDoDaBong.csproj.CoreCompileInputs.cache
+F:\Nam3\125\BaiTapCuoiKyXML\QuanLyShopBanDoDaBong\QuanLyShopBanDoDaBong\obj\Debug\QuanLySh.EF4C3FD2.Up2Date
+F:\Nam3\125\BaiTapCuoiKyXML\QuanLyShopBanDoDaBong\QuanLyShopBanDoDaBong\obj\Debug\QuanLyShopBanDoDaBong.exe
+F:\Nam3\125\BaiTapCuoiKyXML\QuanLyShopBanDoDaBong\QuanLyShopBanDoDaBong\obj\Debug\QuanLyShopBanDoDaBong.pdb
