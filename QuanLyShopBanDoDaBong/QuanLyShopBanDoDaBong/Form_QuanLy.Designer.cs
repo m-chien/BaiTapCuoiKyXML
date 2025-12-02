@@ -49,7 +49,7 @@
             this.menuquanlycaphe.Location = new System.Drawing.Point(0, 0);
             this.menuquanlycaphe.Name = "menuquanlycaphe";
             this.menuquanlycaphe.Padding = new System.Windows.Forms.Padding(10);
-            this.menuquanlycaphe.Size = new System.Drawing.Size(1001, 60);
+            this.menuquanlycaphe.Size = new System.Drawing.Size(1106, 60);
             this.menuquanlycaphe.TabIndex = 0;
             this.menuquanlycaphe.Text = "menuStrip1";
             this.menuquanlycaphe.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuquanlycaphe_ItemClicked);
@@ -87,14 +87,14 @@
             this.pnlContent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlContent.Location = new System.Drawing.Point(0, 60);
             this.pnlContent.Name = "pnlContent";
-            this.pnlContent.Size = new System.Drawing.Size(1001, 540);
+            this.pnlContent.Size = new System.Drawing.Size(1106, 576);
             this.pnlContent.TabIndex = 1;
             this.pnlContent.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlContent_Paint);
             // 
             // Form_QuanLy
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(1001, 600);
+            this.ClientSize = new System.Drawing.Size(1106, 636);
             this.Controls.Add(this.pnlContent);
             this.Controls.Add(this.menuquanlycaphe);
             this.MainMenuStrip = this.menuquanlycaphe;
