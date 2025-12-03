@@ -8,11 +8,11 @@ using System.Configuration;
 
 namespace QuanLyShopBanDoDaBong
 {
-    public partial class Form_QLSanpham : Form
+    public partial class Form_QLSanPham : Form
     {
         string strCon = ConfigurationManager.ConnectionStrings["MyConnect"].ConnectionString;
 
-        public Form_QLSanpham()
+        public Form_QLSanPham()
         {
             InitializeComponent();
         }
@@ -39,7 +39,7 @@ namespace QuanLyShopBanDoDaBong
                     dgvSanpham.DataSource = dt;
                     dgvSanpham.Columns["IDSanPham"].HeaderText = "Mã SP";
                     dgvSanpham.Columns["mota"].HeaderText = "Tên Sản Phẩm";
-                    dgvSanpham.Columns["Hang"].HeaderText = "Hãng/Nước SX";
+                    dgvSanpham.Columns["Hang"].HeaderText = "Hãng";
                     dgvSanpham.Columns["DonViTinh"].HeaderText = "Đơn Vị";
                     dgvSanpham.Columns["SoLuongTonKho"].HeaderText = "Số Lượng";
                 }

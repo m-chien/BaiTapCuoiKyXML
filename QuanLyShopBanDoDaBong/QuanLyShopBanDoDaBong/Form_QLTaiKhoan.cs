@@ -56,7 +56,7 @@ namespace QuanLyShopBanDoDaBong
 
                     // Đổi tên cột hiển thị cho đẹp
                     if (dgvtaikhoan.Columns["IDNguoiDung"] != null) dgvtaikhoan.Columns["IDNguoiDung"].HeaderText = "ID";
-                    if (dgvtaikhoan.Columns["Email"] != null) dgvtaikhoan.Columns["Email"].HeaderText = "Email (Tài khoản)";
+                    if (dgvtaikhoan.Columns["Email"] != null) dgvtaikhoan.Columns["Email"].HeaderText = "Tài khoản";
                     if (dgvtaikhoan.Columns["password"] != null) dgvtaikhoan.Columns["password"].HeaderText = "Mật khẩu";
                     if (dgvtaikhoan.Columns["VaiTro"] != null) dgvtaikhoan.Columns["VaiTro"].HeaderText = "Vai trò";
                 }
@@ -129,47 +129,6 @@ namespace QuanLyShopBanDoDaBong
             catch (Exception ex)
             {
                 MessageBox.Show("Lỗi thêm: " + ex.Message);
-            }
-        }
-
-        // --- 2. CHỨC NĂNG SỬA ---
-        private void btnsua_Click(object sender, EventArgs e)
-        {
-            if (idHienTai == -1)
-            {
-                MessageBox.Show("Vui lòng chọn tài khoản cần sửa!");
-                return;
-            }
-            if (!KiemTraNhapLieu()) return;
-
-            // Kiểm tra trùng Email (Trừ chính nó ra)
-            if (KiemTraEmailTonTai(txtendangnhap.Text.Trim(), idHienTai))
-            {
-                MessageBox.Show("Email này đang được sử dụng bởi người khác!");
-                return;
-            }
-
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    conn.Open();
-                    string sql = "UPDATE NguoiDung SET Email = @Email, password = @Pass, VaiTro = @Role WHERE IDNguoiDung = @ID";
-                    using (SqlCommand cmd = new SqlCommand(sql, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@ID", idHienTai);
-                        cmd.Parameters.AddWithValue("@Email", txtendangnhap.Text.Trim());
-                        cmd.Parameters.AddWithValue("@Pass", txtmatkhau.Text.Trim());
-                        cmd.Parameters.AddWithValue("@Role", cmbvaitro.SelectedItem.ToString());
-                        cmd.ExecuteNonQuery();
-                    }
-                }
-                MessageBox.Show("Cập nhật thành công!");
-                LoadNguoiDung();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi sửa: " + ex.Message);
             }
         }
 
@@ -278,6 +237,46 @@ namespace QuanLyShopBanDoDaBong
                 }
             }
             catch { return false; }
+        }
+
+        private void btnsua_Click_1(object sender, EventArgs e)
+        {
+            if (idHienTai == -1)
+            {
+                MessageBox.Show("Vui lòng chọn tài khoản cần sửa!");
+                return;
+            }
+            if (!KiemTraNhapLieu()) return;
+
+            // Kiểm tra trùng Email (Trừ chính nó ra)
+            if (KiemTraEmailTonTai(txtendangnhap.Text.Trim(), idHienTai))
+            {
+                MessageBox.Show("Email này đang được sử dụng bởi người khác!");
+                return;
+            }
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string sql = "UPDATE NguoiDung SET Email = @Email, password = @Pass, VaiTro = @Role WHERE IDNguoiDung = @ID";
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@ID", idHienTai);
+                        cmd.Parameters.AddWithValue("@Email", txtendangnhap.Text.Trim());
+                        cmd.Parameters.AddWithValue("@Pass", txtmatkhau.Text.Trim());
+                        cmd.Parameters.AddWithValue("@Role", cmbvaitro.SelectedItem.ToString());
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                MessageBox.Show("Cập nhật thành công!");
+                LoadNguoiDung();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi sửa: " + ex.Message);
+            }
         }
     }
 }

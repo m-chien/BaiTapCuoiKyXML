@@ -14,8 +14,8 @@
 
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlHeader = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBoxInfo = new System.Windows.Forms.GroupBox();
@@ -52,7 +52,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(443, 21);
+            this.label1.Location = new System.Drawing.Point(450, 20);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(233, 30);
             this.label1.TabIndex = 0;
@@ -166,7 +166,7 @@
             this.btnxml.Name = "btnxml";
             this.btnxml.Size = new System.Drawing.Size(160, 45);
             this.btnxml.TabIndex = 12;
-            this.btnxml.Text = "Xem XML";
+            this.btnxml.Text = "Xuất XML";
             this.btnxml.UseVisualStyleBackColor = false;
             this.btnxml.Click += new System.EventHandler(this.btnxml_Click);
             // 
@@ -183,6 +183,7 @@
             this.btnsua.TabIndex = 11;
             this.btnsua.Text = "Sửa";
             this.btnsua.UseVisualStyleBackColor = false;
+            this.btnsua.Click += new System.EventHandler(this.btnsua_Click_1);
             // 
             // btnxoa
             // 
@@ -220,21 +221,21 @@
             this.dgvtaikhoan.BackgroundColor = System.Drawing.Color.White;
             this.dgvtaikhoan.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvtaikhoan.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvtaikhoan.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvtaikhoan.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.dgvtaikhoan.ColumnHeadersHeight = 35;
             this.dgvtaikhoan.EnableHeadersVisualStyles = false;
             this.dgvtaikhoan.Location = new System.Drawing.Point(50, 310);
             this.dgvtaikhoan.Name = "dgvtaikhoan";
             this.dgvtaikhoan.RowHeadersWidth = 51;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvtaikhoan.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvtaikhoan.RowsDefaultCellStyle = dataGridViewCellStyle8;
             this.dgvtaikhoan.RowTemplate.Height = 24;
             this.dgvtaikhoan.Size = new System.Drawing.Size(1000, 278);
             this.dgvtaikhoan.TabIndex = 13;

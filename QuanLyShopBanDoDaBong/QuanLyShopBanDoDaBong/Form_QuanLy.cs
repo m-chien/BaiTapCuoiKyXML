@@ -1,71 +1,78 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace QuanLyShopBanDoDaBong
 {
     public partial class Form_QuanLy : Form
     {
+        private Form currentFormChild;
+
         public Form_QuanLy()
         {
             InitializeComponent();
         }
-        private void Hienthiformcon (Form childForm)
+
+        private void Hienthiformcon(Form childForm)
         {
-            // Đảm bảo đóng form cũ trước khi mở form mới
-            foreach (Control ctrl in pnlContent.Controls)
+            if (currentFormChild != null)
             {
-                if (ctrl is Form form)
-                {
-                    form.Close();
-                }
+                currentFormChild.Close();
             }
-            // Đặt form con vào panel
-            childForm.TopLevel = false;  // Đảm bảo không phải là một form độc lập
-            childForm.FormBorderStyle = FormBorderStyle.None; // Ẩn viền của form
-            childForm.Dock = DockStyle.Fill; // Để form chiếm hết diện tích panel
-            pnlContent.Controls.Add(childForm); // Thêm form vào panel
-            childForm.Show(); // Hiển thị form con
+
+            currentFormChild = childForm;
+
+            childForm.TopLevel = false;
+            childForm.FormBorderStyle = FormBorderStyle.None;
+            childForm.Dock = DockStyle.Fill;
+
+            // Thêm vào Panel
+            pnlContent.Controls.Add(childForm);
+            pnlContent.Tag = childForm;
+
+            // Hiển thị
+            childForm.BringToFront();
+            childForm.Show();
         }
 
         private void Form_QuanLy_Load(object sender, EventArgs e)
         {
-
+            // Mở mặc định form nào đó nếu muốn, ví dụ:
+            // Hienthiformcon(new Form_QLSanPham());
         }
+
+        // --- CÁC SỰ KIỆN CLICK MENU ---
 
         private void quảnLýDanhMụcSảnPhẩmToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // show form con quản lý lịch làm việc (Thêm sửa xóa, hiển thị dữ liệu lên datagridview)
-            Form_QLTaiKhoan form = new Form_QLTaiKhoan();
-            Hienthiformcon(form);
-        }
-
-        private void xemThốngKêVàBáoCáoToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Form_ThongKe form = new Form_ThongKe();
-            Hienthiformcon(form);
+            Hienthiformcon(new Form_QLTaiKhoan());
+            this.Text = "Hệ thống quản lý - Quản lý Tài Khoản";
         }
 
         private void tìmKiếmToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form_QLSanpham form = new Form_QLSanpham();
-            Hienthiformcon(form);
+            Hienthiformcon(new Form_QLSanPham()); // Lưu ý tên class là Form_QLSanpham hay Form_QLSanPham tùy code bạn
+            this.Text = "Hệ thống quản lý - Quản lý Sản Phẩm";
         }
 
-        private void pnlContent_Paint(object sender, PaintEventArgs e)
+        private void hoaDonToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            // Mở form Hóa đơn
+            Hienthiformcon(new Form_HoaDon());
+            this.Text = "Hệ thống quản lý - Quản lý Hóa Đơn";
         }
 
-        private void menuquanlycaphe_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        private void binhLuanToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            // Mở form Bình luận
+            Hienthiformcon(new Form_BinhLuan());
+            this.Text = "Hệ thống quản lý - Quản lý Bình Luận";
+        }
 
+        private void xemThốngKêVàBáoCáoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Hienthiformcon(new Form_ThongKe());
+            this.Text = "Hệ thống quản lý - Thống kê & Báo cáo";
         }
     }
 }

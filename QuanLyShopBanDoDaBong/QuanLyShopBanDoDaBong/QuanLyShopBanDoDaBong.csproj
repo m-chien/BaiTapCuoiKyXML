@@ -74,11 +74,11 @@
     <Compile Include="Form_HoaDon.Designer.cs">
       <DependentUpon>Form_HoaDon.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form_QLSanpham.cs">
+    <Compile Include="Form_QLSanPham.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form_QLSanpham.Designer.cs">
-      <DependentUpon>Form_QLSanpham.cs</DependentUpon>
+    <Compile Include="Form_QLSanPham.Designer.cs">
+      <DependentUpon>Form_QLSanPham.cs</DependentUpon>
     </Compile>
     <Compile Include="Form_QLTaiKhoan.cs">
       <SubType>Form</SubType>
@@ -113,8 +113,8 @@
     <EmbeddedResource Include="Form_HoaDon.resx">
       <DependentUpon>Form_HoaDon.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form_QLSanpham.resx">
-      <DependentUpon>Form_QLSanpham.cs</DependentUpon>
+    <EmbeddedResource Include="Form_QLSanPham.resx">
+      <DependentUpon>Form_QLSanPham.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_QLTaiKhoan.resx">
       <DependentUpon>Form_QLTaiKhoan.cs</DependentUpon>
@@ -147,6 +147,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ThongKe.xslt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
