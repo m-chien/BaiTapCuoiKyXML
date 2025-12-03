@@ -17,11 +17,8 @@ namespace QuanLyShopBanDoDaBong
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-<<<<<<< HEAD
-            Application.Run(new Form_HoaDon());
-=======
+
             Application.Run(new Form_DangNhap());
->>>>>>> f733cb8033062cfa1bbcad5177f21c571b13faec
         }
     }
 }
