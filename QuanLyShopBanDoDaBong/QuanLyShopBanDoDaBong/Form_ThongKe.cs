@@ -20,18 +20,29 @@ namespace QuanLyShopBanDoDaBong
 
         private void Form_ThongKe_Load_1(object sender, EventArgs e)
         {
+            // Cập nhật lại tên các mục cho phù hợp
             comboBox1.Items.AddRange(new string[] { "Doanh thu theo ngày", "Top sản phẩm bán chạy", "Tồn kho sản phẩm" });
             comboBox1.SelectedIndex = 0;
-            dateTimePicker1.Value = DateTime.Now.AddMonths(-1); // Mặc định lùi 1 tháng
+
+            // Mặc định điền năm hiện tại vào TextBox
+            txtNam.Text = DateTime.Now.Year.ToString();
         }
 
         // --- HÀM XEM BÁO CÁO (HIỂN THỊ LÊN GRID) ---
         private void xembaocao_Click(object sender, EventArgs e)
         {
-            LoadDataToGrid();
+            // Kiểm tra nhập liệu năm
+            if (string.IsNullOrEmpty(txtNam.Text) || !int.TryParse(txtNam.Text, out int nam))
+            {
+                MessageBox.Show("Vui lòng nhập năm hợp lệ (VD: 2023, 2024)!");
+                txtNam.Focus();
+                return;
+            }
+
+            LoadDataToGrid(nam);
         }
 
-        private void LoadDataToGrid()
+        private void LoadDataToGrid(int nam)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -41,45 +52,58 @@ namespace QuanLyShopBanDoDaBong
                     string query = "";
                     string reportType = comboBox1.SelectedItem.ToString();
 
-                    if (reportType == "Doanh thu theo ngày")
+                    if (reportType == "Doanh thu năm")
                     {
-                        query = @"SELECT CAST(NgayDat AS DATE) AS [Ngày], SUM(TongTien) AS [Doanh Thu] 
+                        // Sửa Query: Lấy doanh thu từng tháng trong năm đó
+                        query = @"SELECT 'Tháng ' + CAST(MONTH(NgayDat) AS VARCHAR) AS [Thời Gian], 
+                                         SUM(TongTien) AS [Doanh Thu] 
                                   FROM HoaDon 
-                                  WHERE NgayDat BETWEEN @d1 AND @d2 
-                                  GROUP BY CAST(NgayDat AS DATE) ORDER BY [Ngày]";
+                                  WHERE YEAR(NgayDat) = @Nam 
+                                  GROUP BY MONTH(NgayDat) 
+                                  ORDER BY MONTH(NgayDat)";
                     }
                     else if (reportType == "Top sản phẩm bán chạy")
                     {
-                        query = @"SELECT TOP 10 s.Hang + ' - ' + s.mausac AS [Sản Phẩm], SUM(ct.SoLuong) AS [Số Lượng Bán] 
+                        // Sửa Query: Lọc top sản phẩm trong năm đó
+                        query = @"SELECT TOP 10 s.Hang + ' - ' + s.mausac AS [Sản Phẩm], 
+                                         SUM(ct.SoLuong) AS [Số Lượng Bán] 
                                   FROM ChiTietHoaDon ct 
                                   JOIN SanPham s ON ct.IdSanPham = s.IDSanPham 
                                   JOIN HoaDon h ON ct.IdHoaDon = h.IDHoaDon 
-                                  WHERE h.NgayDat BETWEEN @d1 AND @d2 
-                                  GROUP BY s.Hang, s.mausac ORDER BY [Số Lượng Bán] DESC";
+                                  WHERE YEAR(h.NgayDat) = @Nam 
+                                  GROUP BY s.Hang, s.mausac 
+                                  ORDER BY [Số Lượng Bán] DESC";
                     }
                     else if (reportType == "Tồn kho sản phẩm")
                     {
+                        // Tồn kho là hiện tại, không phụ thuộc vào năm nhập vào
                         query = @"SELECT Hang + ' - ' + mausac AS [Sản Phẩm], SoLuongTonKho AS [Tồn Kho] FROM SanPham";
                     }
 
                     SqlCommand cmd = new SqlCommand(query, conn);
+
+                    // Chỉ thêm tham số @Nam nếu không phải xem tồn kho
                     if (reportType != "Tồn kho sản phẩm")
                     {
-                        cmd.Parameters.AddWithValue("@d1", dateTimePicker1.Value);
-                        cmd.Parameters.AddWithValue("@d2", dateTimePicker2.Value);
+                        cmd.Parameters.AddWithValue("@Nam", nam);
                     }
 
                     SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    DataTable dt = new DataTable("Table"); // Tên Table quan trọng cho XSLT
+                    DataTable dt = new DataTable("Table");
                     da.Fill(dt);
                     dataGridView1.DataSource = dt;
                     dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+                    if (dt.Rows.Count == 0)
+                    {
+                        MessageBox.Show("Không tìm thấy dữ liệu trong năm " + nam);
+                    }
                 }
                 catch (Exception ex) { MessageBox.Show("Lỗi: " + ex.Message); }
             }
         }
 
-        // --- HÀM XUẤT BÁO CÁO (XML -> HTML CÓ BIỂU ĐỒ) ---
+        // --- HÀM XUẤT BÁO CÁO (GIỮ NGUYÊN KHÔNG ĐỔI) ---
         private void xuatbaocao_Click(object sender, EventArgs e)
         {
             if (dataGridView1.Rows.Count == 0) { MessageBox.Show("Chưa có dữ liệu!"); return; }
@@ -88,7 +112,7 @@ namespace QuanLyShopBanDoDaBong
             {
                 // 1. Lưu dữ liệu ra file XML tạm
                 DataTable dt = (DataTable)dataGridView1.DataSource;
-                dt.TableName = "Table"; // Bắt buộc đặt tên này để khớp với XSLT
+                dt.TableName = "Table";
                 string xmlPath = Path.Combine(Application.StartupPath, "DataThongKe.xml");
                 dt.WriteXml(xmlPath, XmlWriteMode.WriteSchema);
 
@@ -96,7 +120,6 @@ namespace QuanLyShopBanDoDaBong
                 string xsltPath = Path.Combine(Application.StartupPath, "ThongKe.xslt");
                 if (!File.Exists(xsltPath))
                 {
-                    // Nếu chưa có file mẫu thì tạo file mẫu mặc định (Code ở dưới)
                     TaoFileXSLT(xsltPath);
                 }
 
@@ -116,7 +139,7 @@ namespace QuanLyShopBanDoDaBong
             }
         }
 
-        // Hàm tạo file XSLT tự động nếu chưa có
+        // --- GIỮ NGUYÊN FILE XSLT VÌ NÓ TỰ ĐỘNG NHẬN CỘT DỮ LIỆU ---
         private void TaoFileXSLT(string path)
         {
             string content = @"<?xml version='1.0' encoding='UTF-8'?>
