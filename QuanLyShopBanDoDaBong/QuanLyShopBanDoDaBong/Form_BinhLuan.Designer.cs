@@ -25,10 +25,10 @@
             this.label2 = new System.Windows.Forms.Label();
             this.dtpNgay = new System.Windows.Forms.DateTimePicker();
             this.grpAction = new System.Windows.Forms.GroupBox();
+            this.btnXuatXML = new System.Windows.Forms.Button();
             this.btnLamMoi = new System.Windows.Forms.Button();
             this.btnTimKiem = new System.Windows.Forms.Button();
             this.dgvBinhLuan = new System.Windows.Forms.DataGridView();
-            this.btnXuatXML = new System.Windows.Forms.Button();
             this.pnlHeader.SuspendLayout();
             this.grpSearch.SuspendLayout();
             this.grpAction.SuspendLayout();
@@ -140,6 +140,21 @@
             this.grpAction.TabStop = false;
             this.grpAction.Text = "Chức năng";
             // 
+            // btnXuatXML
+            // 
+            this.btnXuatXML.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(171)))), ((int)(((byte)(227)))));
+            this.btnXuatXML.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnXuatXML.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnXuatXML.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnXuatXML.ForeColor = System.Drawing.Color.White;
+            this.btnXuatXML.Location = new System.Drawing.Point(30, 105);
+            this.btnXuatXML.Name = "btnXuatXML";
+            this.btnXuatXML.Size = new System.Drawing.Size(260, 45);
+            this.btnXuatXML.TabIndex = 5;
+            this.btnXuatXML.Text = "Xuất XML";
+            this.btnXuatXML.UseVisualStyleBackColor = false;
+            this.btnXuatXML.Click += new System.EventHandler(this.btnXuatXML_Click);
+            // 
             // btnLamMoi
             // 
             this.btnLamMoi.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(171)))), ((int)(((byte)(227)))));
@@ -194,21 +209,7 @@
             this.dgvBinhLuan.RowTemplate.Height = 24;
             this.dgvBinhLuan.Size = new System.Drawing.Size(1000, 300);
             this.dgvBinhLuan.TabIndex = 3;
-            // 
-            // btnXuatXML
-            // 
-            this.btnXuatXML.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(171)))), ((int)(((byte)(227)))));
-            this.btnXuatXML.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnXuatXML.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnXuatXML.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnXuatXML.ForeColor = System.Drawing.Color.White;
-            this.btnXuatXML.Location = new System.Drawing.Point(30, 105);
-            this.btnXuatXML.Name = "btnXuatXML";
-            this.btnXuatXML.Size = new System.Drawing.Size(260, 45);
-            this.btnXuatXML.TabIndex = 5;
-            this.btnXuatXML.Text = "Xuất XML";
-            this.btnXuatXML.UseVisualStyleBackColor = false;
-            this.btnXuatXML.Click += new System.EventHandler(this.btnXuatXML_Click);
+            this.dgvBinhLuan.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBinhLuan_CellContentClick);
             // 
             // Form_BinhLuan
             // 

@@ -30,7 +30,6 @@ namespace QuanLyShopBanDoDaBong
                 using (SqlConnection conn = new SqlConnection(strCon))
                 {
                     conn.Open();
-                    // Lấy dữ liệu đúng theo tên cột trong DB của bạn
                     string sql = @"SELECT IDSanPham, mota, Hang, DonViTinh, SoLuongTonKho FROM SanPham";
                     SqlDataAdapter adapter = new SqlDataAdapter(sql, conn);
                     DataTable dt = new DataTable();
@@ -73,7 +72,6 @@ namespace QuanLyShopBanDoDaBong
             }
         }
 
-        // --- NÚT THÊM ---
         private void btnThem_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtTenSP.Text)) { MessageBox.Show("Nhập tên sản phẩm!"); return; }
@@ -102,7 +100,6 @@ namespace QuanLyShopBanDoDaBong
             catch (Exception ex) { MessageBox.Show("Lỗi: " + ex.Message); }
         }
 
-        // --- NÚT SỬA ---
         private void btnSua_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtMaSP.Text)) { MessageBox.Show("Chọn sản phẩm cần sửa!"); return; }
@@ -133,7 +130,6 @@ namespace QuanLyShopBanDoDaBong
             catch (Exception ex) { MessageBox.Show("Lỗi: " + ex.Message); }
         }
 
-        // --- NÚT XÓA ---
         private void btnXoa_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtMaSP.Text)) { MessageBox.Show("Chọn sản phẩm cần xóa!"); return; }
@@ -145,12 +141,17 @@ namespace QuanLyShopBanDoDaBong
                     using (SqlConnection conn = new SqlConnection(strCon))
                     {
                         conn.Open();
-                        string sql = "DELETE FROM SanPham WHERE IDSanPham = @id";
+                        string sql = "DELETE FROM ChiTietHoaDon WHERE IdSanPham = @id";
                         using (SqlCommand cmd = new SqlCommand(sql, conn))
                         {
                             cmd.Parameters.AddWithValue("@id", txtMaSP.Text);
                             cmd.ExecuteNonQuery();
+                            cmd.CommandText = "DELETE FROM SanPham WHERE IDSanPham = @id";
+                            cmd.ExecuteNonQuery();
+                            cmd.CommandText = "DELETE FROM BinhLuan WHERE IdSanPham = @id";
+                            cmd.ExecuteNonQuery();
                         }
+
                     }
                     MessageBox.Show("Xóa thành công!");
                     LoadData();
@@ -160,7 +161,6 @@ namespace QuanLyShopBanDoDaBong
             }
         }
 
-        // --- TÌM KIẾM ---
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
             string kw = txtTimKiem.Text.Trim();
@@ -170,9 +170,9 @@ namespace QuanLyShopBanDoDaBong
                 {
                     conn.Open();
                     string sql = @"SELECT IDSanPham, mota, Hang, DonViTinh, SoLuongTonKho 
-                                   FROM SanPham WHERE mota LIKE @kw OR Hang LIKE @kw";
+                                   FROM SanPham WHERE IDSanPham = @kw";
                     SqlDataAdapter adapter = new SqlDataAdapter(sql, conn);
-                    adapter.SelectCommand.Parameters.AddWithValue("@kw", "%" + kw + "%");
+                    adapter.SelectCommand.Parameters.AddWithValue("@kw",kw);
                     DataTable dt = new DataTable();
                     adapter.Fill(dt);
                     dgvSanpham.DataSource = dt;
@@ -181,7 +181,6 @@ namespace QuanLyShopBanDoDaBong
             catch (Exception ex) { MessageBox.Show("Lỗi tìm kiếm: " + ex.Message); }
         }
 
-        // --- XUẤT XML ---
         private void btnXML_Click(object sender, EventArgs e)
         {
             try
@@ -202,6 +201,11 @@ namespace QuanLyShopBanDoDaBong
         }
 
         private void pnlHeader_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void dgvSanpham_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient; // Thư viện kết nối SQL
 using System.Drawing;
@@ -15,10 +16,8 @@ namespace QuanLyShopBanDoDaBong
 {
     public partial class Form_QLTaiKhoan : Form
     {
-        // 1. Chuỗi kết nối (Nếu bạn dùng App.config thì thay bằng ConfigurationManager)
-        private string connectionString = "Data Source=localhost; Initial Catalog=FootballShop; Integrated Security=True";
+        private string connectionString = ConfigurationManager.ConnectionStrings["MyConnect"].ConnectionString;
 
-        // 2. Biến quan trọng: Lưu ID của dòng đang chọn để Sửa hoặc Xóa
         private int idHienTai = -1;
 
         public Form_QLTaiKhoan()
@@ -26,14 +25,12 @@ namespace QuanLyShopBanDoDaBong
             InitializeComponent();
         }
 
-        // --- SỰ KIỆN KHI FORM LOAD ---
         private void Form_QLTaiKhoan_Load(object sender, EventArgs e)
         {
-            LoadVaiTroComboBox(); // Nạp combobox Vai trò
-            LoadNguoiDung();      // Nạp dữ liệu lên lưới
+            LoadVaiTroComboBox(); 
+            LoadNguoiDung();    
         }
 
-        // --- CÁC HÀM HỖ TRỢ LOAD DỮ LIỆU ---
         private void LoadVaiTroComboBox()
         {
             cmbvaitro.Items.Clear();
@@ -50,17 +47,16 @@ namespace QuanLyShopBanDoDaBong
                     conn.Open();
                     string sql = "SELECT * FROM NguoiDung";
                     SqlDataAdapter adapter = new SqlDataAdapter(sql, conn);
-                    DataTable dt = new DataTable("NguoiDung"); // Đặt tên bảng để dùng cho XML sau này
+                    DataTable dt = new DataTable("NguoiDung"); 
                     adapter.Fill(dt);
                     dgvtaikhoan.DataSource = dt;
 
-                    // Đổi tên cột hiển thị cho đẹp
                     if (dgvtaikhoan.Columns["IDNguoiDung"] != null) dgvtaikhoan.Columns["IDNguoiDung"].HeaderText = "ID";
                     if (dgvtaikhoan.Columns["Email"] != null) dgvtaikhoan.Columns["Email"].HeaderText = "Tài khoản";
                     if (dgvtaikhoan.Columns["password"] != null) dgvtaikhoan.Columns["password"].HeaderText = "Mật khẩu";
                     if (dgvtaikhoan.Columns["VaiTro"] != null) dgvtaikhoan.Columns["VaiTro"].HeaderText = "Vai trò";
                 }
-                ResetForm(); // Xóa trắng các ô nhập sau khi load
+                ResetForm();
             }
             catch (Exception ex)
             {
@@ -68,20 +64,17 @@ namespace QuanLyShopBanDoDaBong
             }
         }
 
-        // --- SỰ KIỆN CLICK VÀO BẢNG (QUAN TRỌNG NHẤT) ---
         private void dgvtaikhoan_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = dgvtaikhoan.Rows[e.RowIndex];
 
-                // 1. Lưu ID dòng đang chọn vào biến toàn cục
                 if (row.Cells["IDNguoiDung"].Value != DBNull.Value)
                 {
                     idHienTai = Convert.ToInt32(row.Cells["IDNguoiDung"].Value);
                 }
 
-                // 2. Đẩy dữ liệu lên các ô nhập
                 txtendangnhap.Text = row.Cells["Email"].Value?.ToString();
                 txtmatkhau.Text = row.Cells["password"].Value?.ToString();
 
@@ -97,13 +90,11 @@ namespace QuanLyShopBanDoDaBong
             }
         }
 
-        // --- 1. CHỨC NĂNG THÊM ---
         private void btnthem_Click(object sender, EventArgs e)
         {
             if (!KiemTraNhapLieu()) return;
 
-            // Kiểm tra trùng Email
-            if (KiemTraEmailTonTai(txtendangnhap.Text.Trim(), -1)) // -1 là thêm mới
+            if (KiemTraEmailTonTai(txtendangnhap.Text.Trim(), -1))
             {
                 MessageBox.Show("Email này đã tồn tại!");
                 return;
@@ -132,7 +123,6 @@ namespace QuanLyShopBanDoDaBong
             }
         }
 
-        // --- 3. CHỨC NĂNG XÓA ---
         private void btnxoa_Click(object sender, EventArgs e)
         {
             if (idHienTai == -1)
@@ -153,6 +143,11 @@ namespace QuanLyShopBanDoDaBong
                         {
                             cmd.Parameters.AddWithValue("@ID", idHienTai);
                             cmd.ExecuteNonQuery();
+                            cmd.CommandText = "DELETE FROM HoaDon WHERE IdUser = @ID";
+                            cmd.ExecuteNonQuery();
+                            cmd.CommandText = "DELETE FROM BinhLuan WHERE IDNguoiDung = @ID";
+                            cmd.ExecuteNonQuery();
+
                         }
                     }
                     MessageBox.Show("Xóa thành công!");
@@ -160,7 +155,7 @@ namespace QuanLyShopBanDoDaBong
                 }
                 catch (SqlException sqlEx)
                 {
-                    if (sqlEx.Number == 547) // Lỗi khóa ngoại (FK)
+                    if (sqlEx.Number == 547)
                         MessageBox.Show("Không thể xóa tài khoản này vì đã có dữ liệu liên quan (Hóa đơn, v.v)!");
                     else
                         MessageBox.Show("Lỗi SQL: " + sqlEx.Message);
@@ -172,7 +167,6 @@ namespace QuanLyShopBanDoDaBong
             }
         }
 
-        // --- 4. CHỨC NĂNG XUẤT XML ---
         private void btnxml_Click(object sender, EventArgs e)
         {
             try
@@ -184,7 +178,6 @@ namespace QuanLyShopBanDoDaBong
                     return;
                 }
 
-                // Đặt tên bảng để file XML đẹp hơn
                 dt.TableName = "NguoiDung";
                 
                 string path = Path.Combine(Application.StartupPath, "DanhSachTaiKhoan.xml");
@@ -199,14 +192,12 @@ namespace QuanLyShopBanDoDaBong
             }
         }
 
-        // --- CÁC HÀM KIỂM TRA (VALIDATION) ---
-
         private void ResetForm()
         {
             txtendangnhap.Clear();
             txtmatkhau.Clear();
             cmbvaitro.SelectedIndex = -1;
-            idHienTai = -1; // Reset lại ID
+            idHienTai = -1;
         }
 
         private bool KiemTraNhapLieu()
@@ -216,8 +207,6 @@ namespace QuanLyShopBanDoDaBong
             if (cmbvaitro.SelectedIndex == -1) { MessageBox.Show("Chưa chọn Vai trò!"); return false; }
             return true;
         }
-
-        // Hàm kiểm tra trùng email thông minh (dùng cho cả thêm và sửa)
         private bool KiemTraEmailTonTai(string email, int idLoaiTru)
         {
             try
@@ -225,8 +214,6 @@ namespace QuanLyShopBanDoDaBong
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    // Nếu là thêm mới (idLoaiTru = -1) => Tìm xem có email nào trùng không
-                    // Nếu là sửa (idLoaiTru = 5) => Tìm xem có email nào trùng NHƯNG ID phải KHÁC 5
                     string sql = "SELECT COUNT(*) FROM NguoiDung WHERE Email = @Email AND IDNguoiDung != @ID";
                     SqlCommand cmd = new SqlCommand(sql, conn);
                     cmd.Parameters.AddWithValue("@Email", email);
@@ -248,7 +235,6 @@ namespace QuanLyShopBanDoDaBong
             }
             if (!KiemTraNhapLieu()) return;
 
-            // Kiểm tra trùng Email (Trừ chính nó ra)
             if (KiemTraEmailTonTai(txtendangnhap.Text.Trim(), idHienTai))
             {
                 MessageBox.Show("Email này đang được sử dụng bởi người khác!");
@@ -277,6 +263,11 @@ namespace QuanLyShopBanDoDaBong
             {
                 MessageBox.Show("Lỗi sửa: " + ex.Message);
             }
+        }
+
+        private void dgvtaikhoan_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

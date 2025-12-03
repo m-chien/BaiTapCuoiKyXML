@@ -11,7 +11,6 @@ namespace QuanLyShopBanDoDaBong
 {
     public partial class Form_DangNhap : Form
     {
-        // Chuỗi kết nối tới cơ sở dữ liệu SQL Server
         private string connectionString = ConfigurationManager.ConnectionStrings["MyConnect"].ConnectionString;
         public Form_DangNhap()
         {
@@ -84,14 +83,11 @@ namespace QuanLyShopBanDoDaBong
 
                         if (reader.Read())
                         {
-                            // Kiểm tra mật khẩu
                             if (reader["Password"].ToString() != password)
                             {
                                 MessageBox.Show("Mật khẩu không đúng.");
                                 return;
                             }
-
-                            // Đăng nhập thành công
                             MessageBox.Show(
                                 $"Đăng nhập thành công với vai trò: {selectedRole}"
                             );
@@ -113,9 +109,6 @@ namespace QuanLyShopBanDoDaBong
             }
         }
 
-
-
-        // Khi form được load, gọi LoadRoles để nạp các vai trò
         private void Form_Dangnhap_Load(object sender, EventArgs e)
         {
 

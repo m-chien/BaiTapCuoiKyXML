@@ -26,22 +26,16 @@ namespace QuanLyShopBanDoDaBong
             childForm.FormBorderStyle = FormBorderStyle.None;
             childForm.Dock = DockStyle.Fill;
 
-            // Thêm vào Panel
             pnlContent.Controls.Add(childForm);
             pnlContent.Tag = childForm;
 
-            // Hiển thị
             childForm.BringToFront();
             childForm.Show();
         }
 
-        private void Form_QuanLy_Load(object sender, EventArgs e)
-        {
-            // Mở mặc định form nào đó nếu muốn, ví dụ:
-            // Hienthiformcon(new Form_QLSanPham());
+        private void Form_QuanLy_Load(object sender, EventArgs e){
         }
 
-        // --- CÁC SỰ KIỆN CLICK MENU ---
 
         private void quảnLýDanhMụcSảnPhẩmToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -51,20 +45,18 @@ namespace QuanLyShopBanDoDaBong
 
         private void tìmKiếmToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Hienthiformcon(new Form_QLSanPham()); // Lưu ý tên class là Form_QLSanpham hay Form_QLSanPham tùy code bạn
+            Hienthiformcon(new Form_QLSanPham());
             this.Text = "Hệ thống quản lý - Quản lý Sản Phẩm";
         }
 
         private void hoaDonToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // Mở form Hóa đơn
             Hienthiformcon(new Form_HoaDon());
             this.Text = "Hệ thống quản lý - Quản lý Hóa Đơn";
         }
 
         private void binhLuanToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // Mở form Bình luận
             Hienthiformcon(new Form_BinhLuan());
             this.Text = "Hệ thống quản lý - Quản lý Bình Luận";
         }
@@ -73,6 +65,11 @@ namespace QuanLyShopBanDoDaBong
         {
             Hienthiformcon(new Form_ThongKe());
             this.Text = "Hệ thống quản lý - Thống kê & Báo cáo";
+        }
+
+        private void pnlContent_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

@@ -25,9 +25,12 @@
             this.pnlContent = new System.Windows.Forms.Panel();
             this.menuquanlycaphe.SuspendLayout();
             this.SuspendLayout();
-
+            // 
+            // menuquanlycaphe
+            // 
             this.menuquanlycaphe.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(171)))), ((int)(((byte)(227)))));
             this.menuquanlycaphe.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.menuquanlycaphe.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.menuquanlycaphe.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuquanlycaphe.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.quảnLýDanhMụcSảnPhẩmToolStripMenuItem,
@@ -39,7 +42,7 @@
             this.menuquanlycaphe.Location = new System.Drawing.Point(0, 0);
             this.menuquanlycaphe.Name = "menuquanlycaphe";
             this.menuquanlycaphe.Padding = new System.Windows.Forms.Padding(5);
-            this.menuquanlycaphe.Size = new System.Drawing.Size(1106, 60);
+            this.menuquanlycaphe.Size = new System.Drawing.Size(1106, 50);
             this.menuquanlycaphe.TabIndex = 0;
             this.menuquanlycaphe.Text = "menuStrip1";
             // 
@@ -71,6 +74,11 @@
             this.hoaDonToolStripMenuItem.Text = "Quản lý hóa đơn";
             this.hoaDonToolStripMenuItem.Click += new System.EventHandler(this.hoaDonToolStripMenuItem_Click);
             // 
+            // chiTietHoaDonToolStripMenuItem
+            // 
+            this.chiTietHoaDonToolStripMenuItem.Name = "chiTietHoaDonToolStripMenuItem";
+            this.chiTietHoaDonToolStripMenuItem.Size = new System.Drawing.Size(16, 40);
+            // 
             // binhLuanToolStripMenuItem
             // 
             this.binhLuanToolStripMenuItem.AutoSize = false;
@@ -94,10 +102,11 @@
             this.pnlContent.BackColor = System.Drawing.Color.White;
             this.pnlContent.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pnlContent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlContent.Location = new System.Drawing.Point(0, 60);
+            this.pnlContent.Location = new System.Drawing.Point(0, 50);
             this.pnlContent.Name = "pnlContent";
-            this.pnlContent.Size = new System.Drawing.Size(1106, 576);
+            this.pnlContent.Size = new System.Drawing.Size(1106, 586);
             this.pnlContent.TabIndex = 1;
+            this.pnlContent.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlContent_Paint);
             // 
             // Form_QuanLy
             // 
@@ -114,6 +123,7 @@
             this.menuquanlycaphe.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         #endregion

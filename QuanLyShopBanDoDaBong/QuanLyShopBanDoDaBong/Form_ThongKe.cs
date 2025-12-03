@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
@@ -11,7 +12,7 @@ namespace QuanLyShopBanDoDaBong
 {
     public partial class Form_ThongKe : Form
     {
-        string connectionString = @"Data Source=.;Initial Catalog=FootballShop;Integrated Security=True";
+        string connectionString = ConfigurationManager.ConnectionStrings["MyConnect"].ConnectionString;
 
         public Form_ThongKe()
         {
@@ -20,33 +21,25 @@ namespace QuanLyShopBanDoDaBong
 
         private void Form_ThongKe_Load_1(object sender, EventArgs e)
         {
-            // 1. Setup ComboBox Loại báo cáo
             comboBox1.Items.Clear();
             comboBox1.Items.AddRange(new string[] { "Doanh thu năm", "Top sản phẩm bán chạy", "Tồn kho sản phẩm" });
             comboBox1.SelectedIndex = 0;
-
-            // 2. Setup ComboBox Năm (cbNam)
-            // Tự động thêm từ năm 2020 đến năm hiện tại
             cbNam.Items.Clear();
             int currentYear = DateTime.Now.Year;
             for (int i = currentYear; i >= 2020; i--)
             {
                 cbNam.Items.Add(i.ToString());
             }
-            cbNam.SelectedIndex = 0; // Mặc định chọn năm nay
+            cbNam.SelectedIndex = 0;
         }
 
-        // --- HÀM XEM BÁO CÁO (HIỂN THỊ LÊN GRID) ---
         private void xembaocao_Click(object sender, EventArgs e)
         {
-            // Kiểm tra xem người dùng đã chọn năm chưa
             if (cbNam.SelectedItem == null)
             {
                 MessageBox.Show("Vui lòng chọn năm cần xem!");
                 return;
             }
-
-            // Lấy năm từ ComboBox
             int nam = int.Parse(cbNam.SelectedItem.ToString());
 
             LoadDataToGrid(nam);
@@ -65,7 +58,6 @@ namespace QuanLyShopBanDoDaBong
 
                     string reportType = comboBox1.SelectedItem.ToString();
 
-                    // --- GIỮ NGUYÊN LOGIC FIX XML (Dùng gạch dưới _) ---
                     if (reportType == "Doanh thu năm")
                     {
                         query = @"SELECT 'Tháng ' + CAST(MONTH(NgayDat) AS VARCHAR) AS [Thời_Gian], 
@@ -106,8 +98,6 @@ namespace QuanLyShopBanDoDaBong
                 catch (Exception ex) { MessageBox.Show("Lỗi: " + ex.Message); }
             }
         }
-
-        // --- HÀM XUẤT BÁO CÁO (GIỮ NGUYÊN) ---
         private void xuatbaocao_Click(object sender, EventArgs e)
         {
             if (dataGridView1.Rows.Count == 0) { MessageBox.Show("Chưa có dữ liệu!"); return; }
@@ -141,7 +131,6 @@ namespace QuanLyShopBanDoDaBong
 
         private void TaoFileXSLT(string path)
         {
-            // GIỮ NGUYÊN LOGIC TRANSLATE ĐỂ SỬA LỖI FONT/SPACE
             string content = @"<?xml version='1.0' encoding='UTF-8'?>
 <xsl:stylesheet version='1.0' xmlns:xsl='http://www.w3.org/1999/XSL/Transform'>
   <xsl:template match='/'>

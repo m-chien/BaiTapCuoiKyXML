@@ -5,14 +5,13 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.Configuration;
-using System.IO; // Thêm thư viện này để dùng Path và File
+using System.IO;
 
 namespace QuanLyShopBanDoDaBong
 {
     public partial class Form_HoaDon : Form
     {
-        // Chuỗi kết nối
-        string connectionString = @"Data Source=.;Initial Catalog=FootballShop;Integrated Security=True";
+        string connectionString = ConfigurationManager.ConnectionStrings["MyConnect"].ConnectionString;
 
         public Form_HoaDon()
         {
@@ -21,27 +20,21 @@ namespace QuanLyShopBanDoDaBong
 
         private void Form_HoaDon_Load(object sender, EventArgs e)
         {
-            // Cấu hình ComboBox
             cbbTrangThai.Items.Clear();
             cbbTrangThai.Items.AddRange(new string[] { "Tất cả", "Đã thanh toán", "Chờ thanh toán", "Hủy thanh toán" });
             cbbTrangThai.SelectedIndex = 0;
 
-            // Cấu hình DateTimePicker
             dtpNgay.Format = DateTimePickerFormat.Custom;
             dtpNgay.CustomFormat = "dd/MM/yyyy";
 
-            // Mặc định bỏ chọn lọc ngày
             if (chkLocNgay != null)
             {
                 chkLocNgay.Checked = false;
                 dtpNgay.Enabled = false;
             }
-
-            // Load dữ liệu ban đầu
             LoadHoaDon();
         }
 
-        // --- HÀM TẢI DỮ LIỆU ---
         private void LoadHoaDon(string trangThai = "Tất cả", DateTime? ngay = null, decimal? tongTien = null)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
@@ -63,22 +56,18 @@ namespace QuanLyShopBanDoDaBong
 
                     SqlCommand cmd = new SqlCommand();
                     cmd.Connection = conn;
-
-                    // 1. Lọc theo Trạng thái
                     if (trangThai != "Tất cả")
                     {
                         query.Append(" AND h.TrangThai = @TrangThai");
                         cmd.Parameters.AddWithValue("@TrangThai", trangThai);
                     }
 
-                    // 2. Lọc theo Ngày (Chỉ lọc khi tham số ngay KHÁC NULL)
                     if (ngay != null)
                     {
                         query.Append(" AND CAST(h.NgayDat AS DATE) = CAST(@Ngay AS DATE)");
                         cmd.Parameters.AddWithValue("@Ngay", ngay.Value);
                     }
 
-                    // 3. Lọc theo Tiền (Lớn hơn hoặc bằng)
                     if (tongTien != null)
                     {
                         query.Append(" AND h.TongTien >= @TongTien");
@@ -94,7 +83,6 @@ namespace QuanLyShopBanDoDaBong
 
                     dgvHoaDon.DataSource = dt;
 
-                    // Format cột tiền
                     if (dgvHoaDon.Columns["Tổng tiền"] != null)
                         dgvHoaDon.Columns["Tổng tiền"].DefaultCellStyle.Format = "#,### VNĐ";
 
@@ -108,20 +96,16 @@ namespace QuanLyShopBanDoDaBong
             }
         }
 
-        // --- SỰ KIỆN TÌM KIẾM ---
         private void btnTimKiem_Click_1(object sender, EventArgs e)
         {
-            // 1. Lấy trạng thái
             string trangThai = cbbTrangThai.SelectedItem?.ToString() ?? "Tất cả";
 
-            // 2. Lấy ngày (QUAN TRỌNG: Chỉ lấy khi CheckBox được tích)
             DateTime? ngayChon = null;
             if (chkLocNgay.Checked)
             {
                 ngayChon = dtpNgay.Value;
             }
 
-            // 3. Lấy tiền
             decimal? tienChon = null;
             if (!string.IsNullOrWhiteSpace(txtTongTien.Text))
             {
@@ -134,21 +118,18 @@ namespace QuanLyShopBanDoDaBong
                 }
             }
 
-            // Gọi hàm load với các tham số đã chuẩn bị
             LoadHoaDon(trangThai, ngayChon, tienChon);
         }
 
-        // --- SỰ KIỆN LÀM MỚI ---
         private void btnLamMoi_Click_1(object sender, EventArgs e)
         {
             cbbTrangThai.SelectedIndex = 0;
             txtTongTien.Clear();
-            chkLocNgay.Checked = false; // Bỏ tick chọn ngày
-            dtpNgay.Enabled = false;    // Khóa ô ngày lại
-            LoadHoaDon(); // Load lại tất cả
+            chkLocNgay.Checked = false;
+            dtpNgay.Enabled = false; 
+            LoadHoaDon();
         }
 
-        // --- XEM CHI TIẾT ---
         private void btnXemChiTiet_Click(object sender, EventArgs e)
         {
             if (dgvHoaDon.CurrentRow != null && dgvHoaDon.CurrentRow.Index >= 0)
@@ -178,41 +159,38 @@ namespace QuanLyShopBanDoDaBong
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar)) e.Handled = true;
         }
 
-        // --- NÚT XUẤT XML ---
         private void button1_Click(object sender, EventArgs e)
         {
             try
             {
-                // Lấy DataTable từ DataGridView (dgvHoaDon)
                 DataTable dt = (DataTable)dgvHoaDon.DataSource;
 
-                // Kiểm tra dữ liệu
                 if (dt == null || dt.Rows.Count == 0)
                 {
                     MessageBox.Show("Không có dữ liệu hóa đơn để xuất!");
                     return;
                 }
 
-                // Đặt tên bảng cho XML (để cấu trúc file đẹp hơn)
                 dt.TableName = "HoaDon";
 
-                // Tạo tên file có kèm thời gian để tránh trùng lặp
                 string fileName = "DanhSachHoaDon_" + DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".xml";
                 string path = Path.Combine(Application.StartupPath, fileName);
 
-                // Ghi file XML (WriteSchema giúp giữ cấu trúc cột)
                 dt.WriteXml(path, XmlWriteMode.WriteSchema);
 
-                // Thông báo thành công
                 MessageBox.Show("Xuất XML thành công!\nĐường dẫn: " + path);
 
-                // Mở thư mục chứa file vừa xuất
                 System.Diagnostics.Process.Start("explorer.exe", "/select," + path);
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Lỗi xuất XML: " + ex.Message);
             }
+        }
+
+        private void dgvHoaDon_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
