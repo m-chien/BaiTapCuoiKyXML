@@ -31,6 +31,7 @@
             this.btnLamMoi = new System.Windows.Forms.Button();
             this.btnTimKiem = new System.Windows.Forms.Button();
             this.dgvHoaDon = new System.Windows.Forms.DataGridView();
+            this.btnXuatXML = new System.Windows.Forms.Button();
             this.pnlHeader.SuspendLayout();
             this.grpSearch.SuspendLayout();
             this.grpAction.SuspendLayout();
@@ -44,7 +45,7 @@
             this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlHeader.Location = new System.Drawing.Point(0, 0);
             this.pnlHeader.Name = "pnlHeader";
-            this.pnlHeader.Size = new System.Drawing.Size(1100, 70);
+            this.pnlHeader.Size = new System.Drawing.Size(1103, 70);
             this.pnlHeader.TabIndex = 0;
             // 
             // label1
@@ -54,7 +55,7 @@
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(450, 20);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(241, 32);
+            this.label1.Size = new System.Drawing.Size(356, 48);
             this.label1.TabIndex = 0;
             this.label1.Text = "QUẢN LÝ HÓA ĐƠN";
             // 
@@ -81,7 +82,7 @@
             this.chkLocNgay.AutoSize = true;
             this.chkLocNgay.Location = new System.Drawing.Point(610, 42);
             this.chkLocNgay.Name = "chkLocNgay";
-            this.chkLocNgay.Size = new System.Drawing.Size(15, 14);
+            this.chkLocNgay.Size = new System.Drawing.Size(22, 21);
             this.chkLocNgay.TabIndex = 6;
             this.chkLocNgay.UseVisualStyleBackColor = true;
             this.chkLocNgay.CheckedChanged += new System.EventHandler(this.chkLocNgay_CheckedChanged);
@@ -93,7 +94,7 @@
             this.label4.ForeColor = System.Drawing.Color.Black;
             this.label4.Location = new System.Drawing.Point(30, 130);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(74, 19);
+            this.label4.Size = new System.Drawing.Size(112, 30);
             this.label4.TabIndex = 5;
             this.label4.Text = "Tổng tiền :";
             // 
@@ -104,7 +105,7 @@
             this.txtTongTien.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTongTien.Location = new System.Drawing.Point(150, 128);
             this.txtTongTien.Name = "txtTongTien";
-            this.txtTongTien.Size = new System.Drawing.Size(450, 26);
+            this.txtTongTien.Size = new System.Drawing.Size(450, 35);
             this.txtTongTien.TabIndex = 4;
             this.txtTongTien.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTongTien_KeyPress);
             // 
@@ -115,7 +116,7 @@
             this.label3.ForeColor = System.Drawing.Color.Black;
             this.label3.Location = new System.Drawing.Point(30, 85);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(77, 19);
+            this.label3.Size = new System.Drawing.Size(116, 30);
             this.label3.TabIndex = 3;
             this.label3.Text = "Trạng thái :";
             // 
@@ -128,7 +129,7 @@
             this.cbbTrangThai.FormattingEnabled = true;
             this.cbbTrangThai.Location = new System.Drawing.Point(150, 82);
             this.cbbTrangThai.Name = "cbbTrangThai";
-            this.cbbTrangThai.Size = new System.Drawing.Size(450, 27);
+            this.cbbTrangThai.Size = new System.Drawing.Size(450, 36);
             this.cbbTrangThai.TabIndex = 2;
             // 
             // label2
@@ -138,7 +139,7 @@
             this.label2.ForeColor = System.Drawing.Color.Black;
             this.label2.Location = new System.Drawing.Point(30, 40);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(70, 19);
+            this.label2.Size = new System.Drawing.Size(107, 30);
             this.label2.TabIndex = 1;
             this.label2.Text = "Ngày lập :";
             // 
@@ -149,11 +150,12 @@
             this.dtpNgay.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpNgay.Location = new System.Drawing.Point(150, 38);
             this.dtpNgay.Name = "dtpNgay";
-            this.dtpNgay.Size = new System.Drawing.Size(450, 26);
+            this.dtpNgay.Size = new System.Drawing.Size(450, 35);
             this.dtpNgay.TabIndex = 0;
             // 
             // grpAction
             // 
+            this.grpAction.Controls.Add(this.btnXuatXML);
             this.grpAction.Controls.Add(this.btnXemChiTiet);
             this.grpAction.Controls.Add(this.btnLamMoi);
             this.grpAction.Controls.Add(this.btnTimKiem);
@@ -161,7 +163,7 @@
             this.grpAction.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(73)))), ((int)(((byte)(94)))));
             this.grpAction.Location = new System.Drawing.Point(730, 90);
             this.grpAction.Name = "grpAction";
-            this.grpAction.Size = new System.Drawing.Size(320, 180);
+            this.grpAction.Size = new System.Drawing.Size(320, 229);
             this.grpAction.TabIndex = 2;
             this.grpAction.TabStop = false;
             this.grpAction.Text = "Chức năng";
@@ -173,7 +175,7 @@
             this.btnXemChiTiet.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnXemChiTiet.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnXemChiTiet.ForeColor = System.Drawing.Color.White;
-            this.btnXemChiTiet.Location = new System.Drawing.Point(40, 110);
+            this.btnXemChiTiet.Location = new System.Drawing.Point(40, 100);
             this.btnXemChiTiet.Name = "btnXemChiTiet";
             this.btnXemChiTiet.Size = new System.Drawing.Size(240, 45);
             this.btnXemChiTiet.TabIndex = 2;
@@ -227,7 +229,7 @@
             this.dgvHoaDon.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvHoaDon.ColumnHeadersHeight = 35;
             this.dgvHoaDon.EnableHeadersVisualStyles = false;
-            this.dgvHoaDon.Location = new System.Drawing.Point(50, 290);
+            this.dgvHoaDon.Location = new System.Drawing.Point(50, 371);
             this.dgvHoaDon.Name = "dgvHoaDon";
             this.dgvHoaDon.RowHeadersWidth = 51;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -236,11 +238,26 @@
             this.dgvHoaDon.Size = new System.Drawing.Size(1000, 280);
             this.dgvHoaDon.TabIndex = 3;
             // 
+            // btnXuatXML
+            // 
+            this.btnXuatXML.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(171)))), ((int)(((byte)(227)))));
+            this.btnXuatXML.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnXuatXML.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnXuatXML.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnXuatXML.ForeColor = System.Drawing.Color.White;
+            this.btnXuatXML.Location = new System.Drawing.Point(40, 161);
+            this.btnXuatXML.Name = "btnXuatXML";
+            this.btnXuatXML.Size = new System.Drawing.Size(240, 45);
+            this.btnXuatXML.TabIndex = 4;
+            this.btnXuatXML.Text = "Xuất XML";
+            this.btnXuatXML.UseVisualStyleBackColor = false;
+            this.btnXuatXML.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form_HoaDon
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1100, 600);
+            this.ClientSize = new System.Drawing.Size(1103, 711);
             this.Controls.Add(this.dgvHoaDon);
             this.Controls.Add(this.grpAction);
             this.Controls.Add(this.grpSearch);
@@ -276,5 +293,6 @@
         private System.Windows.Forms.Button btnTimKiem;
         private System.Windows.Forms.DataGridView dgvHoaDon;
         private System.Windows.Forms.CheckBox chkLocNgay;
+        private System.Windows.Forms.Button btnXuatXML;
     }
 }

@@ -20,24 +20,34 @@ namespace QuanLyShopBanDoDaBong
 
         private void Form_ThongKe_Load_1(object sender, EventArgs e)
         {
-            // Cập nhật lại tên các mục cho phù hợp
-            comboBox1.Items.AddRange(new string[] { "Doanh thu theo ngày", "Top sản phẩm bán chạy", "Tồn kho sản phẩm" });
+            // 1. Setup ComboBox Loại báo cáo
+            comboBox1.Items.Clear();
+            comboBox1.Items.AddRange(new string[] { "Doanh thu năm", "Top sản phẩm bán chạy", "Tồn kho sản phẩm" });
             comboBox1.SelectedIndex = 0;
 
-            // Mặc định điền năm hiện tại vào TextBox
-            txtNam.Text = DateTime.Now.Year.ToString();
+            // 2. Setup ComboBox Năm (cbNam)
+            // Tự động thêm từ năm 2020 đến năm hiện tại
+            cbNam.Items.Clear();
+            int currentYear = DateTime.Now.Year;
+            for (int i = currentYear; i >= 2020; i--)
+            {
+                cbNam.Items.Add(i.ToString());
+            }
+            cbNam.SelectedIndex = 0; // Mặc định chọn năm nay
         }
 
         // --- HÀM XEM BÁO CÁO (HIỂN THỊ LÊN GRID) ---
         private void xembaocao_Click(object sender, EventArgs e)
         {
-            // Kiểm tra nhập liệu năm
-            if (string.IsNullOrEmpty(txtNam.Text) || !int.TryParse(txtNam.Text, out int nam))
+            // Kiểm tra xem người dùng đã chọn năm chưa
+            if (cbNam.SelectedItem == null)
             {
-                MessageBox.Show("Vui lòng nhập năm hợp lệ (VD: 2023, 2024)!");
-                txtNam.Focus();
+                MessageBox.Show("Vui lòng chọn năm cần xem!");
                 return;
             }
+
+            // Lấy năm từ ComboBox
+            int nam = int.Parse(cbNam.SelectedItem.ToString());
 
             LoadDataToGrid(nam);
         }
@@ -50,13 +60,16 @@ namespace QuanLyShopBanDoDaBong
                 {
                     conn.Open();
                     string query = "";
+
+                    if (comboBox1.SelectedItem == null) { MessageBox.Show("Vui lòng chọn loại báo cáo!"); return; }
+
                     string reportType = comboBox1.SelectedItem.ToString();
 
+                    // --- GIỮ NGUYÊN LOGIC FIX XML (Dùng gạch dưới _) ---
                     if (reportType == "Doanh thu năm")
                     {
-                        // Sửa Query: Lấy doanh thu từng tháng trong năm đó
-                        query = @"SELECT 'Tháng ' + CAST(MONTH(NgayDat) AS VARCHAR) AS [Thời Gian], 
-                                         SUM(TongTien) AS [Doanh Thu] 
+                        query = @"SELECT 'Tháng ' + CAST(MONTH(NgayDat) AS VARCHAR) AS [Thời_Gian], 
+                                         SUM(TongTien) AS [Doanh_Thu] 
                                   FROM HoaDon 
                                   WHERE YEAR(NgayDat) = @Nam 
                                   GROUP BY MONTH(NgayDat) 
@@ -64,29 +77,23 @@ namespace QuanLyShopBanDoDaBong
                     }
                     else if (reportType == "Top sản phẩm bán chạy")
                     {
-                        // Sửa Query: Lọc top sản phẩm trong năm đó
-                        query = @"SELECT TOP 10 s.Hang + ' - ' + s.mausac AS [Sản Phẩm], 
-                                         SUM(ct.SoLuong) AS [Số Lượng Bán] 
+                        query = @"SELECT TOP 10 s.Hang + ' - ' + s.mausac AS [Sản_Phẩm], 
+                                         SUM(ct.SoLuong) AS [Số_Lượng_Bán] 
                                   FROM ChiTietHoaDon ct 
                                   JOIN SanPham s ON ct.IdSanPham = s.IDSanPham 
                                   JOIN HoaDon h ON ct.IdHoaDon = h.IDHoaDon 
                                   WHERE YEAR(h.NgayDat) = @Nam 
                                   GROUP BY s.Hang, s.mausac 
-                                  ORDER BY [Số Lượng Bán] DESC";
+                                  ORDER BY [Số_Lượng_Bán] DESC";
                     }
                     else if (reportType == "Tồn kho sản phẩm")
                     {
-                        // Tồn kho là hiện tại, không phụ thuộc vào năm nhập vào
-                        query = @"SELECT Hang + ' - ' + mausac AS [Sản Phẩm], SoLuongTonKho AS [Tồn Kho] FROM SanPham";
+                        query = @"SELECT Hang + ' - ' + mausac AS [Sản_Phẩm], SoLuongTonKho AS [Tồn_Kho] FROM SanPham";
                     }
+                    else { MessageBox.Show("Loại báo cáo không hợp lệ!"); return; }
 
                     SqlCommand cmd = new SqlCommand(query, conn);
-
-                    // Chỉ thêm tham số @Nam nếu không phải xem tồn kho
-                    if (reportType != "Tồn kho sản phẩm")
-                    {
-                        cmd.Parameters.AddWithValue("@Nam", nam);
-                    }
+                    if (reportType != "Tồn kho sản phẩm") cmd.Parameters.AddWithValue("@Nam", nam);
 
                     SqlDataAdapter da = new SqlDataAdapter(cmd);
                     DataTable dt = new DataTable("Table");
@@ -94,43 +101,36 @@ namespace QuanLyShopBanDoDaBong
                     dataGridView1.DataSource = dt;
                     dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-                    if (dt.Rows.Count == 0)
-                    {
-                        MessageBox.Show("Không tìm thấy dữ liệu trong năm " + nam);
-                    }
+                    if (dt.Rows.Count == 0) MessageBox.Show("Không tìm thấy dữ liệu trong năm " + nam);
                 }
                 catch (Exception ex) { MessageBox.Show("Lỗi: " + ex.Message); }
             }
         }
 
-        // --- HÀM XUẤT BÁO CÁO (GIỮ NGUYÊN KHÔNG ĐỔI) ---
+        // --- HÀM XUẤT BÁO CÁO (GIỮ NGUYÊN) ---
         private void xuatbaocao_Click(object sender, EventArgs e)
         {
             if (dataGridView1.Rows.Count == 0) { MessageBox.Show("Chưa có dữ liệu!"); return; }
 
             try
             {
-                // 1. Lưu dữ liệu ra file XML tạm
                 DataTable dt = (DataTable)dataGridView1.DataSource;
                 dt.TableName = "Table";
                 string xmlPath = Path.Combine(Application.StartupPath, "DataThongKe.xml");
                 dt.WriteXml(xmlPath, XmlWriteMode.WriteSchema);
 
-                // 2. Kiểm tra file XSLT mẫu
                 string xsltPath = Path.Combine(Application.StartupPath, "ThongKe.xslt");
-                if (!File.Exists(xsltPath))
-                {
-                    TaoFileXSLT(xsltPath);
-                }
 
-                // 3. Biến đổi XML -> HTML bằng XSLT
+                // Luôn tạo lại file XSLT mới nhất
+                if (File.Exists(xsltPath)) File.Delete(xsltPath);
+                TaoFileXSLT(xsltPath);
+
                 XslCompiledTransform transform = new XslCompiledTransform();
                 transform.Load(xsltPath);
 
                 string htmlPath = Path.Combine(Application.StartupPath, "BaoCao_" + DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".html");
                 transform.Transform(xmlPath, htmlPath);
 
-                // 4. Mở file HTML lên xem
                 Process.Start(htmlPath);
             }
             catch (Exception ex)
@@ -139,9 +139,9 @@ namespace QuanLyShopBanDoDaBong
             }
         }
 
-        // --- GIỮ NGUYÊN FILE XSLT VÌ NÓ TỰ ĐỘNG NHẬN CỘT DỮ LIỆU ---
         private void TaoFileXSLT(string path)
         {
+            // GIỮ NGUYÊN LOGIC TRANSLATE ĐỂ SỬA LỖI FONT/SPACE
             string content = @"<?xml version='1.0' encoding='UTF-8'?>
 <xsl:stylesheet version='1.0' xmlns:xsl='http://www.w3.org/1999/XSL/Transform'>
   <xsl:template match='/'>
@@ -165,7 +165,7 @@ namespace QuanLyShopBanDoDaBong
           <div class='chart-box'><canvas id='myChart'></canvas></div>
           <h3>Dữ liệu chi tiết</h3>
           <table>
-            <tr><xsl:for-each select='NewDataSet/Table[1]/*'><th><xsl:value-of select='name()'/></th></xsl:for-each></tr>
+            <tr><xsl:for-each select='NewDataSet/Table[1]/*'><th><xsl:value-of select=""translate(name(), '_', ' ')""/></th></xsl:for-each></tr>
             <xsl:for-each select='NewDataSet/Table'>
               <tr><xsl:for-each select='*'><td><xsl:value-of select='.'/></td></xsl:for-each></tr>
             </xsl:for-each>
@@ -190,6 +190,16 @@ namespace QuanLyShopBanDoDaBong
   </xsl:template>
 </xsl:stylesheet>";
             File.WriteAllText(path, content);
+        }
+
+        private void cbNam_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

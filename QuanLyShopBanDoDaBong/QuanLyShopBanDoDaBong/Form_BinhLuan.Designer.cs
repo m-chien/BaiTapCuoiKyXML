@@ -28,6 +28,7 @@
             this.btnLamMoi = new System.Windows.Forms.Button();
             this.btnTimKiem = new System.Windows.Forms.Button();
             this.dgvBinhLuan = new System.Windows.Forms.DataGridView();
+            this.btnXuatXML = new System.Windows.Forms.Button();
             this.pnlHeader.SuspendLayout();
             this.grpSearch.SuspendLayout();
             this.grpAction.SuspendLayout();
@@ -51,7 +52,7 @@
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(450, 20);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(257, 32);
+            this.label1.Size = new System.Drawing.Size(380, 48);
             this.label1.TabIndex = 0;
             this.label1.Text = "QUẢN LÝ BÌNH LUẬN";
             // 
@@ -76,7 +77,7 @@
             this.chkLocNgay.AutoSize = true;
             this.chkLocNgay.Location = new System.Drawing.Point(610, 42);
             this.chkLocNgay.Name = "chkLocNgay";
-            this.chkLocNgay.Size = new System.Drawing.Size(15, 14);
+            this.chkLocNgay.Size = new System.Drawing.Size(22, 21);
             this.chkLocNgay.TabIndex = 6;
             this.chkLocNgay.UseVisualStyleBackColor = true;
             this.chkLocNgay.CheckedChanged += new System.EventHandler(this.chkLocNgay_CheckedChanged);
@@ -88,7 +89,7 @@
             this.label3.ForeColor = System.Drawing.Color.Black;
             this.label3.Location = new System.Drawing.Point(30, 85);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(77, 19);
+            this.label3.Size = new System.Drawing.Size(116, 30);
             this.label3.TabIndex = 3;
             this.label3.Text = "Trạng thái :";
             // 
@@ -101,7 +102,7 @@
             this.cbbTinhTrang.FormattingEnabled = true;
             this.cbbTinhTrang.Location = new System.Drawing.Point(150, 82);
             this.cbbTinhTrang.Name = "cbbTinhTrang";
-            this.cbbTinhTrang.Size = new System.Drawing.Size(450, 27);
+            this.cbbTinhTrang.Size = new System.Drawing.Size(450, 36);
             this.cbbTinhTrang.TabIndex = 2;
             // 
             // label2
@@ -111,7 +112,7 @@
             this.label2.ForeColor = System.Drawing.Color.Black;
             this.label2.Location = new System.Drawing.Point(30, 40);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(79, 19);
+            this.label2.Size = new System.Drawing.Size(120, 30);
             this.label2.TabIndex = 1;
             this.label2.Text = "Ngày bình :";
             // 
@@ -122,18 +123,19 @@
             this.dtpNgay.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpNgay.Location = new System.Drawing.Point(150, 38);
             this.dtpNgay.Name = "dtpNgay";
-            this.dtpNgay.Size = new System.Drawing.Size(450, 26);
+            this.dtpNgay.Size = new System.Drawing.Size(450, 35);
             this.dtpNgay.TabIndex = 0;
             // 
             // grpAction
             // 
+            this.grpAction.Controls.Add(this.btnXuatXML);
             this.grpAction.Controls.Add(this.btnLamMoi);
             this.grpAction.Controls.Add(this.btnTimKiem);
             this.grpAction.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpAction.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(73)))), ((int)(((byte)(94)))));
             this.grpAction.Location = new System.Drawing.Point(730, 90);
             this.grpAction.Name = "grpAction";
-            this.grpAction.Size = new System.Drawing.Size(320, 150);
+            this.grpAction.Size = new System.Drawing.Size(320, 171);
             this.grpAction.TabIndex = 2;
             this.grpAction.TabStop = false;
             this.grpAction.Text = "Chức năng";
@@ -184,7 +186,7 @@
             this.dgvBinhLuan.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvBinhLuan.ColumnHeadersHeight = 35;
             this.dgvBinhLuan.EnableHeadersVisualStyles = false;
-            this.dgvBinhLuan.Location = new System.Drawing.Point(50, 260);
+            this.dgvBinhLuan.Location = new System.Drawing.Point(50, 298);
             this.dgvBinhLuan.Name = "dgvBinhLuan";
             this.dgvBinhLuan.RowHeadersWidth = 51;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -193,11 +195,26 @@
             this.dgvBinhLuan.Size = new System.Drawing.Size(1000, 300);
             this.dgvBinhLuan.TabIndex = 3;
             // 
+            // btnXuatXML
+            // 
+            this.btnXuatXML.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(171)))), ((int)(((byte)(227)))));
+            this.btnXuatXML.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnXuatXML.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnXuatXML.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnXuatXML.ForeColor = System.Drawing.Color.White;
+            this.btnXuatXML.Location = new System.Drawing.Point(30, 105);
+            this.btnXuatXML.Name = "btnXuatXML";
+            this.btnXuatXML.Size = new System.Drawing.Size(260, 45);
+            this.btnXuatXML.TabIndex = 5;
+            this.btnXuatXML.Text = "Xuất XML";
+            this.btnXuatXML.UseVisualStyleBackColor = false;
+            this.btnXuatXML.Click += new System.EventHandler(this.btnXuatXML_Click);
+            // 
             // Form_BinhLuan
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1100, 600);
+            this.ClientSize = new System.Drawing.Size(1100, 652);
             this.Controls.Add(this.dgvBinhLuan);
             this.Controls.Add(this.grpAction);
             this.Controls.Add(this.grpSearch);
@@ -230,5 +247,6 @@
         private System.Windows.Forms.Button btnTimKiem;
         private System.Windows.Forms.DataGridView dgvBinhLuan;
         private System.Windows.Forms.CheckBox chkLocNgay;
+        private System.Windows.Forms.Button btnXuatXML;
     }
 }

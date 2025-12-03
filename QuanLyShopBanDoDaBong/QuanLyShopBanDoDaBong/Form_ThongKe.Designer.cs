@@ -35,8 +35,8 @@ namespace QuanLyShopBanDoDaBong
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.xembaocao = new System.Windows.Forms.Button();
             this.xuatbaocao = new System.Windows.Forms.Button();
-            this.txtNam = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.cbNam = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -53,10 +53,6 @@ namespace QuanLyShopBanDoDaBong
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Doanh thu",
-            "Sản phẩm bán chạy",
-            "Lịch làm việc của nhân viên"});
             this.comboBox1.Location = new System.Drawing.Point(15, 96);
             this.comboBox1.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox1.Name = "comboBox1";
@@ -110,30 +106,33 @@ namespace QuanLyShopBanDoDaBong
             this.xuatbaocao.UseVisualStyleBackColor = false;
             this.xuatbaocao.Click += new System.EventHandler(this.xuatbaocao_Click);
             // 
-            // txtNam
-            // 
-            this.txtNam.Location = new System.Drawing.Point(495, 98);
-            this.txtNam.Name = "txtNam";
-            this.txtNam.Size = new System.Drawing.Size(100, 26);
-            this.txtNam.TabIndex = 7;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(396, 98);
+            this.label2.Location = new System.Drawing.Point(344, 94);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(71, 26);
             this.label2.TabIndex = 8;
             this.label2.Text = "Năm: ";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
+            // 
+            // cbNam
+            // 
+            this.cbNam.FormattingEnabled = true;
+            this.cbNam.Location = new System.Drawing.Point(421, 96);
+            this.cbNam.Name = "cbNam";
+            this.cbNam.Size = new System.Drawing.Size(140, 28);
+            this.cbNam.TabIndex = 9;
+            this.cbNam.SelectedIndexChanged += new System.EventHandler(this.cbNam_SelectedIndexChanged);
             // 
             // Form_ThongKe
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1095, 610);
+            this.Controls.Add(this.cbNam);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.txtNam);
             this.Controls.Add(this.xuatbaocao);
             this.Controls.Add(this.xembaocao);
             this.Controls.Add(this.dataGridView1);
@@ -157,7 +156,7 @@ namespace QuanLyShopBanDoDaBong
         private System.Windows.Forms.Button xembaocao;
         private System.Windows.Forms.Button xuatbaocao;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
-        private System.Windows.Forms.TextBox txtNam;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox cbNam;
     }
 }

@@ -4,7 +4,8 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using System.Configuration; // Nhớ thêm thư viện này
+using System.Configuration;
+using System.IO; // Thêm thư viện này để dùng Path và File
 
 namespace QuanLyShopBanDoDaBong
 {
@@ -124,6 +125,43 @@ namespace QuanLyShopBanDoDaBong
         private void chkLocNgay_CheckedChanged(object sender, EventArgs e)
         {
             dtpNgay.Enabled = chkLocNgay.Checked;
+        }
+
+        // --- SỰ KIỆN XUẤT XML ---
+        private void btnXuatXML_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Lấy DataTable từ DataGridView
+                DataTable dt = (DataTable)dgvBinhLuan.DataSource;
+
+                // Kiểm tra dữ liệu
+                if (dt == null || dt.Rows.Count == 0)
+                {
+                    MessageBox.Show("Không có dữ liệu bình luận để xuất!");
+                    return;
+                }
+
+                // Đặt tên bảng cho XML
+                dt.TableName = "BinhLuan";
+
+                // Tạo tên file
+                string fileName = "DanhSachBinhLuan_" + DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".xml";
+                string path = Path.Combine(Application.StartupPath, fileName);
+
+                // Ghi file XML
+                dt.WriteXml(path, XmlWriteMode.WriteSchema);
+
+                // Thông báo
+                MessageBox.Show("Xuất XML thành công!\nĐường dẫn: " + path);
+
+                // Mở thư mục chứa file vừa xuất
+                System.Diagnostics.Process.Start("explorer.exe", "/select," + path);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi xuất XML: " + ex.Message);
+            }
         }
     }
 }

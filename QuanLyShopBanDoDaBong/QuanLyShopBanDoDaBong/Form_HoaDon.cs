@@ -4,7 +4,8 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using System.Configuration; // Nhớ thêm thư viện này
+using System.Configuration;
+using System.IO; // Thêm thư viện này để dùng Path và File
 
 namespace QuanLyShopBanDoDaBong
 {
@@ -30,7 +31,7 @@ namespace QuanLyShopBanDoDaBong
             dtpNgay.CustomFormat = "dd/MM/yyyy";
 
             // Mặc định bỏ chọn lọc ngày
-            if (chkLocNgay != null) // Kiểm tra null để tránh lỗi nếu chưa có checkbox
+            if (chkLocNgay != null)
             {
                 chkLocNgay.Checked = false;
                 dtpNgay.Enabled = false;
@@ -152,8 +153,6 @@ namespace QuanLyShopBanDoDaBong
         {
             if (dgvHoaDon.CurrentRow != null && dgvHoaDon.CurrentRow.Index >= 0)
             {
-                // Lấy ID hóa đơn (Cột đầu tiên hoặc theo tên cột "Mã HĐ")
-                // Kiểm tra kỹ tên cột trong Database/Query của bạn
                 var cellValue = dgvHoaDon.CurrentRow.Cells["Mã HĐ"].Value;
 
                 if (cellValue != DBNull.Value)
@@ -169,17 +168,51 @@ namespace QuanLyShopBanDoDaBong
             }
         }
 
-        // --- SỰ KIỆN CHECKBOX (TÙY CHỌN CHO ĐẸP) ---
-        // Bạn cần gán sự kiện CheckedChanged cho checkbox này trong Design
         private void chkLocNgay_CheckedChanged(object sender, EventArgs e)
         {
-            // Nếu tick -> Cho phép chọn ngày. Không tick -> Mờ đi
             dtpNgay.Enabled = chkLocNgay.Checked;
         }
 
         private void txtTongTien_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar)) e.Handled = true;
+        }
+
+        // --- NÚT XUẤT XML ---
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Lấy DataTable từ DataGridView (dgvHoaDon)
+                DataTable dt = (DataTable)dgvHoaDon.DataSource;
+
+                // Kiểm tra dữ liệu
+                if (dt == null || dt.Rows.Count == 0)
+                {
+                    MessageBox.Show("Không có dữ liệu hóa đơn để xuất!");
+                    return;
+                }
+
+                // Đặt tên bảng cho XML (để cấu trúc file đẹp hơn)
+                dt.TableName = "HoaDon";
+
+                // Tạo tên file có kèm thời gian để tránh trùng lặp
+                string fileName = "DanhSachHoaDon_" + DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".xml";
+                string path = Path.Combine(Application.StartupPath, fileName);
+
+                // Ghi file XML (WriteSchema giúp giữ cấu trúc cột)
+                dt.WriteXml(path, XmlWriteMode.WriteSchema);
+
+                // Thông báo thành công
+                MessageBox.Show("Xuất XML thành công!\nĐường dẫn: " + path);
+
+                // Mở thư mục chứa file vừa xuất
+                System.Diagnostics.Process.Start("explorer.exe", "/select," + path);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi xuất XML: " + ex.Message);
+            }
         }
     }
 }
