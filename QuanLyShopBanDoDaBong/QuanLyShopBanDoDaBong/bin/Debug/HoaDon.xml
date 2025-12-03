@@ -1,0 +1,63 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:MainDataTable="HoaDon" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="HoaDon">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="IDHoaDon" type="xs:int" minOccurs="0" />
+                <xs:element name="IdUser" type="xs:int" minOccurs="0" />
+                <xs:element name="TongTien" type="xs:decimal" minOccurs="0" />
+                <xs:element name="DiaChiGiaoHang" type="xs:string" minOccurs="0" />
+                <xs:element name="NgayDat" type="xs:dateTime" minOccurs="0" />
+                <xs:element name="TrangThai" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <HoaDon>
+    <IDHoaDon>1</IDHoaDon>
+    <IdUser>2</IdUser>
+    <TongTien>1200000.00</TongTien>
+    <DiaChiGiaoHang>456 Lê Lợi, Đà Nẵng</DiaChiGiaoHang>
+    <NgayDat>2024-02-01T00:00:00+07:00</NgayDat>
+    <TrangThai>Đã thanh toán</TrangThai>
+  </HoaDon>
+  <HoaDon>
+    <IDHoaDon>2</IDHoaDon>
+    <IdUser>3</IdUser>
+    <TongTien>850000.00</TongTien>
+    <DiaChiGiaoHang>789 Trần Phú, Đà Nẵng</DiaChiGiaoHang>
+    <NgayDat>2024-02-05T00:00:00+07:00</NgayDat>
+    <TrangThai>Chờ thanh toán</TrangThai>
+  </HoaDon>
+  <HoaDon>
+    <IDHoaDon>3</IDHoaDon>
+    <IdUser>4</IdUser>
+    <TongTien>1500000.00</TongTien>
+    <DiaChiGiaoHang>321 Hùng Vương, Đà Nẵng</DiaChiGiaoHang>
+    <NgayDat>2024-02-10T00:00:00+07:00</NgayDat>
+    <TrangThai>Đã thanh toán</TrangThai>
+  </HoaDon>
+  <HoaDon>
+    <IDHoaDon>4</IDHoaDon>
+    <IdUser>5</IdUser>
+    <TongTien>450000.00</TongTien>
+    <DiaChiGiaoHang>654 Hoàng Diệu, Đà Nẵng</DiaChiGiaoHang>
+    <NgayDat>2024-02-15T00:00:00+07:00</NgayDat>
+    <TrangThai>Chờ thanh toán</TrangThai>
+  </HoaDon>
+  <HoaDon>
+    <IDHoaDon>5</IDHoaDon>
+    <IdUser>2</IdUser>
+    <TongTien>900000.00</TongTien>
+    <DiaChiGiaoHang>456 Lê Lợi, Đà Nẵng</DiaChiGiaoHang>
+    <NgayDat>2024-02-20T00:00:00+07:00</NgayDat>
+    <TrangThai>Hủy thanh toán</TrangThai>
+  </HoaDon>
+</NewDataSet>

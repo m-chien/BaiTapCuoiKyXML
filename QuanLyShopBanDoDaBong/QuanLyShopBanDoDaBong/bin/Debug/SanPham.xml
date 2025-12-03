@@ -1,0 +1,92 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:MainDataTable="SanPham" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="SanPham">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="IDSanPham" type="xs:int" minOccurs="0" />
+                <xs:element name="IDdanhMuc" type="xs:int" minOccurs="0" />
+                <xs:element name="Hang" type="xs:string" minOccurs="0" />
+                <xs:element name="KichThuoc" type="xs:string" minOccurs="0" />
+                <xs:element name="mausac" type="xs:string" minOccurs="0" />
+                <xs:element name="mota" type="xs:string" minOccurs="0" />
+                <xs:element name="hinhanh" type="xs:string" minOccurs="0" />
+                <xs:element name="SoLuongTonKho" type="xs:int" minOccurs="0" />
+                <xs:element name="DonViTinh" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <SanPham>
+    <IDSanPham>1</IDSanPham>
+    <IDdanhMuc>1</IDdanhMuc>
+    <Hang>Adidas</Hang>
+    <KichThuoc>M</KichThuoc>
+    <mausac>Đỏ</mausac>
+    <mota>Áo đá banh Đội tuyển Việt Nam sân nhà</mota>
+    <hinhanh>aovn1.jpg</hinhanh>
+    <SoLuongTonKho>60</SoLuongTonKho>
+    <DonViTinh>Cái</DonViTinh>
+  </SanPham>
+  <SanPham>
+    <IDSanPham>2</IDSanPham>
+    <IDdanhMuc>1</IDdanhMuc>
+    <Hang>Nike</Hang>
+    <KichThuoc>L</KichThuoc>
+    <mausac>Xanh dương</mausac>
+    <mota>Áo đá banh CLB Chelsea mùa 2024</mota>
+    <hinhanh>chelsea2024.jpg</hinhanh>
+    <SoLuongTonKho>45</SoLuongTonKho>
+    <DonViTinh>Cái</DonViTinh>
+  </SanPham>
+  <SanPham>
+    <IDSanPham>3</IDSanPham>
+    <IDdanhMuc>2</IDdanhMuc>
+    <Hang>Puma</Hang>
+    <KichThuoc>XL</KichThuoc>
+    <mausac>Đen</mausac>
+    <mota>Quần đá banh nam chất liệu thoáng khí</mota>
+    <hinhanh>quandabanh1.jpg</hinhanh>
+    <SoLuongTonKho>80</SoLuongTonKho>
+    <DonViTinh>Cái</DonViTinh>
+  </SanPham>
+  <SanPham>
+    <IDSanPham>4</IDSanPham>
+    <IDdanhMuc>3</IDdanhMuc>
+    <Hang>Nike</Hang>
+    <KichThuoc>42</KichThuoc>
+    <mausac>Trắng</mausac>
+    <mota>Giày đá bóng sân nhân tạo Nike Tiempo</mota>
+    <hinhanh>tiempo.jpg</hinhanh>
+    <SoLuongTonKho>20</SoLuongTonKho>
+    <DonViTinh>Đôi</DonViTinh>
+  </SanPham>
+  <SanPham>
+    <IDSanPham>5</IDSanPham>
+    <IDdanhMuc>4</IDdanhMuc>
+    <Hang>Adidas</Hang>
+    <KichThuoc>Free</KichThuoc>
+    <mausac>Đen</mausac>
+    <mota>Găng tay thủ môn Adidas Pro</mota>
+    <hinhanh>gangtay1.jpg</hinhanh>
+    <SoLuongTonKho>35</SoLuongTonKho>
+    <DonViTinh>Cặp</DonViTinh>
+  </SanPham>
+  <SanPham>
+    <IDSanPham>6</IDSanPham>
+    <IDdanhMuc>5</IDdanhMuc>
+    <Hang>Adidas</Hang>
+    <KichThuoc>XL</KichThuoc>
+    <mausac>Xám</mausac>
+    <mota>Áo khoác thể thao Real Madrid</mota>
+    <hinhanh>aokhoacRM.jpg</hinhanh>
+    <SoLuongTonKho>25</SoLuongTonKho>
+    <DonViTinh>Cái</DonViTinh>
+  </SanPham>
+</NewDataSet>

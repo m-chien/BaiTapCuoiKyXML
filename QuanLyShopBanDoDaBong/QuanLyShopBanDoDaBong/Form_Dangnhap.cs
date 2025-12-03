@@ -6,13 +6,12 @@ using System.Windows.Forms;
 using System.Xml.Linq;
 using System.IO;
 using System.Data.SqlClient;
-using System.Configuration;
 namespace WFA_Quanlyquancafe
 {
     public partial class Form_Dangnhap : Form
     {
         // Chuỗi kết nối tới cơ sở dữ liệu SQL Server
-        private string connectionString = ConfigurationManager.ConnectionStrings["MyConnect"].ConnectionString;
+        private string connectionString = "Data Source=DESKTOP-ER8LV7D; Initial Catalog=FootballShop; Integrated Security=True";
         public Form_Dangnhap()
         {
             InitializeComponent();
@@ -127,6 +126,16 @@ namespace WFA_Quanlyquancafe
         }
 
         private void txttendangnhap_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panelMain_Paint(object sender, PaintEventArgs e)
         {
 
         }

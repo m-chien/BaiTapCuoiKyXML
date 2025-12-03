@@ -144,7 +144,7 @@ INSERT INTO HoaDon (IdUser, TongTien, DiaChiGiaoHang, NgayDat, TrangThai) VALUES
 (2, 1200000, N'456 Lê Lợi, Đà Nẵng', '2024-02-01', N'Đã thanh toán'),
 (3, 850000, N'789 Trần Phú, Đà Nẵng', '2024-02-05', N'Chờ thanh toán'),
 (4, 1500000, N'321 Hùng Vương, Đà Nẵng', '2024-02-10', N'Đã thanh toán'),
-(5, 450000, N'654 Hoàng Diệu, Đà Nẵng', '2024-02-15', N'Chờ thanh toán'),
+(5, 450000, N'654 Hoàng Diệu, Đà Nẵng', '2024-02-20', N'Chờ thanh toán'),
 (2, 900000, N'456 Lê Lợi, Đà Nẵng', '2024-02-20', N'Hủy thanh toán');
 
 -- Insert dữ liệu vào bảng ChiTietHoaDon
