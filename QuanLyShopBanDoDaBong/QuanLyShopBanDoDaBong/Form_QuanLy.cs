@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WFA_Quanlyquancafe
+namespace QuanLyShopBanDoDaBong
 {
     public partial class Form_QuanLy : Form
     {
@@ -59,6 +59,11 @@ namespace WFA_Quanlyquancafe
         }
 
         private void pnlContent_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void menuquanlycaphe_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
 
         }

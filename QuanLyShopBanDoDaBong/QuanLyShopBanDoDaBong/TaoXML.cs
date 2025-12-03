@@ -8,7 +8,7 @@ using System.Xml.Xsl;
 
 class TaoXML
 {
-    string strCon = "Data Source=DESKTOP-ER8LV7D; Initial Catalog=FootballShop; Integrated Security=True";
+    string strCon = "Data Source=localhost; Initial Catalog=FootballShop; Integrated Security=True";
 
     // Hàm tạo XML từ cơ sở dữ liệu
     public void taoXML(string sql, string bang, string _FileXML)

@@ -6,13 +6,23 @@ using System.Windows.Forms;
 using System.Xml.Linq;
 using System.IO;
 using System.Data.SqlClient;
+<<<<<<< HEAD
 namespace WFA_Quanlyquancafe
+=======
+using System.Configuration;
+namespace QuanLyShopBanDoDaBong
+>>>>>>> f733cb8033062cfa1bbcad5177f21c571b13faec
 {
-    public partial class Form_Dangnhap : Form
+    public partial class Form_DangNhap : Form
     {
         // Chuỗi kết nối tới cơ sở dữ liệu SQL Server
+<<<<<<< HEAD
         private string connectionString = "Data Source=DESKTOP-ER8LV7D; Initial Catalog=FootballShop; Integrated Security=True";
         public Form_Dangnhap()
+=======
+        private string connectionString = ConfigurationManager.ConnectionStrings["MyConnect"].ConnectionString;
+        public Form_DangNhap()
+>>>>>>> f733cb8033062cfa1bbcad5177f21c571b13faec
         {
             InitializeComponent();
         }
@@ -130,12 +140,16 @@ namespace WFA_Quanlyquancafe
 
         }
 
+<<<<<<< HEAD
         private void label1_Click(object sender, EventArgs e)
         {
 
         }
 
         private void panelMain_Paint(object sender, PaintEventArgs e)
+=======
+        private void pnlRight_Paint(object sender, PaintEventArgs e)
+>>>>>>> f733cb8033062cfa1bbcad5177f21c571b13faec
         {
 
         }

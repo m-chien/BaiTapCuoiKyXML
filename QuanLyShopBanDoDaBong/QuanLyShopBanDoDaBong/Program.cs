@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WFA_Quanlyquancafe;
+using QuanLyShopBanDoDaBong;
 
 namespace QuanLyShopBanDoDaBong
 {
@@ -17,7 +17,11 @@ namespace QuanLyShopBanDoDaBong
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+<<<<<<< HEAD
             Application.Run(new Form_HoaDon());
+=======
+            Application.Run(new Form_DangNhap());
+>>>>>>> f733cb8033062cfa1bbcad5177f21c571b13faec
         }
     }
 }

@@ -72,4 +72,10 @@
     <VaiTro>User</VaiTro>
     <gioitinh>Nam</gioitinh>
   </NguoiDung>
+  <NguoiDung>
+    <IDNguoiDung>7</IDNguoiDung>
+    <Email>hien@gmail.com</Email>
+    <password>111</password>
+    <VaiTro>Admin</VaiTro>
+  </NguoiDung>
 </NewDataSet>
