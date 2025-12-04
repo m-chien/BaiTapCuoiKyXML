@@ -39,6 +39,12 @@ namespace QuanLyShopBanDoDaBong
                     if (dgvtaikhoan.Columns.Contains("Email")) dgvtaikhoan.Columns["Email"].HeaderText = "Tài khoản";
                     if (dgvtaikhoan.Columns.Contains("password")) dgvtaikhoan.Columns["password"].HeaderText = "Mật khẩu";
                     if (dgvtaikhoan.Columns.Contains("VaiTro")) dgvtaikhoan.Columns["VaiTro"].HeaderText = "Vai trò";
+
+                    // Ẩn cột không cần thiết
+                    if (dgvtaikhoan.Columns.Contains("sdt")) dgvtaikhoan.Columns["sdt"].Visible = false;
+                    if (dgvtaikhoan.Columns.Contains("DiaChi")) dgvtaikhoan.Columns["DiaChi"].Visible = false;
+                    if (dgvtaikhoan.Columns.Contains("AvatarURL")) dgvtaikhoan.Columns["AvatarURL"].Visible = false;
+                    if (dgvtaikhoan.Columns.Contains("gioitinh")) dgvtaikhoan.Columns["gioitinh"].Visible = false;
                 }
             }
             catch (Exception ex)
