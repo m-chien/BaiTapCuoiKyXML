@@ -50,6 +50,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Class\DanhMuc.cs" />
+    <Compile Include="Class\SanPham.cs" />
+    <Compile Include="Class\TaiKhoan.cs" />
     <Compile Include="Form_BinhLuan.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -73,6 +76,12 @@
     </Compile>
     <Compile Include="Form_HoaDon.Designer.cs">
       <DependentUpon>Form_HoaDon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_QLDanhMuc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_QLDanhMuc.Designer.cs">
+      <DependentUpon>Form_QLDanhMuc.cs</DependentUpon>
     </Compile>
     <Compile Include="Form_QLSanPham.cs">
       <SubType>Form</SubType>
@@ -100,7 +109,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TaoXML.cs" />
+    <Compile Include="Class\TaoXML.cs" />
     <EmbeddedResource Include="Form_BinhLuan.resx">
       <DependentUpon>Form_BinhLuan.cs</DependentUpon>
     </EmbeddedResource>
@@ -112,6 +121,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form_HoaDon.resx">
       <DependentUpon>Form_HoaDon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_QLDanhMuc.resx">
+      <DependentUpon>Form_QLDanhMuc.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_QLSanPham.resx">
       <DependentUpon>Form_QLSanPham.cs</DependentUpon>

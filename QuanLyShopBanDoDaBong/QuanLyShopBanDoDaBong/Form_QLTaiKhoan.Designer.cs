@@ -54,7 +54,7 @@
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(450, 20);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(350, 45);
+            this.label1.Size = new System.Drawing.Size(233, 30);
             this.label1.TabIndex = 0;
             this.label1.Text = "QUẢN LÝ TÀI KHOẢN";
             // 
@@ -84,7 +84,7 @@
             this.cmbvaitro.FormattingEnabled = true;
             this.cmbvaitro.Location = new System.Drawing.Point(180, 130);
             this.cmbvaitro.Name = "cmbvaitro";
-            this.cmbvaitro.Size = new System.Drawing.Size(280, 36);
+            this.cmbvaitro.Size = new System.Drawing.Size(280, 27);
             this.cmbvaitro.TabIndex = 7;
             // 
             // txtmatkhau
@@ -94,7 +94,7 @@
             this.txtmatkhau.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtmatkhau.Location = new System.Drawing.Point(180, 85);
             this.txtmatkhau.Name = "txtmatkhau";
-            this.txtmatkhau.Size = new System.Drawing.Size(280, 35);
+            this.txtmatkhau.Size = new System.Drawing.Size(280, 26);
             this.txtmatkhau.TabIndex = 6;
             // 
             // txtendangnhap
@@ -104,7 +104,7 @@
             this.txtendangnhap.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtendangnhap.Location = new System.Drawing.Point(180, 40);
             this.txtendangnhap.Name = "txtendangnhap";
-            this.txtendangnhap.Size = new System.Drawing.Size(280, 35);
+            this.txtendangnhap.Size = new System.Drawing.Size(280, 26);
             this.txtendangnhap.TabIndex = 5;
             // 
             // label5
@@ -114,7 +114,7 @@
             this.label5.ForeColor = System.Drawing.Color.Black;
             this.label5.Location = new System.Drawing.Point(30, 133);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(83, 30);
+            this.label5.Size = new System.Drawing.Size(56, 19);
             this.label5.TabIndex = 4;
             this.label5.Text = "Vai trò :";
             // 
@@ -125,7 +125,7 @@
             this.label4.ForeColor = System.Drawing.Color.Black;
             this.label4.Location = new System.Drawing.Point(30, 87);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(112, 30);
+            this.label4.Size = new System.Drawing.Size(75, 19);
             this.label4.TabIndex = 3;
             this.label4.Text = "Mật khẩu :";
             // 
@@ -136,7 +136,7 @@
             this.label3.ForeColor = System.Drawing.Color.Black;
             this.label3.Location = new System.Drawing.Point(30, 42);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(148, 30);
+            this.label3.Size = new System.Drawing.Size(98, 19);
             this.label3.TabIndex = 2;
             this.label3.Text = "Tên tài khoản :";
             // 
@@ -166,7 +166,7 @@
             this.btnxml.Name = "btnxml";
             this.btnxml.Size = new System.Drawing.Size(160, 45);
             this.btnxml.TabIndex = 12;
-            this.btnxml.Text = "Xuất XML";
+            this.btnxml.Text = "Tạo XML";
             this.btnxml.UseVisualStyleBackColor = false;
             this.btnxml.Click += new System.EventHandler(this.btnxml_Click);
             // 

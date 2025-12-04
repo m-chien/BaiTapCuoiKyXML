@@ -91,12 +91,6 @@ CREATE TABLE BinhLuan (
 );
 
 -- =============== THÊM CÁC RÀNG BUỘC CHECK ===============
-
-
--- Ràng buộc Giới tính chỉ được Nam hoặc Nữ
-ALTER TABLE NguoiDung
-ADD CONSTRAINT CK_GioiTinh CHECK (gioitinh IN (N'Nam', N'Nữ'));
-
 -- Ràng buộc Vai trò chỉ được Admin hoặc User
 ALTER TABLE NguoiDung
 ADD CONSTRAINT CK_VaiTro CHECK (VaiTro IN (N'Admin', N'User'));

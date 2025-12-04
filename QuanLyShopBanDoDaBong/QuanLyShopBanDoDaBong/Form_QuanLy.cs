@@ -13,6 +13,7 @@ namespace QuanLyShopBanDoDaBong
             InitializeComponent();
         }
 
+        // Hàm hiển thị form con chung
         private void Hienthiformcon(Form childForm)
         {
             if (currentFormChild != null)
@@ -33,37 +34,56 @@ namespace QuanLyShopBanDoDaBong
             childForm.Show();
         }
 
-        private void Form_QuanLy_Load(object sender, EventArgs e){
+        private void Form_QuanLy_Load(object sender, EventArgs e)
+        {
+            // Có thể mặc định mở form trang chủ hoặc thống kê ở đây nếu muốn
         }
 
-
-        private void quảnLýDanhMụcSảnPhẩmToolStripMenuItem_Click(object sender, EventArgs e)
+        // 1. Quản lý Tài khoản (Đã đổi tên hàm cho chuẩn)
+        private void quanLyTaiKhoanToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Hienthiformcon(new Form_QLTaiKhoan());
             this.Text = "Hệ thống quản lý - Quản lý Tài Khoản";
         }
 
-        private void tìmKiếmToolStripMenuItem_Click(object sender, EventArgs e)
+        // 2. Quản lý Danh mục (MỚI THÊM)
+        private void quanLyDanhMucToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Hienthiformcon(new Form_QLDanhMuc());
+            this.Text = "Hệ thống quản lý - Quản lý Danh Mục";
+        }
+
+        // 3. Quản lý Sản phẩm (Đã đổi tên hàm cho chuẩn)
+        private void quanLySanPhamToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Hienthiformcon(new Form_QLSanPham());
             this.Text = "Hệ thống quản lý - Quản lý Sản Phẩm";
         }
 
-        private void hoaDonToolStripMenuItem_Click(object sender, EventArgs e)
+        // 4. Quản lý Hóa đơn (Đã đổi tên hàm cho chuẩn)
+        private void quanLyHoaDonToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Hienthiformcon(new Form_HoaDon());
+            // Nếu chưa có Form_HoaDon thì comment dòng dưới lại để tránh lỗi
+            // Hienthiformcon(new Form_HoaDon()); 
+            MessageBox.Show("Chức năng đang phát triển (Cần tạo Form_HoaDon)");
             this.Text = "Hệ thống quản lý - Quản lý Hóa Đơn";
         }
 
-        private void binhLuanToolStripMenuItem_Click(object sender, EventArgs e)
+        // 5. Quản lý Bình luận (Đã đổi tên hàm cho chuẩn)
+        private void quanLyBinhLuanToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Hienthiformcon(new Form_BinhLuan());
+            // Nếu chưa có Form_BinhLuan thì comment dòng dưới lại
+            // Hienthiformcon(new Form_BinhLuan());
+            MessageBox.Show("Chức năng đang phát triển (Cần tạo Form_BinhLuan)");
             this.Text = "Hệ thống quản lý - Quản lý Bình Luận";
         }
 
-        private void xemThốngKêVàBáoCáoToolStripMenuItem_Click(object sender, EventArgs e)
+        // 6. Báo cáo Thống kê (Đã đổi tên hàm cho chuẩn)
+        private void baoCaoThongKeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Hienthiformcon(new Form_ThongKe());
+            // Nếu chưa có Form_ThongKe thì comment dòng dưới lại
+            // Hienthiformcon(new Form_ThongKe());
+            MessageBox.Show("Chức năng đang phát triển (Cần tạo Form_ThongKe)");
             this.Text = "Hệ thống quản lý - Thống kê & Báo cáo";
         }
 
