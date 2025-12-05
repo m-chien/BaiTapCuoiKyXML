@@ -25,7 +25,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.dtpNgay = new System.Windows.Forms.DateTimePicker();
             this.grpAction = new System.Windows.Forms.GroupBox();
-            this.btnXuatXML = new System.Windows.Forms.Button();
+            this.btnTaoXML = new System.Windows.Forms.Button();
             this.btnLamMoi = new System.Windows.Forms.Button();
             this.btnTimKiem = new System.Windows.Forms.Button();
             this.dgvBinhLuan = new System.Windows.Forms.DataGridView();
@@ -128,7 +128,7 @@
             // 
             // grpAction
             // 
-            this.grpAction.Controls.Add(this.btnXuatXML);
+            this.grpAction.Controls.Add(this.btnTaoXML);
             this.grpAction.Controls.Add(this.btnLamMoi);
             this.grpAction.Controls.Add(this.btnTimKiem);
             this.grpAction.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -140,20 +140,20 @@
             this.grpAction.TabStop = false;
             this.grpAction.Text = "Chức năng";
             // 
-            // btnXuatXML
+            // btnTaoXML
             // 
-            this.btnXuatXML.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(171)))), ((int)(((byte)(227)))));
-            this.btnXuatXML.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnXuatXML.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnXuatXML.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnXuatXML.ForeColor = System.Drawing.Color.White;
-            this.btnXuatXML.Location = new System.Drawing.Point(30, 105);
-            this.btnXuatXML.Name = "btnXuatXML";
-            this.btnXuatXML.Size = new System.Drawing.Size(260, 45);
-            this.btnXuatXML.TabIndex = 5;
-            this.btnXuatXML.Text = "Xuất XML";
-            this.btnXuatXML.UseVisualStyleBackColor = false;
-            this.btnXuatXML.Click += new System.EventHandler(this.btnXuatXML_Click);
+            this.btnTaoXML.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(171)))), ((int)(((byte)(227)))));
+            this.btnTaoXML.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnTaoXML.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTaoXML.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTaoXML.ForeColor = System.Drawing.Color.White;
+            this.btnTaoXML.Location = new System.Drawing.Point(30, 105);
+            this.btnTaoXML.Name = "btnTaoXML";
+            this.btnTaoXML.Size = new System.Drawing.Size(260, 45);
+            this.btnTaoXML.TabIndex = 5;
+            this.btnTaoXML.Text = "Tạo XML";
+            this.btnTaoXML.UseVisualStyleBackColor = false;
+            this.btnTaoXML.Click += new System.EventHandler(this.btnXuatXML_Click);
             // 
             // btnLamMoi
             // 
@@ -248,6 +248,6 @@
         private System.Windows.Forms.Button btnTimKiem;
         private System.Windows.Forms.DataGridView dgvBinhLuan;
         private System.Windows.Forms.CheckBox chkLocNgay;
-        private System.Windows.Forms.Button btnXuatXML;
+        private System.Windows.Forms.Button btnTaoXML;
     }
 }

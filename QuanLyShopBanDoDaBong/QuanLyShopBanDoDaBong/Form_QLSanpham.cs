@@ -162,5 +162,10 @@ namespace QuanLyShopBanDoDaBong
             MessageBox.Show("Đã đồng bộ lại từ SQL!");
             LoadData();
         }
+
+        private void dgvSanpham_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

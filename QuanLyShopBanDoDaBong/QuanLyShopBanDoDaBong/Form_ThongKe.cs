@@ -1,18 +1,19 @@
-﻿using System;
-using System.Configuration;
+﻿using QuanLyShopBanDoDaBong.Class;
+using System;
 using System.Data;
-using System.Data.SqlClient;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
-using System.Xml;
 using System.Xml.Xsl;
 
 namespace QuanLyShopBanDoDaBong
 {
     public partial class Form_ThongKe : Form
     {
-        string connectionString = ConfigurationManager.ConnectionStrings["MyConnect"].ConnectionString;
+        HoaDon objHD = new HoaDon();
+        ChiTietHoaDon objCTHD = new ChiTietHoaDon();
+        SanPham objSP = new SanPham();
 
         public Form_ThongKe()
         {
@@ -24,6 +25,7 @@ namespace QuanLyShopBanDoDaBong
             comboBox1.Items.Clear();
             comboBox1.Items.AddRange(new string[] { "Doanh thu năm", "Top sản phẩm bán chạy", "Tồn kho sản phẩm" });
             comboBox1.SelectedIndex = 0;
+
             cbNam.Items.Clear();
             int currentYear = DateTime.Now.Year;
             for (int i = currentYear; i >= 2020; i--)
@@ -41,66 +43,166 @@ namespace QuanLyShopBanDoDaBong
                 return;
             }
             int nam = int.Parse(cbNam.SelectedItem.ToString());
-
             LoadDataToGrid(nam);
         }
 
         private void LoadDataToGrid(int nam)
         {
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            try
             {
-                try
+                if (comboBox1.SelectedItem == null)
                 {
-                    conn.Open();
-                    string query = "";
-
-                    if (comboBox1.SelectedItem == null) { MessageBox.Show("Vui lòng chọn loại báo cáo!"); return; }
-
-                    string reportType = comboBox1.SelectedItem.ToString();
-
-                    if (reportType == "Doanh thu năm")
-                    {
-                        query = @"SELECT 'Tháng ' + CAST(MONTH(NgayDat) AS VARCHAR) AS [Thời_Gian], 
-                                         SUM(TongTien) AS [Doanh_Thu] 
-                                  FROM HoaDon 
-                                  WHERE YEAR(NgayDat) = @Nam 
-                                  GROUP BY MONTH(NgayDat) 
-                                  ORDER BY MONTH(NgayDat)";
-                    }
-                    else if (reportType == "Top sản phẩm bán chạy")
-                    {
-                        query = @"SELECT TOP 10 s.Hang + ' - ' + s.mausac AS [Sản_Phẩm], 
-                                         SUM(ct.SoLuong) AS [Số_Lượng_Bán] 
-                                  FROM ChiTietHoaDon ct 
-                                  JOIN SanPham s ON ct.IdSanPham = s.IDSanPham 
-                                  JOIN HoaDon h ON ct.IdHoaDon = h.IDHoaDon 
-                                  WHERE YEAR(h.NgayDat) = @Nam 
-                                  GROUP BY s.Hang, s.mausac 
-                                  ORDER BY [Số_Lượng_Bán] DESC";
-                    }
-                    else if (reportType == "Tồn kho sản phẩm")
-                    {
-                        query = @"SELECT Hang + ' - ' + mausac AS [Sản_Phẩm], SoLuongTonKho AS [Tồn_Kho] FROM SanPham";
-                    }
-                    else { MessageBox.Show("Loại báo cáo không hợp lệ!"); return; }
-
-                    SqlCommand cmd = new SqlCommand(query, conn);
-                    if (reportType != "Tồn kho sản phẩm") cmd.Parameters.AddWithValue("@Nam", nam);
-
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    DataTable dt = new DataTable("Table");
-                    da.Fill(dt);
-                    dataGridView1.DataSource = dt;
-                    dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-
-                    if (dt.Rows.Count == 0) MessageBox.Show("Không tìm thấy dữ liệu trong năm " + nam);
+                    MessageBox.Show("Vui lòng chọn loại báo cáo!");
+                    return;
                 }
-                catch (Exception ex) { MessageBox.Show("Lỗi: " + ex.Message); }
+
+                string reportType = comboBox1.SelectedItem.ToString();
+                DataTable dtKetQua = new DataTable("Table");
+
+                if (reportType == "Doanh thu năm")
+                {
+                    dtKetQua = ThongKeDoanhThuTheoNam(nam);
+                }
+                else if (reportType == "Top sản phẩm bán chạy")
+                {
+                    dtKetQua = ThongKeTopSanPham(nam);
+                }
+                else if (reportType == "Tồn kho sản phẩm")
+                {
+                    dtKetQua = ThongKeTonKho();
+                }
+
+                dataGridView1.DataSource = dtKetQua;
+                dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+                if (dtKetQua.Rows.Count == 0)
+                    MessageBox.Show("Không tìm thấy dữ liệu trong năm " + nam);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi: " + ex.Message);
             }
         }
+
+        // THỐNG KÊ 1: Doanh thu theo năm
+        private DataTable ThongKeDoanhThuTheoNam(int nam)
+        {
+            DataTable dtHoaDon = objHD.LayDanhSach();
+
+            // Lọc hóa đơn theo năm
+            var hoaDonNam = dtHoaDon.AsEnumerable()
+                .Where(row => row["NgayDat"] != DBNull.Value &&
+                             Convert.ToDateTime(row["NgayDat"]).Year == nam);
+
+            // Nhóm theo tháng và tính tổng
+            var thongKe = hoaDonNam
+                .GroupBy(row => Convert.ToDateTime(row["NgayDat"]).Month)
+                .Select(g => new
+                {
+                    Thang = g.Key,
+                    DoanhThu = g.Sum(row => Convert.ToDecimal(row["TongTien"]))
+                })
+                .OrderBy(x => x.Thang);
+
+            // Tạo DataTable kết quả
+            DataTable dtResult = new DataTable("Table");
+            dtResult.Columns.Add("Thời_Gian", typeof(string));
+            dtResult.Columns.Add("Doanh_Thu", typeof(decimal));
+
+            foreach (var item in thongKe)
+            {
+                dtResult.Rows.Add($"Tháng {item.Thang}", item.DoanhThu);
+            }
+
+            return dtResult;
+        }
+
+        // THỐNG KÊ 2: Top 10 sản phẩm bán chạy
+        private DataTable ThongKeTopSanPham(int nam)
+        {
+            DataTable dtHoaDon = objHD.LayDanhSach();
+            DataTable dtChiTiet = objCTHD.LayDanhSach();
+            DataTable dtSanPham = objSP.LayDanhSach();
+
+            // Tìm tên cột
+            string colIdHoaDon = dtChiTiet.Columns.Contains("IdHoaDon") ? "IdHoaDon" : "IDHoaDon";
+            string colIdSanPham = dtChiTiet.Columns.Contains("IdSanPham") ? "IdSanPham" : "IDSanPham";
+
+            // Lọc hóa đơn theo năm
+            var hoaDonNam = dtHoaDon.AsEnumerable()
+                .Where(row => row["NgayDat"] != DBNull.Value &&
+                             Convert.ToDateTime(row["NgayDat"]).Year == nam)
+                .Select(row => row["IDHoaDon"].ToString())
+                .ToHashSet();
+
+            // Lọc chi tiết hóa đơn theo năm
+            var chiTietNam = dtChiTiet.AsEnumerable()
+                .Where(row => hoaDonNam.Contains(row[colIdHoaDon].ToString()));
+
+            // Nhóm theo sản phẩm
+            var thongKe = chiTietNam
+                .GroupBy(row => row[colIdSanPham].ToString())
+                .Select(g => new
+                {
+                    IdSanPham = g.Key,
+                    SoLuongBan = g.Sum(row => Convert.ToInt32(row["SoLuong"]))
+                })
+                .OrderByDescending(x => x.SoLuongBan)
+                .Take(10);
+
+            // Tạo DataTable kết quả
+            DataTable dtResult = new DataTable("Table");
+            dtResult.Columns.Add("Sản_Phẩm", typeof(string));
+            dtResult.Columns.Add("Số_Lượng_Bán", typeof(int));
+
+            foreach (var item in thongKe)
+            {
+                // Tìm tên sản phẩm
+                DataRow[] rowsSP = dtSanPham.Select($"IDSanPham = '{item.IdSanPham}'");
+                string tenSP = "Không rõ";
+
+                if (rowsSP.Length > 0)
+                {
+                    string hang = rowsSP[0]["Hang"] != DBNull.Value ? rowsSP[0]["Hang"].ToString() : "";
+                    string mauSac = rowsSP[0]["mausac"] != DBNull.Value ? rowsSP[0]["mausac"].ToString() : "";
+                    tenSP = $"{hang} - {mauSac}";
+                }
+
+                dtResult.Rows.Add(tenSP, item.SoLuongBan);
+            }
+
+            return dtResult;
+        }
+
+        // THỐNG KÊ 3: Tồn kho sản phẩm
+        private DataTable ThongKeTonKho()
+        {
+            DataTable dtSanPham = objSP.LayDanhSach();
+
+            DataTable dtResult = new DataTable("Table");
+            dtResult.Columns.Add("Sản_Phẩm", typeof(string));
+            dtResult.Columns.Add("Tồn_Kho", typeof(int));
+
+            foreach (DataRow row in dtSanPham.Rows)
+            {
+                string hang = row["Hang"] != DBNull.Value ? row["Hang"].ToString() : "";
+                string mauSac = row["mausac"] != DBNull.Value ? row["mausac"].ToString() : "";
+                string tenSP = $"{hang} - {mauSac}";
+                int tonKho = Convert.ToInt32(row["SoLuongTonKho"]);
+
+                dtResult.Rows.Add(tenSP, tonKho);
+            }
+
+            return dtResult;
+        }
+
         private void xuatbaocao_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.Rows.Count == 0) { MessageBox.Show("Chưa có dữ liệu!"); return; }
+            if (dataGridView1.Rows.Count == 0)
+            {
+                MessageBox.Show("Chưa có dữ liệu!");
+                return;
+            }
 
             try
             {
@@ -144,7 +246,7 @@ namespace QuanLyShopBanDoDaBong
           h1 { text-align: center; color: #1a73e8; }
           table { width: 100%; border-collapse: collapse; margin-top: 30px; }
           th { background: #1a73e8; color: white; padding: 12px; }
-          td { border-bottom: 1px solid #ddd; padding: 10px; }
+          td { border-bottom: 1px solid #ddd; padding: 10px; text-align: center; }
           .chart-box { margin: 40px 0; height: 400px; }
         </style>
       </head>
@@ -171,6 +273,13 @@ namespace QuanLyShopBanDoDaBong
                 data: [<xsl:for-each select='NewDataSet/Table'><xsl:value-of select='*[last()]'/>,</xsl:for-each>],
                 backgroundColor: '#36a2eb'
               }]
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              scales: {
+                y: { beginAtZero: true }
+              }
             }
           });
         </script>
@@ -183,12 +292,10 @@ namespace QuanLyShopBanDoDaBong
 
         private void cbNam_SelectedIndexChanged(object sender, EventArgs e)
         {
-
         }
 
         private void label2_Click(object sender, EventArgs e)
         {
-
         }
     }
 }

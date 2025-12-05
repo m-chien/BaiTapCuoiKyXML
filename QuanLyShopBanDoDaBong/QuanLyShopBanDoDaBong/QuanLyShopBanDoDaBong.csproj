@@ -50,7 +50,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Class\BinhLuan.cs" />
+    <Compile Include="Class\ChiTietHoaDon.cs" />
     <Compile Include="Class\DanhMuc.cs" />
+    <Compile Include="Class\HoaDon.cs" />
     <Compile Include="Class\SanPham.cs" />
     <Compile Include="Class\TaiKhoan.cs" />
     <Compile Include="Form_BinhLuan.cs">

@@ -179,7 +179,7 @@
             this.btnXuatXML.Name = "btnXuatXML";
             this.btnXuatXML.Size = new System.Drawing.Size(240, 45);
             this.btnXuatXML.TabIndex = 4;
-            this.btnXuatXML.Text = "Xuất XML";
+            this.btnXuatXML.Text = "Tạo XML";
             this.btnXuatXML.UseVisualStyleBackColor = false;
             this.btnXuatXML.Click += new System.EventHandler(this.button1_Click);
             // 

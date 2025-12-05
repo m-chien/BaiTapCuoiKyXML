@@ -65,7 +65,7 @@ namespace QuanLyShopBanDoDaBong
         {
             // Nếu chưa có Form_HoaDon thì comment dòng dưới lại để tránh lỗi
             // Hienthiformcon(new Form_HoaDon()); 
-            MessageBox.Show("Chức năng đang phát triển (Cần tạo Form_HoaDon)");
+            Hienthiformcon(new Form_HoaDon());
             this.Text = "Hệ thống quản lý - Quản lý Hóa Đơn";
         }
 
@@ -74,7 +74,7 @@ namespace QuanLyShopBanDoDaBong
         {
             // Nếu chưa có Form_BinhLuan thì comment dòng dưới lại
             // Hienthiformcon(new Form_BinhLuan());
-            MessageBox.Show("Chức năng đang phát triển (Cần tạo Form_BinhLuan)");
+            Hienthiformcon(new Form_BinhLuan());
             this.Text = "Hệ thống quản lý - Quản lý Bình Luận";
         }
 
@@ -83,7 +83,7 @@ namespace QuanLyShopBanDoDaBong
         {
             // Nếu chưa có Form_ThongKe thì comment dòng dưới lại
             // Hienthiformcon(new Form_ThongKe());
-            MessageBox.Show("Chức năng đang phát triển (Cần tạo Form_ThongKe)");
+            Hienthiformcon(new Form_ThongKe());
             this.Text = "Hệ thống quản lý - Thống kê & Báo cáo";
         }
 

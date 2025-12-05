@@ -1,17 +1,13 @@
-﻿using System;
+﻿using QuanLyShopBanDoDaBong.Class;
+using System;
 using System.Data;
-using System.Data.SqlClient;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
-using System.Configuration;
-using System.IO;
 
 namespace QuanLyShopBanDoDaBong
 {
     public partial class Form_BinhLuan : Form
     {
-        string connectionString = ConfigurationManager.ConnectionStrings["MyConnect"].ConnectionString;
+        BinhLuan objBL = new BinhLuan();
 
         public Form_BinhLuan()
         {
@@ -20,10 +16,12 @@ namespace QuanLyShopBanDoDaBong
 
         private void Form_BinhLuan_Load(object sender, EventArgs e)
         {
+            // Khởi tạo ComboBox Tình trạng
             cbbTinhTrang.Items.Clear();
             cbbTinhTrang.Items.AddRange(new string[] { "Tất cả", "Chờ duyệt", "Đã duyệt" });
             cbbTinhTrang.SelectedIndex = 0;
 
+            // Khởi tạo DateTimePicker
             dtpNgay.Format = DateTimePickerFormat.Custom;
             dtpNgay.CustomFormat = "dd/MM/yyyy";
 
@@ -33,120 +31,119 @@ namespace QuanLyShopBanDoDaBong
                 dtpNgay.Enabled = false;
             }
 
-            LoadBinhLuan();
+            LoadData();
         }
 
-        private void LoadBinhLuan(string tinhTrang = "Tất cả", DateTime? ngay = null)
+        private void LoadData()
         {
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            try
             {
-                try
+                dgvBinhLuan.DataSource = objBL.LayDanhSach();
+
+                if (dgvBinhLuan.Columns.Count > 0)
                 {
-                    conn.Open();
-                    StringBuilder query = new StringBuilder(@"
-                        SELECT 
-                            b.IDBinhLuan AS [Mã BL],
-                            n.Email AS [Người dùng],
-                            s.Hang + ' - ' + s.mausac AS [Sản phẩm],
-                            b.NoiDung AS [Nội dung],
-                            b.NgayBinhLuan AS [Ngày bình luận],
-                            b.TinhTrang AS [Trạng thái]
-                        FROM BinhLuan b
-                        JOIN NguoiDung n ON b.IDNguoiDung = n.IDNguoiDung
-                        JOIN SanPham s ON b.IdSanPham = s.IDSanPham
-                        WHERE 1=1");
+                    // Đặt tiêu đề cột
+                    if (dgvBinhLuan.Columns.Contains("IDBinhLuan"))
+                        dgvBinhLuan.Columns["IDBinhLuan"].HeaderText = "Mã BL";
+                    if (dgvBinhLuan.Columns.Contains("IDNguoiDung"))
+                        dgvBinhLuan.Columns["IDNguoiDung"].HeaderText = "Mã người dùng";
+                    if (dgvBinhLuan.Columns.Contains("IdSanPham"))
+                        dgvBinhLuan.Columns["IdSanPham"].HeaderText = "Mã sản phẩm";
+                    if (dgvBinhLuan.Columns.Contains("NoiDung"))
+                        dgvBinhLuan.Columns["NoiDung"].HeaderText = "Nội dung";
+                    if (dgvBinhLuan.Columns.Contains("NgayBinhLuan"))
+                        dgvBinhLuan.Columns["NgayBinhLuan"].HeaderText = "Ngày bình luận";
+                    if (dgvBinhLuan.Columns.Contains("TinhTrang"))
+                        dgvBinhLuan.Columns["TinhTrang"].HeaderText = "Tình trạng";
 
-                    SqlCommand cmd = new SqlCommand();
-                    cmd.Connection = conn;
-
-                    if (tinhTrang != "Tất cả")
-                    {
-                        query.Append(" AND b.TinhTrang = @TinhTrang");
-                        cmd.Parameters.AddWithValue("@TinhTrang", tinhTrang);
-                    }
-
-                    if (ngay != null)
-                    {
-                        query.Append(" AND CAST(b.NgayBinhLuan AS DATE) = CAST(@Ngay AS DATE)");
-                        cmd.Parameters.AddWithValue("@Ngay", ngay.Value);
-                    }
-
-                    query.Append(" ORDER BY b.NgayBinhLuan DESC");
-                    cmd.CommandText = query.ToString();
-
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
-
-                    dgvBinhLuan.DataSource = dt;
+                    // Auto size columns
                     dgvBinhLuan.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-                    this.Text = $"Quản lý bình luận - Tìm thấy {dt.Rows.Count} kết quả";
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Lỗi tải dữ liệu: " + ex.Message);
-                }
+
+                this.Text = $"Quản lý bình luận - Tìm thấy {dgvBinhLuan.Rows.Count} kết quả";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi load dữ liệu: " + ex.Message);
             }
         }
 
+        // --- TÌM KIẾM ---
         private void btnTimKiem_Click_1(object sender, EventArgs e)
         {
-            string trangThai = cbbTinhTrang.SelectedItem?.ToString() ?? "Tất cả";
-
-            DateTime? ngayChon = null;
-            if (chkLocNgay.Checked)
+            try
             {
-                ngayChon = dtpNgay.Value;
-            }
+                DataTable dt = objBL.LayDanhSach();
+                DataView dv = new DataView(dt);
 
-            LoadBinhLuan(trangThai, ngayChon);
+                string filter = "";
+
+                // Lọc theo tình trạng
+                string trangThai = cbbTinhTrang.SelectedItem?.ToString() ?? "Tất cả";
+                if (trangThai != "Tất cả")
+                {
+                    filter = $"TinhTrang = '{trangThai}'";
+                }
+
+                // Lọc theo ngày (nếu checkbox được chọn)
+                if (chkLocNgay != null && chkLocNgay.Checked)
+                {
+                    string ngayChon = dtpNgay.Value.ToString("yyyy-MM-dd");
+                    if (!string.IsNullOrEmpty(filter))
+                        filter += " AND ";
+                    filter += $"NgayBinhLuan = '{ngayChon}'";
+                }
+
+                dv.RowFilter = filter;
+                dgvBinhLuan.DataSource = dv.ToTable();
+
+                this.Text = $"Quản lý bình luận - Tìm thấy {dv.Count} kết quả";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi tìm kiếm: " + ex.Message);
+            }
         }
 
+        // --- LÀM MỚI ---
         private void btnLamMoi_Click(object sender, EventArgs e)
         {
             cbbTinhTrang.SelectedIndex = 0;
-            chkLocNgay.Checked = false;
-            dtpNgay.Enabled = false;
-            LoadBinhLuan();
+            if (chkLocNgay != null)
+            {
+                chkLocNgay.Checked = false;
+                dtpNgay.Enabled = false;
+            }
+            LoadData();
         }
 
-        private void chkLocNgay_CheckedChanged(object sender, EventArgs e)
-        {
-            dtpNgay.Enabled = chkLocNgay.Checked;
-        }
-
+        // --- TẠO XML ---
         private void btnXuatXML_Click(object sender, EventArgs e)
         {
             try
             {
-                DataTable dt = (DataTable)dgvBinhLuan.DataSource;
-
-                if (dt == null || dt.Rows.Count == 0)
-                {
-                    MessageBox.Show("Không có dữ liệu bình luận để xuất!");
-                    return;
-                }
-
-                dt.TableName = "BinhLuan";
-
-                string fileName = "DanhSachBinhLuan_" + DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".xml";
-                string path = Path.Combine(Application.StartupPath, fileName);
-
-                dt.WriteXml(path, XmlWriteMode.WriteSchema);
-
-                MessageBox.Show("Xuất XML thành công!\nĐường dẫn: " + path);
-
-                System.Diagnostics.Process.Start("explorer.exe", "/select," + path);
+                objBL.KhoiTaoXML();
+                MessageBox.Show("Đã đồng bộ lại từ SQL!");
+                LoadData();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi xuất XML: " + ex.Message);
+                MessageBox.Show("Lỗi tạo XML: " + ex.Message);
+            }
+        }
+
+        // --- BẬT/TẮT DateTimePicker khi checkbox thay đổi ---
+        private void chkLocNgay_CheckedChanged(object sender, EventArgs e)
+        {
+            if (dtpNgay != null)
+            {
+                dtpNgay.Enabled = chkLocNgay.Checked;
             }
         }
 
         private void dgvBinhLuan_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            // Để trống hoặc xử lý click cell nếu cần
         }
     }
 }

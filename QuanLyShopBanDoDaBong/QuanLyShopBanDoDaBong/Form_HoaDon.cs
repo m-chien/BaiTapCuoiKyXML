@@ -1,17 +1,13 @@
-﻿using System;
+﻿using QuanLyShopBanDoDaBong.Class;
+using System;
 using System.Data;
-using System.Data.SqlClient;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
-using System.Configuration;
-using System.IO;
 
 namespace QuanLyShopBanDoDaBong
 {
     public partial class Form_HoaDon : Form
     {
-        string connectionString = ConfigurationManager.ConnectionStrings["MyConnect"].ConnectionString;
+        HoaDon objHD = new HoaDon();
 
         public Form_HoaDon()
         {
@@ -20,10 +16,12 @@ namespace QuanLyShopBanDoDaBong
 
         private void Form_HoaDon_Load(object sender, EventArgs e)
         {
+            // Khởi tạo ComboBox Trạng thái
             cbbTrangThai.Items.Clear();
             cbbTrangThai.Items.AddRange(new string[] { "Tất cả", "Đã thanh toán", "Chờ thanh toán", "Hủy thanh toán" });
             cbbTrangThai.SelectedIndex = 0;
 
+            // Khởi tạo DateTimePicker
             dtpNgay.Format = DateTimePickerFormat.Custom;
             dtpNgay.CustomFormat = "dd/MM/yyyy";
 
@@ -32,115 +30,135 @@ namespace QuanLyShopBanDoDaBong
                 chkLocNgay.Checked = false;
                 dtpNgay.Enabled = false;
             }
-            LoadHoaDon();
+
+            LoadData();
         }
 
-        private void LoadHoaDon(string trangThai = "Tất cả", DateTime? ngay = null, decimal? tongTien = null)
+        private void LoadData()
         {
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            try
             {
-                try
+                dgvHoaDon.DataSource = objHD.LayDanhSach();
+
+                if (dgvHoaDon.Columns.Count > 0)
                 {
-                    conn.Open();
-                    StringBuilder query = new StringBuilder(@"
-                        SELECT 
-                            h.IDHoaDon AS [Mã HĐ],
-                            n.Email AS [Khách hàng],
-                            h.TongTien AS [Tổng tiền],
-                            h.DiaChiGiaoHang AS [Địa chỉ],
-                            h.NgayDat AS [Ngày đặt],
-                            h.TrangThai AS [Trạng thái]
-                        FROM HoaDon h
-                        JOIN NguoiDung n ON h.IdUser = n.IDNguoiDung
-                        WHERE 1=1");
-
-                    SqlCommand cmd = new SqlCommand();
-                    cmd.Connection = conn;
-                    if (trangThai != "Tất cả")
+                    // Đặt tiêu đề cột
+                    if (dgvHoaDon.Columns.Contains("IDHoaDon"))
+                        dgvHoaDon.Columns["IDHoaDon"].HeaderText = "Mã HĐ";
+                    if (dgvHoaDon.Columns.Contains("IdUser"))
+                        dgvHoaDon.Columns["IdUser"].HeaderText = "Mã khách hàng";
+                    if (dgvHoaDon.Columns.Contains("TongTien"))
                     {
-                        query.Append(" AND h.TrangThai = @TrangThai");
-                        cmd.Parameters.AddWithValue("@TrangThai", trangThai);
+                        dgvHoaDon.Columns["TongTien"].HeaderText = "Tổng tiền";
+                        dgvHoaDon.Columns["TongTien"].DefaultCellStyle.Format = "#,### VNĐ";
                     }
+                    if (dgvHoaDon.Columns.Contains("DiaChiGiaoHang"))
+                        dgvHoaDon.Columns["DiaChiGiaoHang"].HeaderText = "Địa chỉ";
+                    if (dgvHoaDon.Columns.Contains("NgayDat"))
+                        dgvHoaDon.Columns["NgayDat"].HeaderText = "Ngày đặt";
+                    if (dgvHoaDon.Columns.Contains("TrangThai"))
+                        dgvHoaDon.Columns["TrangThai"].HeaderText = "Trạng thái";
 
-                    if (ngay != null)
-                    {
-                        query.Append(" AND CAST(h.NgayDat AS DATE) = CAST(@Ngay AS DATE)");
-                        cmd.Parameters.AddWithValue("@Ngay", ngay.Value);
-                    }
-
-                    if (tongTien != null)
-                    {
-                        query.Append(" AND h.TongTien >= @TongTien");
-                        cmd.Parameters.AddWithValue("@TongTien", tongTien.Value);
-                    }
-
-                    query.Append(" ORDER BY h.NgayDat DESC");
-                    cmd.CommandText = query.ToString();
-
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
-
-                    dgvHoaDon.DataSource = dt;
-
-                    if (dgvHoaDon.Columns["Tổng tiền"] != null)
-                        dgvHoaDon.Columns["Tổng tiền"].DefaultCellStyle.Format = "#,### VNĐ";
-
+                    // Auto size columns
                     dgvHoaDon.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-                    this.Text = $"Quản lý hóa đơn - Tìm thấy {dt.Rows.Count} kết quả";
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Lỗi tải dữ liệu: " + ex.Message);
-                }
+
+                this.Text = $"Quản lý hóa đơn - Tìm thấy {dgvHoaDon.Rows.Count} kết quả";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi load dữ liệu: " + ex.Message);
             }
         }
 
+        // --- TÌM KIẾM ---
         private void btnTimKiem_Click_1(object sender, EventArgs e)
         {
-            string trangThai = cbbTrangThai.SelectedItem?.ToString() ?? "Tất cả";
-
-            DateTime? ngayChon = null;
-            if (chkLocNgay.Checked)
+            try
             {
-                ngayChon = dtpNgay.Value;
-            }
+                DataTable dt = objHD.LayDanhSach();
+                DataView dv = new DataView(dt);
 
-            decimal? tienChon = null;
-            if (!string.IsNullOrWhiteSpace(txtTongTien.Text))
-            {
-                if (decimal.TryParse(txtTongTien.Text, out decimal temp))
-                    tienChon = temp;
-                else
+                string filter = "";
+
+                // Lọc theo trạng thái
+                string trangThai = cbbTrangThai.SelectedItem?.ToString() ?? "Tất cả";
+                if (trangThai != "Tất cả")
                 {
-                    MessageBox.Show("Số tiền không hợp lệ!");
-                    return;
+                    filter = $"TrangThai = '{trangThai}'";
                 }
-            }
 
-            LoadHoaDon(trangThai, ngayChon, tienChon);
+                // Lọc theo ngày (nếu checkbox được chọn)
+                if (chkLocNgay != null && chkLocNgay.Checked)
+                {
+                    string ngayChon = dtpNgay.Value.ToString("yyyy-MM-dd");
+                    if (!string.IsNullOrEmpty(filter))
+                        filter += " AND ";
+                    filter += $"NgayDat = '{ngayChon}'";
+                }
+
+                // Lọc theo tổng tiền (nếu có nhập)
+                if (!string.IsNullOrWhiteSpace(txtTongTien.Text))
+                {
+                    if (decimal.TryParse(txtTongTien.Text, out decimal tienChon))
+                    {
+                        if (!string.IsNullOrEmpty(filter))
+                            filter += " AND ";
+                        filter += $"TongTien >= {tienChon}";
+                    }
+                    else
+                    {
+                        MessageBox.Show("Số tiền không hợp lệ!");
+                        return;
+                    }
+                }
+
+                dv.RowFilter = filter;
+                dgvHoaDon.DataSource = dv.ToTable();
+
+                // Format lại cột Tổng tiền
+                if (dgvHoaDon.Columns.Contains("TongTien"))
+                    dgvHoaDon.Columns["TongTien"].DefaultCellStyle.Format = "#,### VNĐ";
+
+                this.Text = $"Quản lý hóa đơn - Tìm thấy {dv.Count} kết quả";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi tìm kiếm: " + ex.Message);
+            }
         }
 
+        // --- LÀM MỚI ---
         private void btnLamMoi_Click_1(object sender, EventArgs e)
         {
             cbbTrangThai.SelectedIndex = 0;
             txtTongTien.Clear();
-            chkLocNgay.Checked = false;
-            dtpNgay.Enabled = false; 
-            LoadHoaDon();
+            if (chkLocNgay != null)
+            {
+                chkLocNgay.Checked = false;
+                dtpNgay.Enabled = false;
+            }
+            LoadData();
         }
 
+        // --- XEM CHI TIẾT HÓA ĐƠN ---
         private void btnXemChiTiet_Click(object sender, EventArgs e)
         {
             if (dgvHoaDon.CurrentRow != null && dgvHoaDon.CurrentRow.Index >= 0)
             {
-                var cellValue = dgvHoaDon.CurrentRow.Cells["Mã HĐ"].Value;
+                var cellValue = dgvHoaDon.CurrentRow.Cells["IDHoaDon"].Value;
 
-                if (cellValue != DBNull.Value)
+                if (cellValue != null && cellValue != DBNull.Value)
                 {
-                    int id = Convert.ToInt32(cellValue);
-                    Form_ChiTietHoaDon f = new Form_ChiTietHoaDon(id);
+                    int idHoaDon = Convert.ToInt32(cellValue);
+
+                    // Mở form chi tiết hóa đơn
+                    Form_ChiTietHoaDon f = new Form_ChiTietHoaDon(idHoaDon);
                     f.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show("Không lấy được mã hóa đơn!");
                 }
             }
             else
@@ -149,48 +167,48 @@ namespace QuanLyShopBanDoDaBong
             }
         }
 
-        private void chkLocNgay_CheckedChanged(object sender, EventArgs e)
-        {
-            dtpNgay.Enabled = chkLocNgay.Checked;
-        }
-
-        private void txtTongTien_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar)) e.Handled = true;
-        }
-
+        // --- TẠO XML ---
         private void button1_Click(object sender, EventArgs e)
         {
             try
             {
-                DataTable dt = (DataTable)dgvHoaDon.DataSource;
+                // Tạo XML cho HoaDon
+                objHD.KhoiTaoXML();
 
-                if (dt == null || dt.Rows.Count == 0)
-                {
-                    MessageBox.Show("Không có dữ liệu hóa đơn để xuất!");
-                    return;
-                }
+                // Tạo XML cho ChiTietHoaDon (THIẾU CÁI NÀY!)
+                ChiTietHoaDon objCTHD = new ChiTietHoaDon();
+                objCTHD.KhoiTaoXML();
 
-                dt.TableName = "HoaDon";
-
-                string fileName = "DanhSachHoaDon_" + DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".xml";
-                string path = Path.Combine(Application.StartupPath, fileName);
-
-                dt.WriteXml(path, XmlWriteMode.WriteSchema);
-
-                MessageBox.Show("Xuất XML thành công!\nĐường dẫn: " + path);
-
-                System.Diagnostics.Process.Start("explorer.exe", "/select," + path);
+                MessageBox.Show("Đã đồng bộ HoaDon và ChiTietHoaDon từ SQL!");
+                LoadData();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi xuất XML: " + ex.Message);
+                MessageBox.Show("Lỗi tạo XML: " + ex.Message);
+            }
+        }
+
+        // --- BẬT/TẮT DateTimePicker khi checkbox thay đổi ---
+        private void chkLocNgay_CheckedChanged(object sender, EventArgs e)
+        {
+            if (dtpNgay != null)
+            {
+                dtpNgay.Enabled = chkLocNgay.Checked;
+            }
+        }
+
+        // --- CHỈ CHO PHÉP NHẬP SỐ VÀO TEXTBOX TỔNG TIỀN ---
+        private void txtTongTien_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
             }
         }
 
         private void dgvHoaDon_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            // Để trống hoặc xử lý click cell nếu cần
         }
     }
 }
