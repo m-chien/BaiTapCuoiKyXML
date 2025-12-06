@@ -66,7 +66,7 @@ namespace QuanLyShopBanDoDaBong
             this.label5.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.label5.Location = new System.Drawing.Point(45, 259);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(270, 28);
+            this.label5.Size = new System.Drawing.Size(239, 23);
             this.label5.TabIndex = 5;
             this.label5.Text = "Uy tín - Chất lượng - Đam mê";
             // 
@@ -77,7 +77,7 @@ namespace QuanLyShopBanDoDaBong
             this.label3.ForeColor = System.Drawing.Color.White;
             this.label3.Location = new System.Drawing.Point(12, 207);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(408, 65);
+            this.label3.Size = new System.Drawing.Size(338, 54);
             this.label3.TabIndex = 4;
             this.label3.Text = "FOOTBALL SHOP";
             // 
@@ -108,7 +108,7 @@ namespace QuanLyShopBanDoDaBong
             this.cobvaitro.FormattingEnabled = true;
             this.cobvaitro.Location = new System.Drawing.Point(45, 335);
             this.cobvaitro.Name = "cobvaitro";
-            this.cobvaitro.Size = new System.Drawing.Size(365, 40);
+            this.cobvaitro.Size = new System.Drawing.Size(365, 36);
             this.cobvaitro.TabIndex = 6;
             // 
             // label4
@@ -118,7 +118,7 @@ namespace QuanLyShopBanDoDaBong
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(171)))), ((int)(((byte)(227)))));
             this.label4.Location = new System.Drawing.Point(41, 309);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(119, 28);
+            this.label4.Size = new System.Drawing.Size(104, 23);
             this.label4.TabIndex = 5;
             this.label4.Text = "Chọn vai trò";
             // 
@@ -156,7 +156,7 @@ namespace QuanLyShopBanDoDaBong
             this.txtmatkhau.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(171)))), ((int)(((byte)(227)))));
             this.txtmatkhau.Location = new System.Drawing.Point(10, 10);
             this.txtmatkhau.Name = "txtmatkhau";
-            this.txtmatkhau.Size = new System.Drawing.Size(345, 32);
+            this.txtmatkhau.Size = new System.Drawing.Size(345, 27);
             this.txtmatkhau.TabIndex = 3;
             this.txtmatkhau.UseSystemPasswordChar = true;
             // 
@@ -167,7 +167,7 @@ namespace QuanLyShopBanDoDaBong
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(171)))), ((int)(((byte)(227)))));
             this.label2.Location = new System.Drawing.Point(41, 229);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(94, 28);
+            this.label2.Size = new System.Drawing.Size(82, 23);
             this.label2.TabIndex = 1;
             this.label2.Text = "Mật khẩu";
             // 
@@ -190,7 +190,7 @@ namespace QuanLyShopBanDoDaBong
             this.txttendangnhap.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(171)))), ((int)(((byte)(227)))));
             this.txttendangnhap.Location = new System.Drawing.Point(10, 10);
             this.txttendangnhap.Name = "txttendangnhap";
-            this.txttendangnhap.Size = new System.Drawing.Size(345, 32);
+            this.txttendangnhap.Size = new System.Drawing.Size(345, 27);
             this.txttendangnhap.TabIndex = 2;
             this.txttendangnhap.TextChanged += new System.EventHandler(this.txttendangnhap_TextChanged);
             // 
@@ -201,9 +201,9 @@ namespace QuanLyShopBanDoDaBong
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(171)))), ((int)(((byte)(227)))));
             this.label1.Location = new System.Drawing.Point(41, 149);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(59, 28);
+            this.label1.Size = new System.Drawing.Size(112, 23);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Email";
+            this.label1.Text = "Tên tài khoản";
             // 
             // lblLoginTitle
             // 
@@ -212,7 +212,7 @@ namespace QuanLyShopBanDoDaBong
             this.lblLoginTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(171)))), ((int)(((byte)(227)))));
             this.lblLoginTitle.Location = new System.Drawing.Point(143, 74);
             this.lblLoginTitle.Name = "lblLoginTitle";
-            this.lblLoginTitle.Size = new System.Drawing.Size(230, 54);
+            this.lblLoginTitle.Size = new System.Drawing.Size(194, 46);
             this.lblLoginTitle.TabIndex = 0;
             this.lblLoginTitle.Text = "Đăng nhập";
             // 

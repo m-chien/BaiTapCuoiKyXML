@@ -72,7 +72,7 @@ namespace QuanLyShopBanDoDaBong
             }
 
             objTK.ThemTK(txtendangnhap.Text, txtmatkhau.Text, cmbvaitro.Text);
-            MessageBox.Show("Thêm thành công (XML & SQL)!");
+            MessageBox.Show("Thêm thành công!");
             LoadData();
         }
 
@@ -85,7 +85,7 @@ namespace QuanLyShopBanDoDaBong
             }
 
             objTK.SuaTK(idHienTai, txtendangnhap.Text, txtmatkhau.Text, cmbvaitro.Text);
-            MessageBox.Show("Cập nhật thành công (XML & SQL)!");
+            MessageBox.Show("Cập nhật thành công!");
             LoadData();
         }
 
@@ -100,7 +100,7 @@ namespace QuanLyShopBanDoDaBong
             if (MessageBox.Show("Xóa tài khoản này?", "Xác nhận", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 objTK.XoaTK(idHienTai);
-                MessageBox.Show("Xóa thành công (XML & SQL)!");
+                MessageBox.Show("Xóa thành công!");
                 LoadData();
             }
         }
