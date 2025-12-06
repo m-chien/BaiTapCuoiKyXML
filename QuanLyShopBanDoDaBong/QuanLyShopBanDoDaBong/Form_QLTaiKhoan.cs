@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Data;
 using System.Windows.Forms;
-using QuanLyShopBanDoDaBong.Class; // Nhớ using namespace
+using QuanLyShopBanDoDaBong.Class;
 
 namespace QuanLyShopBanDoDaBong
 {
     public partial class Form_QLTaiKhoan : Form
     {
-        TaiKhoan objTK = new TaiKhoan(); 
-        string idHienTai = ""; 
+        TaiKhoan objTK = new TaiKhoan();
+        string idHienTai = "";
 
         public Form_QLTaiKhoan()
         {
@@ -19,10 +19,7 @@ namespace QuanLyShopBanDoDaBong
         {
             cmbvaitro.Items.Add("Admin");
             cmbvaitro.Items.Add("User");
-            
-            // Khởi tạo XML từ SQL (Chỉ cần chạy 1 lần hoặc khi muốn reset file XML)
-            // objTK.KhoiTaoXML(); 
-            
+
             LoadData();
         }
 
@@ -31,8 +28,7 @@ namespace QuanLyShopBanDoDaBong
             try
             {
                 dgvtaikhoan.DataSource = objTK.LayDanhSach();
-                
-                // Đặt tên cột tiếng Việt
+
                 if (dgvtaikhoan.Columns.Count > 0)
                 {
                     if (dgvtaikhoan.Columns.Contains("IDNguoiDung")) dgvtaikhoan.Columns["IDNguoiDung"].HeaderText = "ID";
@@ -40,7 +36,6 @@ namespace QuanLyShopBanDoDaBong
                     if (dgvtaikhoan.Columns.Contains("password")) dgvtaikhoan.Columns["password"].HeaderText = "Mật khẩu";
                     if (dgvtaikhoan.Columns.Contains("VaiTro")) dgvtaikhoan.Columns["VaiTro"].HeaderText = "Vai trò";
 
-                    // Ẩn cột không cần thiết
                     if (dgvtaikhoan.Columns.Contains("sdt")) dgvtaikhoan.Columns["sdt"].Visible = false;
                     if (dgvtaikhoan.Columns.Contains("DiaChi")) dgvtaikhoan.Columns["DiaChi"].Visible = false;
                     if (dgvtaikhoan.Columns.Contains("AvatarURL")) dgvtaikhoan.Columns["AvatarURL"].Visible = false;
@@ -70,7 +65,6 @@ namespace QuanLyShopBanDoDaBong
         {
             if (string.IsNullOrEmpty(txtendangnhap.Text)) return;
 
-            // Kiểm tra trùng Email trong XML
             if (objTK.KiemTraEmail(txtendangnhap.Text))
             {
                 MessageBox.Show("Email đã tồn tại!");
@@ -111,7 +105,6 @@ namespace QuanLyShopBanDoDaBong
             }
         }
 
-        // Nút Tạo lại XML từ SQL (Nút btnXML cũ)
         private void btnxml_Click(object sender, EventArgs e)
         {
             objTK.KhoiTaoXML();
@@ -126,8 +119,7 @@ namespace QuanLyShopBanDoDaBong
             cmbvaitro.SelectedIndex = -1;
             idHienTai = "";
         }
-        
-        // Các event thừa để tránh lỗi design
+
         private void btnsua_Click_1(object sender, EventArgs e) { btnsua_Click(sender, e); }
         private void dgvtaikhoan_CellContentClick(object sender, DataGridViewCellEventArgs e) { }
     }

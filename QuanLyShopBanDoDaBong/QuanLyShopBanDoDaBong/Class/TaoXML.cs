@@ -9,14 +9,7 @@ namespace QuanLyShopBanDoDaBong
 {
     class TaoXML
     {
-        // Chuỗi kết nối SQL (Dùng chung cho toàn class)
         private string strCon = "Data Source=localhost; Initial Catalog=FootballShop; Integrated Security=True";
-
-        // =================================================================================
-        // PHẦN 1: TƯƠNG TÁC GIỮA SQL VÀ XML (TẠO MỚI, ĐỌC FILE)
-        // =================================================================================
-
-        // 1. Hàm lấy dữ liệu từ SQL và tạo ra file XML
         public void taoXML(string sql, string bang, string _FileXML)
         {
             try
@@ -28,7 +21,6 @@ namespace QuanLyShopBanDoDaBong
                     DataTable dt = new DataTable(bang);
                     ad.Fill(dt);
 
-                    // Luôn tạo file XML dù có dữ liệu hay không (để tránh lỗi file not found)
                     string filePath = Path.Combine(Application.StartupPath, _FileXML);
                     dt.WriteXml(filePath, XmlWriteMode.WriteSchema);
                 }
@@ -39,7 +31,6 @@ namespace QuanLyShopBanDoDaBong
             }
         }
 
-        // 2. Hàm đọc file XML đổ vào DataTable (để hiện lên DataGridView)
         public DataTable loadDataGridView(string _FileXML)
         {
             DataTable dt = new DataTable();
@@ -52,7 +43,6 @@ namespace QuanLyShopBanDoDaBong
                 }
                 else
                 {
-                    // Nếu chưa có file thì tạo file rỗng có cấu trúc
                     MessageBox.Show("File XML chưa tồn tại. Hãy bấm 'Tạo XML' hoặc tải dữ liệu trước.");
                 }
             }
@@ -63,12 +53,6 @@ namespace QuanLyShopBanDoDaBong
             return dt;
         }
 
-        // =================================================================================
-        // PHẦN 2: THAO TÁC TRỰC TIẾP TRÊN FILE XML (THÊM, SỬA, XÓA)
-        // =================================================================================
-
-        // 3. Hàm THÊM một nút mới vào XML
-        // xmlContent: Chuỗi XML đầy đủ (VD: <NguoiDung><ID>1</ID>...</NguoiDung>)
         public void Them(string _FileXML, string xmlContent)
         {
             try
@@ -76,12 +60,8 @@ namespace QuanLyShopBanDoDaBong
                 string filePath = Path.Combine(Application.StartupPath, _FileXML);
                 XmlDocument doc = new XmlDocument();
                 doc.Load(filePath);
-
-                // Tạo một đoạn XML từ chuỗi string
                 XmlDocumentFragment fragment = doc.CreateDocumentFragment();
                 fragment.InnerXml = xmlContent;
-
-                // Thêm vào nút gốc (Root)
                 doc.DocumentElement.AppendChild(fragment);
                 doc.Save(filePath);
             }
@@ -90,8 +70,6 @@ namespace QuanLyShopBanDoDaBong
                 MessageBox.Show("Lỗi thêm vào XML: " + ex.Message);
             }
         }
-
-        // 4. Hàm SỬA một nút trong XML (Dùng XPath để tìm)
         public void Sua(string _FileXML, string tenBang, string cotID, string giaTriID, string noiDungMoi)
         {
             try
@@ -100,17 +78,13 @@ namespace QuanLyShopBanDoDaBong
                 XmlDocument doc = new XmlDocument();
                 doc.Load(filePath);
 
-                // Tạo XPath để tìm nút cần sửa
                 string xpath = $"//{tenBang}[{cotID}='{giaTriID}']";
                 XmlNode oldNode = doc.SelectSingleNode(xpath);
 
                 if (oldNode != null)
                 {
-                    // Tạo nút mới từ nội dung sửa
                     XmlDocumentFragment newNode = doc.CreateDocumentFragment();
                     newNode.InnerXml = noiDungMoi;
-
-                    // Thay thế nút cũ bằng nút mới
                     oldNode.ParentNode.ReplaceChild(newNode, oldNode);
                     doc.Save(filePath);
                 }
@@ -120,8 +94,6 @@ namespace QuanLyShopBanDoDaBong
                 MessageBox.Show("Lỗi sửa XML: " + ex.Message);
             }
         }
-
-        // 5. Hàm XÓA một nút trong XML
         public void Xoa(string _FileXML, string tenBang, string cotID, string giaTriID)
         {
             try
@@ -129,8 +101,6 @@ namespace QuanLyShopBanDoDaBong
                 string filePath = Path.Combine(Application.StartupPath, _FileXML);
                 XmlDocument doc = new XmlDocument();
                 doc.Load(filePath);
-
-                // Tìm nút cần xóa
                 string xpath = $"//{tenBang}[{cotID}='{giaTriID}']";
                 XmlNode nodeDel = doc.SelectSingleNode(xpath);
 
@@ -145,14 +115,11 @@ namespace QuanLyShopBanDoDaBong
                 MessageBox.Show("Lỗi xóa XML: " + ex.Message);
             }
         }
-
-        // 6. Hàm KIỂM TRA sự tồn tại (Trả về True nếu tìm thấy)
         public bool KiemTra(string _FileXML, string tenCot, string giaTri)
         {
             try
             {
                 DataTable dt = loadDataGridView(_FileXML);
-                // Dùng RowFilter để lọc
                 DataView dv = new DataView(dt);
                 dv.RowFilter = $"{tenCot} = '{giaTri}'";
                 return dv.Count > 0;
@@ -162,22 +129,14 @@ namespace QuanLyShopBanDoDaBong
                 return false;
             }
         }
-
-        // 7. Hàm TÌM KIẾM trong XML trả về DataTable
         public DataTable TimKiem(string _FileXML, string tenCot, string giaTri)
         {
             DataTable dt = loadDataGridView(_FileXML);
             DataView dv = new DataView(dt);
-            // Tìm kiếm tương đối (LIKE)
             dv.RowFilter = $"{tenCot} LIKE '%{giaTri}%'";
             return dv.ToTable();
         }
 
-        // =================================================================================
-        // PHẦN 3: ĐỒNG BỘ DỮ LIỆU TỪ XML VỀ SQL SERVER
-        // =================================================================================
-
-        // Thực thi câu lệnh SQL không trả về dữ liệu (Insert, Update, Delete)
         private void ExecuteSQL(string sql)
         {
             using (SqlConnection con = new SqlConnection(strCon))
@@ -188,9 +147,6 @@ namespace QuanLyShopBanDoDaBong
             }
         }
 
-        // --- CẬP NHẬT TRONG CLASS TaoXML ---
-
-        // Hàm xử lý dấu nháy đơn để tránh lỗi SQL
         private string SafeSqlLiteral(string input)
         {
             if (string.IsNullOrEmpty(input)) return "";
@@ -244,13 +200,10 @@ namespace QuanLyShopBanDoDaBong
                         string colName = dt.Columns[i].ColumnName;
                         string val = row[i].ToString().Trim();
 
-                        // Bỏ qua cột khóa chính
                         if (colName.Equals(cotID, StringComparison.OrdinalIgnoreCase)) continue;
 
                         setClause += $"{colName} = N'{SafeSqlLiteral(val)}',";
                     }
-
-                    // Xóa dấu phẩy cuối
                     setClause = setClause.TrimEnd(',');
 
                     string sql = $"UPDATE {tenBang} SET {setClause} WHERE {cotID} = '{giaTriID}'";
@@ -260,7 +213,6 @@ namespace QuanLyShopBanDoDaBong
             catch (Exception ex) { MessageBox.Show("Lỗi đồng bộ Sửa SQL: " + ex.Message); }
         }
 
-        // Xóa bản ghi trong Database dựa trên điều kiện từ XML
         public void Xoa_Database(string tenBang, string cotID, string giaTriID)
         {
             try

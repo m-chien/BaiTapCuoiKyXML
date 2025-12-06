@@ -10,19 +10,16 @@ namespace QuanLyShopBanDoDaBong.Class
         string tableName = "HoaDon";
         string colID = "IDHoaDon";
 
-        // 1. Lấy danh sách Hóa đơn
         public DataTable LayDanhSach()
         {
             return db.loadDataGridView(fileName);
         }
 
-        // Lấy danh sách Người dùng để đổ vào ComboBox
         public DataTable LayDanhSachNguoiDung()
         {
             return db.loadDataGridView("NguoiDung.xml");
         }
 
-        // 2. Thêm hóa đơn
         public void ThemHoaDon(string idUser, string tongTien, string diaChiGiaoHang, string ngayDat, string trangThai)
         {
             DataTable dt = LayDanhSach();
@@ -58,7 +55,6 @@ namespace QuanLyShopBanDoDaBong.Class
             KhoiTaoXML();
         }
 
-        // 3. Sửa hóa đơn
         public void SuaHoaDon(string id, string idUser, string tongTien, string diaChiGiaoHang, string ngayDat, string trangThai)
         {
             string xml = "<HoaDon>" +
@@ -74,14 +70,12 @@ namespace QuanLyShopBanDoDaBong.Class
             db.Sua_Database(tableName, fileName, colID, id);
         }
 
-        // 4. Xóa hóa đơn
         public void XoaHoaDon(string id)
         {
             db.Xoa(fileName, tableName, colID, id);
             db.Xoa_Database(tableName, colID, id);
         }
 
-        // 5. Tìm kiếm hóa đơn theo địa chỉ hoặc trạng thái
         public DataTable TimKiem(string tuKhoa)
         {
             DataTable dt = db.loadDataGridView(fileName);
@@ -90,7 +84,6 @@ namespace QuanLyShopBanDoDaBong.Class
             return dv.ToTable();
         }
 
-        // 6. Lấy hóa đơn theo User
         public DataTable LayHoaDonTheoUser(string idUser)
         {
             DataTable dt = db.loadDataGridView(fileName);
@@ -99,7 +92,6 @@ namespace QuanLyShopBanDoDaBong.Class
             return dv.ToTable();
         }
 
-        // 7. Lấy hóa đơn theo trạng thái
         public DataTable LayHoaDonTheoTrangThai(string trangThai)
         {
             DataTable dt = db.loadDataGridView(fileName);
@@ -108,7 +100,6 @@ namespace QuanLyShopBanDoDaBong.Class
             return dv.ToTable();
         }
 
-        // 8. Khởi tạo XML từ Database
         public void KhoiTaoXML()
         {
             db.taoXML("SELECT * FROM HoaDon", tableName, fileName);

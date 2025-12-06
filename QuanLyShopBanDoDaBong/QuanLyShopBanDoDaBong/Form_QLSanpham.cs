@@ -18,26 +18,24 @@ namespace QuanLyShopBanDoDaBong
         private void Form_QLSanpham_Load(object sender, EventArgs e)
         {
             txtMaSP.Enabled = false;
-            LoadComboBox(); // <--- MỚI: Load danh mục vào ComboBox
+            LoadComboBox();
             LoadData();
         }
 
-        // --- MỚI: Hàm load ComboBox ---
         private void LoadComboBox()
         {
             try
             {
                 DataTable dtDM = objSP.LayDanhSachDanhMuc();
-                // Kiểm tra xem file DanhMuc.xml có dữ liệu không
                 if (dtDM.Rows.Count > 0)
                 {
                     cboDanhMuc.DataSource = dtDM;
-                    cboDanhMuc.DisplayMember = "TenDanhmuc"; // Tên hiển thị (Người dùng thấy)
-                    cboDanhMuc.ValueMember = "IDDanhMuc";    // Giá trị thực (ID lưu vào DB)
-                    cboDanhMuc.SelectedIndex = -1; // Mặc định không chọn gì
+                    cboDanhMuc.DisplayMember = "TenDanhmuc";
+                    cboDanhMuc.ValueMember = "IDDanhMuc";
+                    cboDanhMuc.SelectedIndex = -1;
                 }
             }
-            catch { /* Bỏ qua lỗi nếu chưa có file danh mục */ }
+            catch { }
         }
 
         private void LoadData()
@@ -54,7 +52,6 @@ namespace QuanLyShopBanDoDaBong
                     if (dgvSanpham.Columns.Contains("DonViTinh")) dgvSanpham.Columns["DonViTinh"].HeaderText = "Đơn vị tính";
                     if (dgvSanpham.Columns.Contains("SoLuongTonKho")) dgvSanpham.Columns["SoLuongTonKho"].HeaderText = "Số lượng";
 
-                    // Ẩn cột không cần thiết
                     if (dgvSanpham.Columns.Contains("IDdanhMuc")) dgvSanpham.Columns["IDdanhMuc"].Visible = false;
                     if (dgvSanpham.Columns.Contains("hinhanh")) dgvSanpham.Columns["hinhanh"].Visible = false;
                     if (dgvSanpham.Columns.Contains("KichThuoc")) dgvSanpham.Columns["KichThuoc"].Visible = false;
@@ -72,7 +69,7 @@ namespace QuanLyShopBanDoDaBong
             txtHang.Clear();
             txtDVT.Clear();
             txtSoLuong.Clear();
-            cboDanhMuc.SelectedIndex = -1; // Reset ComboBox
+            cboDanhMuc.SelectedIndex = -1;
             idHienTai = "";
             dgvSanpham.ClearSelection();
         }
@@ -93,7 +90,6 @@ namespace QuanLyShopBanDoDaBong
                         txtDVT.Text = row.Cells["DonViTinh"].Value?.ToString() ?? "";
                         txtSoLuong.Text = row.Cells["SoLuongTonKho"].Value?.ToString() ?? "0";
 
-                        // --- MỚI: Chọn lại Danh mục trên ComboBox ---
                         if (row.Cells["IDdanhMuc"].Value != null)
                         {
                             cboDanhMuc.SelectedValue = row.Cells["IDdanhMuc"].Value.ToString();
@@ -104,7 +100,6 @@ namespace QuanLyShopBanDoDaBong
             }
         }
 
-        // --- THÊM (Cập nhật lấy ID từ ComboBox) ---
         private void btnThem_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtTenSP.Text)) { MessageBox.Show("Chưa nhập tên SP!"); return; }
@@ -112,7 +107,7 @@ namespace QuanLyShopBanDoDaBong
 
             try
             {
-                string idDM = cboDanhMuc.SelectedValue.ToString(); // Lấy ID danh mục
+                string idDM = cboDanhMuc.SelectedValue.ToString();
                 objSP.ThemSP(txtTenSP.Text, idDM, txtHang.Text, txtDVT.Text, txtSoLuong.Text);
 
                 MessageBox.Show("Thêm thành công!");
@@ -121,7 +116,6 @@ namespace QuanLyShopBanDoDaBong
             catch (Exception ex) { MessageBox.Show("Lỗi thêm: " + ex.Message); }
         }
 
-        // --- SỬA (Cập nhật lấy ID từ ComboBox) ---
         private void btnSua_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(idHienTai)) { MessageBox.Show("Chọn SP cần sửa!"); return; }
@@ -129,7 +123,7 @@ namespace QuanLyShopBanDoDaBong
 
             try
             {
-                string idDM = cboDanhMuc.SelectedValue.ToString(); // Lấy ID danh mục
+                string idDM = cboDanhMuc.SelectedValue.ToString();
                 objSP.SuaSP(idHienTai, txtTenSP.Text, idDM, txtHang.Text, txtDVT.Text, txtSoLuong.Text);
 
                 MessageBox.Show("Sửa thành công!");

@@ -42,7 +42,6 @@ namespace QuanLyShopBanDoDaBong
                 DataTable dtChiTiet = objCTHD.LayChiTietTheoHoaDon(idHoaDonCanXem.ToString());
                 DataTable dtSanPham = objSP.LayDanhSach();
 
-                // Kiểm tra nếu không có dữ liệu
                 if (dtChiTiet.Rows.Count == 0)
                 {
                     MessageBox.Show("Không tìm thấy chi tiết hóa đơn này!");
@@ -50,7 +49,6 @@ namespace QuanLyShopBanDoDaBong
                     return;
                 }
 
-                // Xác định tên cột (IdHoaDon hoặc IDHoaDon)
                 string colIdHoaDon = GetColumnName(dtChiTiet, new[] { "IdHoaDon", "IDHoaDon" });
                 string colIdSanPham = GetColumnName(dtChiTiet, new[] { "IdSanPham", "IDSanPham" });
 
@@ -107,7 +105,6 @@ namespace QuanLyShopBanDoDaBong
                 DataTable dtChiTiet = objCTHD.LayDanhSach();
                 DataTable dtSanPham = objSP.LayDanhSach();
 
-                // Kiểm tra nếu không có dữ liệu
                 if (dtChiTiet.Rows.Count == 0)
                 {
                     MessageBox.Show("Chưa có chi tiết hóa đơn nào!");
@@ -115,7 +112,6 @@ namespace QuanLyShopBanDoDaBong
                     return;
                 }
 
-                // Xác định tên cột
                 string colIdHoaDon = GetColumnName(dtChiTiet, new[] { "IdHoaDon", "IDHoaDon" });
                 string colIdSanPham = GetColumnName(dtChiTiet, new[] { "IdSanPham", "IDSanPham" });
 
@@ -167,7 +163,6 @@ namespace QuanLyShopBanDoDaBong
             }
         }
 
-        // Hàm hỗ trợ: Tìm tên cột chính xác trong DataTable
         private string GetColumnName(DataTable dt, string[] possibleNames)
         {
             foreach (string name in possibleNames)
@@ -175,11 +170,9 @@ namespace QuanLyShopBanDoDaBong
                 if (dt.Columns.Contains(name))
                     return name;
             }
-            // Trả về tên đầu tiên nếu không tìm thấy (sẽ gây lỗi để debug)
             return possibleNames[0];
         }
 
-        // Hàm format DataGridView
         private void FormatDataGridView()
         {
             if (dgvChiTiet.Columns["Đơn Giá"] != null)

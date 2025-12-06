@@ -16,12 +16,10 @@ namespace QuanLyShopBanDoDaBong
 
         private void Form_BinhLuan_Load(object sender, EventArgs e)
         {
-            // Khởi tạo ComboBox Tình trạng
             cbbTinhTrang.Items.Clear();
             cbbTinhTrang.Items.AddRange(new string[] { "Tất cả", "Chờ duyệt", "Đã duyệt" });
             cbbTinhTrang.SelectedIndex = 0;
 
-            // Khởi tạo DateTimePicker
             dtpNgay.Format = DateTimePickerFormat.Custom;
             dtpNgay.CustomFormat = "dd/MM/yyyy";
 
@@ -42,7 +40,6 @@ namespace QuanLyShopBanDoDaBong
 
                 if (dgvBinhLuan.Columns.Count > 0)
                 {
-                    // Đặt tiêu đề cột
                     if (dgvBinhLuan.Columns.Contains("IDBinhLuan"))
                         dgvBinhLuan.Columns["IDBinhLuan"].HeaderText = "Mã BL";
                     if (dgvBinhLuan.Columns.Contains("IDNguoiDung"))
@@ -56,7 +53,6 @@ namespace QuanLyShopBanDoDaBong
                     if (dgvBinhLuan.Columns.Contains("TinhTrang"))
                         dgvBinhLuan.Columns["TinhTrang"].HeaderText = "Tình trạng";
 
-                    // Auto size columns
                     dgvBinhLuan.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 }
 
@@ -68,7 +64,6 @@ namespace QuanLyShopBanDoDaBong
             }
         }
 
-        // --- TÌM KIẾM ---
         private void btnTimKiem_Click_1(object sender, EventArgs e)
         {
             try
@@ -78,14 +73,12 @@ namespace QuanLyShopBanDoDaBong
 
                 string filter = "";
 
-                // Lọc theo tình trạng
                 string trangThai = cbbTinhTrang.SelectedItem?.ToString() ?? "Tất cả";
                 if (trangThai != "Tất cả")
                 {
                     filter = $"TinhTrang = '{trangThai}'";
                 }
 
-                // Lọc theo ngày (nếu checkbox được chọn)
                 if (chkLocNgay != null && chkLocNgay.Checked)
                 {
                     string ngayChon = dtpNgay.Value.ToString("yyyy-MM-dd");
@@ -105,7 +98,6 @@ namespace QuanLyShopBanDoDaBong
             }
         }
 
-        // --- LÀM MỚI ---
         private void btnLamMoi_Click(object sender, EventArgs e)
         {
             cbbTinhTrang.SelectedIndex = 0;
@@ -117,7 +109,6 @@ namespace QuanLyShopBanDoDaBong
             LoadData();
         }
 
-        // --- TẠO XML ---
         private void btnXuatXML_Click(object sender, EventArgs e)
         {
             try
@@ -132,7 +123,6 @@ namespace QuanLyShopBanDoDaBong
             }
         }
 
-        // --- BẬT/TẮT DateTimePicker khi checkbox thay đổi ---
         private void chkLocNgay_CheckedChanged(object sender, EventArgs e)
         {
             if (dtpNgay != null)
@@ -143,7 +133,7 @@ namespace QuanLyShopBanDoDaBong
 
         private void dgvBinhLuan_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Để trống hoặc xử lý click cell nếu cần
+
         }
     }
 }

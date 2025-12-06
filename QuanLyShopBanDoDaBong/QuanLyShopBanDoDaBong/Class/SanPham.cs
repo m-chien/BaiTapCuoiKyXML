@@ -10,20 +10,16 @@ namespace QuanLyShopBanDoDaBong.Class
         string tableName = "SanPham";
         string colID = "IDSanPham";
 
-        // 1. Lấy danh sách Sản phẩm
         public DataTable LayDanhSach()
         {
             return db.loadDataGridView(fileName);
         }
 
-        // --- MỚI: Hàm lấy danh sách Danh Mục để đổ vào ComboBox ---
         public DataTable LayDanhSachDanhMuc()
         {
-            // Load từ file DanhMuc.xml (File này do Form Danh Mục tạo ra)
             return db.loadDataGridView("DanhMuc.xml");
         }
 
-        // 2. Thêm sản phẩm (Cập nhật: Nhận thêm idDanhMuc)
         public void ThemSP(string ten, string idDanhMuc, string hang, string dvt, string soLuong)
         {
             DataTable dt = LayDanhSach();
@@ -45,10 +41,9 @@ namespace QuanLyShopBanDoDaBong.Class
                 catch { nextID = new Random().Next(1000, 9999); }
             }
 
-            // Lưu ý: Đưa idDanhMuc vào XML
             string xml = "<SanPham>" +
                             "<IDSanPham>" + nextID + "</IDSanPham>" +
-                            "<IDdanhMuc>" + idDanhMuc + "</IDdanhMuc>" + // <--- Dữ liệu từ ComboBox
+                            "<IDdanhMuc>" + idDanhMuc + "</IDdanhMuc>" +
                             "<Hang>" + hang + "</Hang>" +
                             "<KichThuoc></KichThuoc>" +
                             "<mausac></mausac>" +
@@ -63,7 +58,6 @@ namespace QuanLyShopBanDoDaBong.Class
             KhoiTaoXML();
         }
 
-        // 3. Sửa sản phẩm (Cập nhật: Nhận thêm idDanhMuc)
         public void SuaSP(string id, string ten, string idDanhMuc, string hang, string dvt, string soLuong)
         {
             DataTable dt = LayDanhSach();
@@ -80,7 +74,7 @@ namespace QuanLyShopBanDoDaBong.Class
 
             string xml = "<SanPham>" +
                             "<IDSanPham>" + id + "</IDSanPham>" +
-                            "<IDdanhMuc>" + idDanhMuc + "</IDdanhMuc>" + // <--- Cập nhật ID Danh mục mới
+                            "<IDdanhMuc>" + idDanhMuc + "</IDdanhMuc>" + 
                             "<Hang>" + hang + "</Hang>" +
                             "<KichThuoc>" + kichThuoc + "</KichThuoc>" +
                             "<mausac>" + mauSac + "</mausac>" +

@@ -11,25 +11,21 @@ namespace QuanLyShopBanDoDaBong.Class
         string tableName = "ChiTietHoaDon";
         string colID = "IDChiTietHoaDon";
 
-        // 1. Lấy danh sách Chi tiết hóa đơn
         public DataTable LayDanhSach()
         {
             return db.loadDataGridView(fileName);
         }
 
-        // Lấy danh sách Hóa đơn để đổ vào ComboBox
         public DataTable LayDanhSachHoaDon()
         {
             return db.loadDataGridView("HoaDon.xml");
         }
 
-        // Lấy danh sách Sản phẩm để đổ vào ComboBox
         public DataTable LayDanhSachSanPham()
         {
             return db.loadDataGridView("SanPham.xml");
         }
 
-        // 2. Thêm chi tiết hóa đơn
         public void ThemChiTiet(string idHoaDon, string idSanPham, string soLuong, string donGia)
         {
             DataTable dt = LayDanhSach();
@@ -64,7 +60,6 @@ namespace QuanLyShopBanDoDaBong.Class
             KhoiTaoXML();
         }
 
-        // 3. Sửa chi tiết hóa đơn
         public void SuaChiTiet(string id, string idHoaDon, string idSanPham, string soLuong, string donGia)
         {
             string xml = "<ChiTietHoaDon>" +
@@ -79,23 +74,19 @@ namespace QuanLyShopBanDoDaBong.Class
             db.Sua_Database(tableName, fileName, colID, id);
         }
 
-        // 4. Xóa chi tiết hóa đơn
         public void XoaChiTiet(string id)
         {
             db.Xoa(fileName, tableName, colID, id);
             db.Xoa_Database(tableName, colID, id);
         }
 
-        // 5. Lấy chi tiết theo hóa đơn - ĐÃ SỬA TÊN CỘT
-        // 5. Lấy chi tiết theo hóa đơn
         public DataTable LayChiTietTheoHoaDon(string idHoaDon)
         {
             DataTable dt = db.loadDataGridView(fileName);
 
             if (dt.Rows.Count == 0)
-                return dt; // Trả về table rỗng nếu không có dữ liệu
+                return dt;
 
-            // Tìm tên cột chính xác
             string colName = "";
             if (dt.Columns.Contains("IdHoaDon"))
                 colName = "IdHoaDon";
@@ -105,7 +96,6 @@ namespace QuanLyShopBanDoDaBong.Class
                 colName = "idHoaDon";
             else
             {
-                // Nếu không tìm thấy, log ra tất cả tên cột
                 string allCols = string.Join(", ", dt.Columns.Cast<DataColumn>().Select(c => c.ColumnName));
                 throw new Exception($"Không tìm thấy cột hóa đơn! Các cột có sẵn: {allCols}");
             }
@@ -115,7 +105,6 @@ namespace QuanLyShopBanDoDaBong.Class
             return dv.ToTable();
         }
 
-        // 6. Khởi tạo XML từ Database
         public void KhoiTaoXML()
         {
             db.taoXML("SELECT * FROM ChiTietHoaDon", tableName, fileName);

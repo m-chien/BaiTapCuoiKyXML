@@ -10,25 +10,21 @@ namespace QuanLyShopBanDoDaBong.Class
         string tableName = "BinhLuan";
         string colID = "IDBinhLuan";
 
-        // 1. Lấy danh sách Bình luận
         public DataTable LayDanhSach()
         {
             return db.loadDataGridView(fileName);
         }
 
-        // Lấy danh sách Người dùng để đổ vào ComboBox
         public DataTable LayDanhSachNguoiDung()
         {
             return db.loadDataGridView("NguoiDung.xml");
         }
 
-        // Lấy danh sách Sản phẩm để đổ vào ComboBox
         public DataTable LayDanhSachSanPham()
         {
             return db.loadDataGridView("SanPham.xml");
         }
 
-        // 2. Thêm bình luận
         public void ThemBinhLuan(string idNguoiDung, string idSanPham, string noiDung, string ngayBinhLuan, string tinhTrang)
         {
             DataTable dt = LayDanhSach();
@@ -64,7 +60,6 @@ namespace QuanLyShopBanDoDaBong.Class
             KhoiTaoXML();
         }
 
-        // 3. Sửa bình luận
         public void SuaBinhLuan(string id, string idNguoiDung, string idSanPham, string noiDung, string ngayBinhLuan, string tinhTrang)
         {
             string xml = "<BinhLuan>" +
@@ -80,14 +75,12 @@ namespace QuanLyShopBanDoDaBong.Class
             db.Sua_Database(tableName, fileName, colID, id);
         }
 
-        // 4. Xóa bình luận
         public void XoaBinhLuan(string id)
         {
             db.Xoa(fileName, tableName, colID, id);
             db.Xoa_Database(tableName, colID, id);
         }
 
-        // 5. Tìm kiếm bình luận theo nội dung
         public DataTable TimKiem(string tuKhoa)
         {
             DataTable dt = db.loadDataGridView(fileName);
@@ -96,7 +89,6 @@ namespace QuanLyShopBanDoDaBong.Class
             return dv.ToTable();
         }
 
-        // 6. Lấy bình luận theo sản phẩm
         public DataTable LayBinhLuanTheoSanPham(string idSanPham)
         {
             DataTable dt = db.loadDataGridView(fileName);
@@ -105,7 +97,6 @@ namespace QuanLyShopBanDoDaBong.Class
             return dv.ToTable();
         }
 
-        // 7. Khởi tạo XML từ Database
         public void KhoiTaoXML()
         {
             db.taoXML("SELECT * FROM BinhLuan", tableName, fileName);

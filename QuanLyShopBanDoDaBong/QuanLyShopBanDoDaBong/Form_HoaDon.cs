@@ -16,12 +16,10 @@ namespace QuanLyShopBanDoDaBong
 
         private void Form_HoaDon_Load(object sender, EventArgs e)
         {
-            // Khởi tạo ComboBox Trạng thái
             cbbTrangThai.Items.Clear();
             cbbTrangThai.Items.AddRange(new string[] { "Tất cả", "Đã thanh toán", "Chờ thanh toán", "Hủy thanh toán" });
             cbbTrangThai.SelectedIndex = 0;
 
-            // Khởi tạo DateTimePicker
             dtpNgay.Format = DateTimePickerFormat.Custom;
             dtpNgay.CustomFormat = "dd/MM/yyyy";
 
@@ -42,7 +40,6 @@ namespace QuanLyShopBanDoDaBong
 
                 if (dgvHoaDon.Columns.Count > 0)
                 {
-                    // Đặt tiêu đề cột
                     if (dgvHoaDon.Columns.Contains("IDHoaDon"))
                         dgvHoaDon.Columns["IDHoaDon"].HeaderText = "Mã HĐ";
                     if (dgvHoaDon.Columns.Contains("IdUser"))
@@ -59,7 +56,6 @@ namespace QuanLyShopBanDoDaBong
                     if (dgvHoaDon.Columns.Contains("TrangThai"))
                         dgvHoaDon.Columns["TrangThai"].HeaderText = "Trạng thái";
 
-                    // Auto size columns
                     dgvHoaDon.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 }
 
@@ -71,7 +67,6 @@ namespace QuanLyShopBanDoDaBong
             }
         }
 
-        // --- TÌM KIẾM ---
         private void btnTimKiem_Click_1(object sender, EventArgs e)
         {
             try
@@ -81,14 +76,12 @@ namespace QuanLyShopBanDoDaBong
 
                 string filter = "";
 
-                // Lọc theo trạng thái
                 string trangThai = cbbTrangThai.SelectedItem?.ToString() ?? "Tất cả";
                 if (trangThai != "Tất cả")
                 {
                     filter = $"TrangThai = '{trangThai}'";
                 }
 
-                // Lọc theo ngày (nếu checkbox được chọn)
                 if (chkLocNgay != null && chkLocNgay.Checked)
                 {
                     string ngayChon = dtpNgay.Value.ToString("yyyy-MM-dd");
@@ -97,7 +90,6 @@ namespace QuanLyShopBanDoDaBong
                     filter += $"NgayDat = '{ngayChon}'";
                 }
 
-                // Lọc theo tổng tiền (nếu có nhập)
                 if (!string.IsNullOrWhiteSpace(txtTongTien.Text))
                 {
                     if (decimal.TryParse(txtTongTien.Text, out decimal tienChon))
@@ -116,7 +108,6 @@ namespace QuanLyShopBanDoDaBong
                 dv.RowFilter = filter;
                 dgvHoaDon.DataSource = dv.ToTable();
 
-                // Format lại cột Tổng tiền
                 if (dgvHoaDon.Columns.Contains("TongTien"))
                     dgvHoaDon.Columns["TongTien"].DefaultCellStyle.Format = "#,### VNĐ";
 
@@ -128,7 +119,6 @@ namespace QuanLyShopBanDoDaBong
             }
         }
 
-        // --- LÀM MỚI ---
         private void btnLamMoi_Click_1(object sender, EventArgs e)
         {
             cbbTrangThai.SelectedIndex = 0;
@@ -141,7 +131,6 @@ namespace QuanLyShopBanDoDaBong
             LoadData();
         }
 
-        // --- XEM CHI TIẾT HÓA ĐƠN ---
         private void btnXemChiTiet_Click(object sender, EventArgs e)
         {
             if (dgvHoaDon.CurrentRow != null && dgvHoaDon.CurrentRow.Index >= 0)
@@ -152,7 +141,6 @@ namespace QuanLyShopBanDoDaBong
                 {
                     int idHoaDon = Convert.ToInt32(cellValue);
 
-                    // Mở form chi tiết hóa đơn
                     Form_ChiTietHoaDon f = new Form_ChiTietHoaDon(idHoaDon);
                     f.ShowDialog();
                 }
@@ -167,15 +155,12 @@ namespace QuanLyShopBanDoDaBong
             }
         }
 
-        // --- TẠO XML ---
         private void button1_Click(object sender, EventArgs e)
         {
             try
             {
-                // Tạo XML cho HoaDon
                 objHD.KhoiTaoXML();
 
-                // Tạo XML cho ChiTietHoaDon (THIẾU CÁI NÀY!)
                 ChiTietHoaDon objCTHD = new ChiTietHoaDon();
                 objCTHD.KhoiTaoXML();
 
@@ -188,7 +173,6 @@ namespace QuanLyShopBanDoDaBong
             }
         }
 
-        // --- BẬT/TẮT DateTimePicker khi checkbox thay đổi ---
         private void chkLocNgay_CheckedChanged(object sender, EventArgs e)
         {
             if (dtpNgay != null)
@@ -197,7 +181,6 @@ namespace QuanLyShopBanDoDaBong
             }
         }
 
-        // --- CHỈ CHO PHÉP NHẬP SỐ VÀO TEXTBOX TỔNG TIỀN ---
         private void txtTongTien_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
@@ -208,7 +191,6 @@ namespace QuanLyShopBanDoDaBong
 
         private void dgvHoaDon_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Để trống hoặc xử lý click cell nếu cần
         }
     }
 }

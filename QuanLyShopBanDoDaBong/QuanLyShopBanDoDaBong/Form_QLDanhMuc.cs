@@ -17,8 +17,8 @@ namespace QuanLyShopBanDoDaBong
 
         private void Form_QLDanhMuc_Load(object sender, EventArgs e)
         {
-            txtMaDM.Enabled = false; // Mã tự tăng, không cho sửa
-            dtpNgayTao.Format = DateTimePickerFormat.Short; // Hiển thị ngày ngắn gọn
+            txtMaDM.Enabled = false;
+            dtpNgayTao.Format = DateTimePickerFormat.Short;
             LoadData();
         }
 
@@ -28,7 +28,6 @@ namespace QuanLyShopBanDoDaBong
             {
                 dgvDanhMuc.DataSource = objDM.LayDanhSach();
 
-                // Đặt tên cột tiếng Việt
                 if (dgvDanhMuc.Columns.Count > 0)
                 {
                     if (dgvDanhMuc.Columns.Contains("IDDanhMuc")) dgvDanhMuc.Columns["IDDanhMuc"].HeaderText = "Mã DM";
@@ -49,7 +48,7 @@ namespace QuanLyShopBanDoDaBong
             txtMaDM.Clear();
             txtTenDM.Clear();
             txtMoTa.Clear();
-            dtpNgayTao.Value = DateTime.Now; // Reset về ngày hiện tại
+            dtpNgayTao.Value = DateTime.Now;
             txtTimKiem.Clear();
             idHienTai = "";
             dgvDanhMuc.ClearSelection();
@@ -69,7 +68,6 @@ namespace QuanLyShopBanDoDaBong
                         txtTenDM.Text = row.Cells["TenDanhmuc"].Value?.ToString() ?? "";
                         txtMoTa.Text = row.Cells["MoTa"].Value?.ToString() ?? "";
 
-                        // Xử lý Ngày tháng (Tránh lỗi nếu dữ liệu rỗng hoặc sai format)
                         if (DateTime.TryParse(row.Cells["NgayTao"].Value?.ToString(), out DateTime date))
                         {
                             dtpNgayTao.Value = date;
@@ -80,7 +78,6 @@ namespace QuanLyShopBanDoDaBong
             }
         }
 
-        // --- THÊM ---
         private void btnThem_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtTenDM.Text))
@@ -91,7 +88,6 @@ namespace QuanLyShopBanDoDaBong
 
             try
             {
-                // Lấy ngày tháng format chuẩn SQL (yyyy-MM-dd)
                 string ngay = dtpNgayTao.Value.ToString("yyyy-MM-dd");
 
                 objDM.ThemDM(txtTenDM.Text, txtMoTa.Text, ngay);
@@ -101,7 +97,6 @@ namespace QuanLyShopBanDoDaBong
             catch (Exception ex) { MessageBox.Show("Lỗi: " + ex.Message); }
         }
 
-        // --- SỬA ---
         private void btnSua_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(idHienTai))
@@ -121,7 +116,6 @@ namespace QuanLyShopBanDoDaBong
             catch (Exception ex) { MessageBox.Show("Lỗi: " + ex.Message); }
         }
 
-        // --- XÓA ---
         private void btnXoa_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(idHienTai))
@@ -142,7 +136,6 @@ namespace QuanLyShopBanDoDaBong
             }
         }
 
-        // --- TÌM KIẾM ---
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
             string kw = txtTimKiem.Text.Trim();
@@ -150,7 +143,6 @@ namespace QuanLyShopBanDoDaBong
             else dgvDanhMuc.DataSource = objDM.TimKiem(kw);
         }
 
-        // --- ĐỒNG BỘ XML ---
         private void btnXML_Click(object sender, EventArgs e)
         {
             objDM.KhoiTaoXML();

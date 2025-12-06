@@ -1,11 +1,11 @@
-﻿using QuanLyShopBanDoDaBong.Class;
-using System;
+﻿using System;
 using System.Data;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using System.Xml.Xsl;
+using QuanLyShopBanDoDaBong.Class;
 
 namespace QuanLyShopBanDoDaBong
 {
@@ -84,17 +84,14 @@ namespace QuanLyShopBanDoDaBong
             }
         }
 
-        // THỐNG KÊ 1: Doanh thu theo năm
         private DataTable ThongKeDoanhThuTheoNam(int nam)
         {
             DataTable dtHoaDon = objHD.LayDanhSach();
 
-            // Lọc hóa đơn theo năm
             var hoaDonNam = dtHoaDon.AsEnumerable()
                 .Where(row => row["NgayDat"] != DBNull.Value &&
                              Convert.ToDateTime(row["NgayDat"]).Year == nam);
 
-            // Nhóm theo tháng và tính tổng
             var thongKe = hoaDonNam
                 .GroupBy(row => Convert.ToDateTime(row["NgayDat"]).Month)
                 .Select(g => new
@@ -104,7 +101,6 @@ namespace QuanLyShopBanDoDaBong
                 })
                 .OrderBy(x => x.Thang);
 
-            // Tạo DataTable kết quả
             DataTable dtResult = new DataTable("Table");
             dtResult.Columns.Add("Thời_Gian", typeof(string));
             dtResult.Columns.Add("Doanh_Thu", typeof(decimal));
@@ -117,29 +113,24 @@ namespace QuanLyShopBanDoDaBong
             return dtResult;
         }
 
-        // THỐNG KÊ 2: Top 10 sản phẩm bán chạy
         private DataTable ThongKeTopSanPham(int nam)
         {
             DataTable dtHoaDon = objHD.LayDanhSach();
             DataTable dtChiTiet = objCTHD.LayDanhSach();
             DataTable dtSanPham = objSP.LayDanhSach();
 
-            // Tìm tên cột
             string colIdHoaDon = dtChiTiet.Columns.Contains("IdHoaDon") ? "IdHoaDon" : "IDHoaDon";
             string colIdSanPham = dtChiTiet.Columns.Contains("IdSanPham") ? "IdSanPham" : "IDSanPham";
 
-            // Lọc hóa đơn theo năm
             var hoaDonNam = dtHoaDon.AsEnumerable()
                 .Where(row => row["NgayDat"] != DBNull.Value &&
                              Convert.ToDateTime(row["NgayDat"]).Year == nam)
                 .Select(row => row["IDHoaDon"].ToString())
                 .ToHashSet();
 
-            // Lọc chi tiết hóa đơn theo năm
             var chiTietNam = dtChiTiet.AsEnumerable()
                 .Where(row => hoaDonNam.Contains(row[colIdHoaDon].ToString()));
 
-            // Nhóm theo sản phẩm
             var thongKe = chiTietNam
                 .GroupBy(row => row[colIdSanPham].ToString())
                 .Select(g => new
@@ -150,14 +141,12 @@ namespace QuanLyShopBanDoDaBong
                 .OrderByDescending(x => x.SoLuongBan)
                 .Take(10);
 
-            // Tạo DataTable kết quả
             DataTable dtResult = new DataTable("Table");
             dtResult.Columns.Add("Sản_Phẩm", typeof(string));
             dtResult.Columns.Add("Số_Lượng_Bán", typeof(int));
 
             foreach (var item in thongKe)
             {
-                // Tìm tên sản phẩm
                 DataRow[] rowsSP = dtSanPham.Select($"IDSanPham = '{item.IdSanPham}'");
                 string tenSP = "Không rõ";
 
@@ -174,7 +163,6 @@ namespace QuanLyShopBanDoDaBong
             return dtResult;
         }
 
-        // THỐNG KÊ 3: Tồn kho sản phẩm
         private DataTable ThongKeTonKho()
         {
             DataTable dtSanPham = objSP.LayDanhSach();
@@ -213,7 +201,6 @@ namespace QuanLyShopBanDoDaBong
 
                 string xsltPath = Path.Combine(Application.StartupPath, "ThongKe.xslt");
 
-                // Luôn tạo lại file XSLT mới nhất
                 if (File.Exists(xsltPath)) File.Delete(xsltPath);
                 TaoFileXSLT(xsltPath);
 
@@ -235,57 +222,57 @@ namespace QuanLyShopBanDoDaBong
         {
             string content = @"<?xml version='1.0' encoding='UTF-8'?>
 <xsl:stylesheet version='1.0' xmlns:xsl='http://www.w3.org/1999/XSL/Transform'>
-  <xsl:template match='/'>
-    <html>
-      <head>
-        <title>Báo Cáo Thống Kê</title>
-        <script src='https://cdn.jsdelivr.net/npm/chart.js'></script>
-        <style>
-          body { font-family: Segoe UI, sans-serif; padding: 20px; background: #f0f2f5; }
-          .container { max-width: 1000px; margin: 0 auto; background: white; padding: 40px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-          h1 { text-align: center; color: #1a73e8; }
-          table { width: 100%; border-collapse: collapse; margin-top: 30px; }
-          th { background: #1a73e8; color: white; padding: 12px; }
-          td { border-bottom: 1px solid #ddd; padding: 10px; text-align: center; }
-          .chart-box { margin: 40px 0; height: 400px; }
-        </style>
-      </head>
-      <body>
-        <div class='container'>
-          <h1>BIỂU ĐỒ THỐNG KÊ</h1>
-          <div class='chart-box'><canvas id='myChart'></canvas></div>
-          <h3>Dữ liệu chi tiết</h3>
-          <table>
-            <tr><xsl:for-each select='NewDataSet/Table[1]/*'><th><xsl:value-of select=""translate(name(), '_', ' ')""/></th></xsl:for-each></tr>
-            <xsl:for-each select='NewDataSet/Table'>
-              <tr><xsl:for-each select='*'><td><xsl:value-of select='.'/></td></xsl:for-each></tr>
-            </xsl:for-each>
-          </table>
-        </div>
-        <script>
-          const ctx = document.getElementById('myChart');
-          new Chart(ctx, {
-            type: 'bar',
-            data: {
-              labels: [<xsl:for-each select='NewDataSet/Table'>'<xsl:value-of select='*[1]'/>',</xsl:for-each>],
-              datasets: [{
-                label: 'Giá trị',
-                data: [<xsl:for-each select='NewDataSet/Table'><xsl:value-of select='*[last()]'/>,</xsl:for-each>],
-                backgroundColor: '#36a2eb'
-              }]
-            },
-            options: {
-              responsive: true,
-              maintainAspectRatio: false,
-              scales: {
-                y: { beginAtZero: true }
-              }
-            }
-          });
-        </script>
-      </body>
-    </html>
-  </xsl:template>
+  <xsl:template match='/'>
+    <html>
+      <head>
+        <title>Báo Cáo Thống Kê</title>
+        <script src='https://cdn.jsdelivr.net/npm/chart.js'></script>
+        <style>
+          body { font-family: Segoe UI, sans-serif; padding: 20px; background: #f0f2f5; }
+          .container { max-width: 1000px; margin: 0 auto; background: white; padding: 40px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+          h1 { text-align: center; color: #1a73e8; }
+          table { width: 100%; border-collapse: collapse; margin-top: 30px; }
+          th { background: #1a73e8; color: white; padding: 12px; }
+          td { border-bottom: 1px solid #ddd; padding: 10px; text-align: center; }
+          .chart-box { margin: 40px 0; height: 400px; }
+        </style>
+      </head>
+      <body>
+        <div class='container'>
+          <h1>BIỂU ĐỒ THỐNG KÊ</h1>
+          <div class='chart-box'><canvas id='myChart'></canvas></div>
+          <h3>Dữ liệu chi tiết</h3>
+          <table>
+            <tr><xsl:for-each select='NewDataSet/Table[1]/*'><th><xsl:value-of select=""translate(name(), '_', ' ')""/></th></xsl:for-each></tr>
+            <xsl:for-each select='NewDataSet/Table'>
+              <tr><xsl:for-each select='*'><td><xsl:value-of select='.'/></td></xsl:for-each></tr>
+            </xsl:for-each>
+          </table>
+        </div>
+        <script>
+          const ctx = document.getElementById('myChart');
+          new Chart(ctx, {
+            type: 'bar',
+            data: {
+              labels: [<xsl:for-each select='NewDataSet/Table'>'<xsl:value-of select='*[1]'/>',</xsl:for-each>],
+              datasets: [{
+                label: 'Giá trị',
+                data: [<xsl:for-each select='NewDataSet/Table'><xsl:value-of select='*[last()]'/>,</xsl:for-each>],
+                backgroundColor: '#36a2eb'
+              }]
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              scales: {
+                y: { beginAtZero: true }
+              }
+            }
+          });
+        </script>
+      </body>
+    </html>
+  </xsl:template>
 </xsl:stylesheet>";
             File.WriteAllText(path, content);
         }
