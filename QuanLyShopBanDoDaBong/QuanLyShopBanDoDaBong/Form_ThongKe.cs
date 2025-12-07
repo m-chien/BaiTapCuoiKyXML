@@ -341,5 +341,9 @@ namespace QuanLyShopBanDoDaBong
         private void label2_Click(object sender, EventArgs e)
         {
         }
+        private void btnThoat_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

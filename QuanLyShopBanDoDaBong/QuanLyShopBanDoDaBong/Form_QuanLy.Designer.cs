@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.menuquanlyshopbongda = new System.Windows.Forms.MenuStrip();
+            this.quanLyTaiKhoanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quanLyDanhMucToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quanLySanPhamToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quanLyHoaDonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quanLyBinhLuanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.baoCaoThongKeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlContent = new System.Windows.Forms.Panel();
-            this.quanLyTaiKhoanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuquanlyshopbongda.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -57,6 +57,15 @@
             this.menuquanlyshopbongda.Size = new System.Drawing.Size(1106, 50);
             this.menuquanlyshopbongda.TabIndex = 0;
             this.menuquanlyshopbongda.Text = "menuStrip1";
+            // 
+            // quanLyTaiKhoanToolStripMenuItem
+            // 
+            this.quanLyTaiKhoanToolStripMenuItem.AutoSize = false;
+            this.quanLyTaiKhoanToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.quanLyTaiKhoanToolStripMenuItem.Name = "quanLyTaiKhoanToolStripMenuItem";
+            this.quanLyTaiKhoanToolStripMenuItem.Size = new System.Drawing.Size(152, 40);
+            this.quanLyTaiKhoanToolStripMenuItem.Text = " Quản lý tài khoản";
+            this.quanLyTaiKhoanToolStripMenuItem.Click += new System.EventHandler(this.quanLyTaiKhoanToolStripMenuItem_Click);
             // 
             // quanLyDanhMucToolStripMenuItem
             // 
@@ -106,6 +115,7 @@
             // pnlContent
             // 
             this.pnlContent.BackColor = System.Drawing.Color.White;
+            this.pnlContent.BackgroundImage = global::QuanLyShopBanDoDaBong.Properties.Resources.unnamed__3_;
             this.pnlContent.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pnlContent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlContent.Location = new System.Drawing.Point(0, 50);
@@ -113,15 +123,6 @@
             this.pnlContent.Size = new System.Drawing.Size(1106, 586);
             this.pnlContent.TabIndex = 1;
             this.pnlContent.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlContent_Paint);
-            // 
-            // quanLyTaiKhoanToolStripMenuItem
-            // 
-            this.quanLyTaiKhoanToolStripMenuItem.AutoSize = false;
-            this.quanLyTaiKhoanToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.quanLyTaiKhoanToolStripMenuItem.Name = "quanLyTaiKhoanToolStripMenuItem";
-            this.quanLyTaiKhoanToolStripMenuItem.Size = new System.Drawing.Size(152, 40);
-            this.quanLyTaiKhoanToolStripMenuItem.Text = " Quản lý tài khoản";
-            this.quanLyTaiKhoanToolStripMenuItem.Click += new System.EventHandler(this.quanLyTaiKhoanToolStripMenuItem_Click);
             // 
             // Form_QuanLy
             // 

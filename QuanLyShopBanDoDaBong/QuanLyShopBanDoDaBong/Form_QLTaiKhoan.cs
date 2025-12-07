@@ -122,5 +122,10 @@ namespace QuanLyShopBanDoDaBong
 
         private void btnsua_Click_1(object sender, EventArgs e) { btnsua_Click(sender, e); }
         private void dgvtaikhoan_CellContentClick(object sender, DataGridViewCellEventArgs e) { }
+
+        private void btnThoat_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

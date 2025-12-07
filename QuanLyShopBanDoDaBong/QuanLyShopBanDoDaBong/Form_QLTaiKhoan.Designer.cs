@@ -26,6 +26,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBoxActions = new System.Windows.Forms.GroupBox();
+            this.btnThoat = new System.Windows.Forms.Button();
             this.btnxml = new System.Windows.Forms.Button();
             this.btnsua = new System.Windows.Forms.Button();
             this.btnxoa = new System.Windows.Forms.Button();
@@ -50,11 +51,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(450, 20);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(233, 30);
+            this.label1.Size = new System.Drawing.Size(258, 32);
             this.label1.TabIndex = 0;
             this.label1.Text = "QUẢN LÝ TÀI KHOẢN";
             // 
@@ -70,7 +71,7 @@
             this.groupBoxInfo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(73)))), ((int)(((byte)(94)))));
             this.groupBoxInfo.Location = new System.Drawing.Point(50, 90);
             this.groupBoxInfo.Name = "groupBoxInfo";
-            this.groupBoxInfo.Size = new System.Drawing.Size(500, 200);
+            this.groupBoxInfo.Size = new System.Drawing.Size(520, 208);
             this.groupBoxInfo.TabIndex = 1;
             this.groupBoxInfo.TabStop = false;
             this.groupBoxInfo.Text = "Thông tin tài khoản";
@@ -82,9 +83,9 @@
             this.cmbvaitro.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cmbvaitro.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbvaitro.FormattingEnabled = true;
-            this.cmbvaitro.Location = new System.Drawing.Point(180, 130);
+            this.cmbvaitro.Location = new System.Drawing.Point(180, 150);
             this.cmbvaitro.Name = "cmbvaitro";
-            this.cmbvaitro.Size = new System.Drawing.Size(280, 27);
+            this.cmbvaitro.Size = new System.Drawing.Size(300, 27);
             this.cmbvaitro.TabIndex = 7;
             // 
             // txtmatkhau
@@ -92,9 +93,9 @@
             this.txtmatkhau.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtmatkhau.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtmatkhau.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtmatkhau.Location = new System.Drawing.Point(180, 85);
+            this.txtmatkhau.Location = new System.Drawing.Point(180, 100);
             this.txtmatkhau.Name = "txtmatkhau";
-            this.txtmatkhau.Size = new System.Drawing.Size(280, 26);
+            this.txtmatkhau.Size = new System.Drawing.Size(300, 26);
             this.txtmatkhau.TabIndex = 6;
             // 
             // txtendangnhap
@@ -102,9 +103,9 @@
             this.txtendangnhap.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtendangnhap.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtendangnhap.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtendangnhap.Location = new System.Drawing.Point(180, 40);
+            this.txtendangnhap.Location = new System.Drawing.Point(180, 50);
             this.txtendangnhap.Name = "txtendangnhap";
-            this.txtendangnhap.Size = new System.Drawing.Size(280, 26);
+            this.txtendangnhap.Size = new System.Drawing.Size(300, 26);
             this.txtendangnhap.TabIndex = 5;
             // 
             // label5
@@ -112,7 +113,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(30, 133);
+            this.label5.Location = new System.Drawing.Point(30, 153);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(56, 19);
             this.label5.TabIndex = 4;
@@ -123,7 +124,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(30, 87);
+            this.label4.Location = new System.Drawing.Point(30, 102);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(75, 19);
             this.label4.TabIndex = 3;
@@ -134,7 +135,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(30, 42);
+            this.label3.Location = new System.Drawing.Point(30, 52);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(98, 19);
             this.label3.TabIndex = 2;
@@ -142,18 +143,33 @@
             // 
             // groupBoxActions
             // 
+            this.groupBoxActions.Controls.Add(this.btnThoat);
             this.groupBoxActions.Controls.Add(this.btnxml);
             this.groupBoxActions.Controls.Add(this.btnsua);
             this.groupBoxActions.Controls.Add(this.btnxoa);
             this.groupBoxActions.Controls.Add(this.btnthem);
             this.groupBoxActions.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBoxActions.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(73)))), ((int)(((byte)(94)))));
-            this.groupBoxActions.Location = new System.Drawing.Point(580, 90);
+            this.groupBoxActions.Location = new System.Drawing.Point(590, 90);
             this.groupBoxActions.Name = "groupBoxActions";
-            this.groupBoxActions.Size = new System.Drawing.Size(470, 200);
+            this.groupBoxActions.Size = new System.Drawing.Size(460, 208);
             this.groupBoxActions.TabIndex = 2;
             this.groupBoxActions.TabStop = false;
             this.groupBoxActions.Text = "Chức năng";
+            // 
+            // btnThoat
+            // 
+            this.btnThoat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(76)))), ((int)(((byte)(60)))));
+            this.btnThoat.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnThoat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnThoat.ForeColor = System.Drawing.Color.White;
+            this.btnThoat.Location = new System.Drawing.Point(235, 111);
+            this.btnThoat.Name = "btnThoat";
+            this.btnThoat.Size = new System.Drawing.Size(196, 45);
+            this.btnThoat.TabIndex = 13;
+            this.btnThoat.Text = "Thoát";
+            this.btnThoat.UseVisualStyleBackColor = false;
+            this.btnThoat.Click += new System.EventHandler(this.btnThoat_Click);
             // 
             // btnxml
             // 
@@ -162,9 +178,9 @@
             this.btnxml.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnxml.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnxml.ForeColor = System.Drawing.Color.White;
-            this.btnxml.Location = new System.Drawing.Point(260, 115);
+            this.btnxml.Location = new System.Drawing.Point(21, 111);
             this.btnxml.Name = "btnxml";
-            this.btnxml.Size = new System.Drawing.Size(160, 45);
+            this.btnxml.Size = new System.Drawing.Size(197, 45);
             this.btnxml.TabIndex = 12;
             this.btnxml.Text = "Tạo XML";
             this.btnxml.UseVisualStyleBackColor = false;
@@ -177,9 +193,9 @@
             this.btnsua.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnsua.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnsua.ForeColor = System.Drawing.Color.White;
-            this.btnsua.Location = new System.Drawing.Point(50, 115);
+            this.btnsua.Location = new System.Drawing.Point(161, 51);
             this.btnsua.Name = "btnsua";
-            this.btnsua.Size = new System.Drawing.Size(160, 45);
+            this.btnsua.Size = new System.Drawing.Size(130, 45);
             this.btnsua.TabIndex = 11;
             this.btnsua.Text = "Sửa";
             this.btnsua.UseVisualStyleBackColor = false;
@@ -192,9 +208,9 @@
             this.btnxoa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnxoa.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnxoa.ForeColor = System.Drawing.Color.White;
-            this.btnxoa.Location = new System.Drawing.Point(260, 45);
+            this.btnxoa.Location = new System.Drawing.Point(301, 51);
             this.btnxoa.Name = "btnxoa";
-            this.btnxoa.Size = new System.Drawing.Size(160, 45);
+            this.btnxoa.Size = new System.Drawing.Size(130, 45);
             this.btnxoa.TabIndex = 10;
             this.btnxoa.Text = "Xóa";
             this.btnxoa.UseVisualStyleBackColor = false;
@@ -207,11 +223,11 @@
             this.btnthem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnthem.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnthem.ForeColor = System.Drawing.Color.White;
-            this.btnthem.Location = new System.Drawing.Point(50, 45);
+            this.btnthem.Location = new System.Drawing.Point(21, 51);
             this.btnthem.Name = "btnthem";
-            this.btnthem.Size = new System.Drawing.Size(160, 45);
+            this.btnthem.Size = new System.Drawing.Size(130, 45);
             this.btnthem.TabIndex = 9;
-            this.btnthem.Text = "Thêm ";
+            this.btnthem.Text = "Thêm";
             this.btnthem.UseVisualStyleBackColor = false;
             this.btnthem.Click += new System.EventHandler(this.btnthem_Click);
             // 
@@ -231,13 +247,13 @@
             this.dgvtaikhoan.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvtaikhoan.ColumnHeadersHeight = 35;
             this.dgvtaikhoan.EnableHeadersVisualStyles = false;
-            this.dgvtaikhoan.Location = new System.Drawing.Point(50, 310);
+            this.dgvtaikhoan.Location = new System.Drawing.Point(50, 328);
             this.dgvtaikhoan.Name = "dgvtaikhoan";
             this.dgvtaikhoan.RowHeadersWidth = 51;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgvtaikhoan.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvtaikhoan.RowTemplate.Height = 24;
-            this.dgvtaikhoan.Size = new System.Drawing.Size(1000, 278);
+            this.dgvtaikhoan.Size = new System.Drawing.Size(1000, 215);
             this.dgvtaikhoan.TabIndex = 13;
             this.dgvtaikhoan.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvtaikhoan_CellClick);
             this.dgvtaikhoan.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvtaikhoan_CellContentClick);
@@ -281,6 +297,7 @@
         private System.Windows.Forms.Button btnxoa;
         private System.Windows.Forms.Button btnsua;
         private System.Windows.Forms.Button btnxml;
+        private System.Windows.Forms.Button btnThoat;
         private System.Windows.Forms.DataGridView dgvtaikhoan;
     }
 }

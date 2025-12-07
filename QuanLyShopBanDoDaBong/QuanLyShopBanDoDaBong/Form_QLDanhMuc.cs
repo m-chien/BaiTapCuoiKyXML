@@ -149,5 +149,9 @@ namespace QuanLyShopBanDoDaBong
             MessageBox.Show("Đã đồng bộ lại từ SQL Server!");
             LoadData();
         }
+        private void btnThoat_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

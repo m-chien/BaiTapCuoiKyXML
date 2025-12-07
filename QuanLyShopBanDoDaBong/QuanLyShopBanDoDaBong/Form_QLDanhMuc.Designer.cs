@@ -42,6 +42,7 @@
             this.txtMaDM = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.grpAction = new System.Windows.Forms.GroupBox();
+            this.btnThoat = new System.Windows.Forms.Button();
             this.btnTimKiem = new System.Windows.Forms.Button();
             this.txtTimKiem = new System.Windows.Forms.TextBox();
             this.btnXML = new System.Windows.Forms.Button();
@@ -72,7 +73,7 @@
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(450, 20);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(262, 32);
+            this.label1.Size = new System.Drawing.Size(259, 32);
             this.label1.TabIndex = 0;
             this.label1.Text = "QUẢN LÝ DANH MỤC";
             // 
@@ -112,7 +113,7 @@
             this.label4.ForeColor = System.Drawing.Color.Black;
             this.label4.Location = new System.Drawing.Point(20, 166);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(73, 19);
+            this.label4.Size = new System.Drawing.Size(72, 19);
             this.label4.TabIndex = 6;
             this.label4.Text = "Ngày tạo :";
             // 
@@ -154,7 +155,7 @@
             this.label2.ForeColor = System.Drawing.Color.Black;
             this.label2.Location = new System.Drawing.Point(20, 82);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(100, 19);
+            this.label2.Size = new System.Drawing.Size(102, 19);
             this.label2.TabIndex = 2;
             this.label2.Text = "Tên danh mục :";
             // 
@@ -177,12 +178,13 @@
             this.label6.ForeColor = System.Drawing.Color.Black;
             this.label6.Location = new System.Drawing.Point(20, 42);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(60, 19);
+            this.label6.Size = new System.Drawing.Size(63, 19);
             this.label6.TabIndex = 0;
             this.label6.Text = "Mã DM :";
             // 
             // grpAction
             // 
+            this.grpAction.Controls.Add(this.btnThoat);
             this.grpAction.Controls.Add(this.btnTimKiem);
             this.grpAction.Controls.Add(this.txtTimKiem);
             this.grpAction.Controls.Add(this.btnXML);
@@ -198,18 +200,29 @@
             this.grpAction.TabStop = false;
             this.grpAction.Text = "Chức năng";
             // 
+            // btnThoat
+            // 
+            this.btnThoat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(76)))), ((int)(((byte)(60)))));
+            this.btnThoat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnThoat.ForeColor = System.Drawing.Color.White;
+            this.btnThoat.Location = new System.Drawing.Point(235, 160);
+            this.btnThoat.Name = "btnThoat";
+            this.btnThoat.Size = new System.Drawing.Size(200, 45);
+            this.btnThoat.TabIndex = 6;
+            this.btnThoat.Text = "Thoát";
+            this.btnThoat.UseVisualStyleBackColor = false;
+            this.btnThoat.Click += new System.EventHandler(this.btnThoat_Click);
+            // 
             // btnTimKiem
             // 
             this.btnTimKiem.BackColor = System.Drawing.Color.Silver;
-            this.btnTimKiem.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnTimKiem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTimKiem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTimKiem.ForeColor = System.Drawing.Color.Black;
-            this.btnTimKiem.Location = new System.Drawing.Point(320, 39);
+            this.btnTimKiem.Location = new System.Drawing.Point(340, 37);
             this.btnTimKiem.Name = "btnTimKiem";
-            this.btnTimKiem.Size = new System.Drawing.Size(100, 31);
+            this.btnTimKiem.Size = new System.Drawing.Size(95, 31);
             this.btnTimKiem.TabIndex = 5;
-            this.btnTimKiem.Text = "Tìm";
+            this.btnTimKiem.Text = "Tìm kiếm";
             this.btnTimKiem.UseVisualStyleBackColor = false;
             this.btnTimKiem.Click += new System.EventHandler(this.btnTimKiem_Click);
             // 
@@ -218,20 +231,19 @@
             this.txtTimKiem.BackColor = System.Drawing.Color.White;
             this.txtTimKiem.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtTimKiem.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTimKiem.Location = new System.Drawing.Point(40, 40);
+            this.txtTimKiem.Location = new System.Drawing.Point(25, 40);
             this.txtTimKiem.Name = "txtTimKiem";
-            this.txtTimKiem.Size = new System.Drawing.Size(260, 26);
+            this.txtTimKiem.Size = new System.Drawing.Size(300, 26);
             this.txtTimKiem.TabIndex = 4;
             // 
             // btnXML
             // 
-            this.btnXML.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(171)))), ((int)(((byte)(227)))));
-            this.btnXML.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnXML.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(167)))), ((int)(((byte)(240)))));
             this.btnXML.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnXML.ForeColor = System.Drawing.Color.White;
-            this.btnXML.Location = new System.Drawing.Point(260, 160);
+            this.btnXML.Location = new System.Drawing.Point(25, 160);
             this.btnXML.Name = "btnXML";
-            this.btnXML.Size = new System.Drawing.Size(160, 45);
+            this.btnXML.Size = new System.Drawing.Size(200, 45);
             this.btnXML.TabIndex = 3;
             this.btnXML.Text = "Tạo XML";
             this.btnXML.UseVisualStyleBackColor = false;
@@ -240,12 +252,11 @@
             // btnXoa
             // 
             this.btnXoa.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(171)))), ((int)(((byte)(227)))));
-            this.btnXoa.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnXoa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnXoa.ForeColor = System.Drawing.Color.White;
-            this.btnXoa.Location = new System.Drawing.Point(40, 160);
+            this.btnXoa.Location = new System.Drawing.Point(305, 90);
             this.btnXoa.Name = "btnXoa";
-            this.btnXoa.Size = new System.Drawing.Size(160, 45);
+            this.btnXoa.Size = new System.Drawing.Size(130, 45);
             this.btnXoa.TabIndex = 2;
             this.btnXoa.Text = "Xóa";
             this.btnXoa.UseVisualStyleBackColor = false;
@@ -254,12 +265,11 @@
             // btnSua
             // 
             this.btnSua.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(171)))), ((int)(((byte)(227)))));
-            this.btnSua.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSua.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSua.ForeColor = System.Drawing.Color.White;
-            this.btnSua.Location = new System.Drawing.Point(260, 90);
+            this.btnSua.Location = new System.Drawing.Point(165, 90);
             this.btnSua.Name = "btnSua";
-            this.btnSua.Size = new System.Drawing.Size(160, 45);
+            this.btnSua.Size = new System.Drawing.Size(130, 45);
             this.btnSua.TabIndex = 1;
             this.btnSua.Text = "Sửa";
             this.btnSua.UseVisualStyleBackColor = false;
@@ -268,12 +278,11 @@
             // btnThem
             // 
             this.btnThem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(171)))), ((int)(((byte)(227)))));
-            this.btnThem.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnThem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnThem.ForeColor = System.Drawing.Color.White;
-            this.btnThem.Location = new System.Drawing.Point(40, 90);
+            this.btnThem.Location = new System.Drawing.Point(25, 90);
             this.btnThem.Name = "btnThem";
-            this.btnThem.Size = new System.Drawing.Size(160, 45);
+            this.btnThem.Size = new System.Drawing.Size(130, 45);
             this.btnThem.TabIndex = 0;
             this.btnThem.Text = "Thêm";
             this.btnThem.UseVisualStyleBackColor = false;
@@ -295,7 +304,7 @@
             this.dgvDanhMuc.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvDanhMuc.ColumnHeadersHeight = 35;
             this.dgvDanhMuc.EnableHeadersVisualStyles = false;
-            this.dgvDanhMuc.Location = new System.Drawing.Point(50, 360);
+            this.dgvDanhMuc.Location = new System.Drawing.Point(50, 370);
             this.dgvDanhMuc.Name = "dgvDanhMuc";
             this.dgvDanhMuc.RowHeadersWidth = 51;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -350,5 +359,6 @@
         private System.Windows.Forms.Button btnTimKiem;
         private System.Windows.Forms.DataGridView dgvDanhMuc;
         private System.Windows.Forms.DateTimePicker dtpNgayTao;
+        private System.Windows.Forms.Button btnThoat; // Nút thoát mới
     }
 }

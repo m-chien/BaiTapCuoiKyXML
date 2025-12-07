@@ -192,5 +192,9 @@ namespace QuanLyShopBanDoDaBong
         private void dgvHoaDon_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
         }
+        private void btnThoat_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
