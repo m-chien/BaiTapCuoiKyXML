@@ -119,7 +119,7 @@ ADD CONSTRAINT CK_TongTien CHECK (TongTien >= 0);
 
 -- Insert dữ liệu vào bảng NguoiDung
 INSERT INTO NguoiDung (Email, password, sdt, DiaChi, AvatarURL, VaiTro, gioitinh) VALUES
-(N'admin', N'123', N'0901234567', N'123 Nguyễn Huệ, Đà Nẵng', N'avatar1.jpg', N'Admin', N'Nam'),
+(N'ad', N'1', N'0901234567', N'123 Nguyễn Huệ, Đà Nẵng', N'avatar1.jpg', N'Admin', N'Nam'),
 (N'user1', N'user123', N'0912345678', N'456 Lê Lợi, Đà Nẵng', N'avatar2.jpg', N'User', N'Nữ'),
 (N'user2', N'user456', N'0923456789', N'789 Trần Phú, Đà Nẵng', N'avatar3.jpg', N'User', N'Nam'),
 (N'user3', N'user789', N'0934567890', N'321 Hùng Vương, Đà Nẵng', N'avatar4.jpg', N'User', N'Nữ'),

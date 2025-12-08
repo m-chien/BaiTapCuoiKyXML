@@ -19,7 +19,9 @@ namespace QuanLyShopBanDoDaBong
         {
             cmbvaitro.Items.Add("Admin");
             cmbvaitro.Items.Add("User");
-
+            cmbGioiTinh.Items.Add("Nam");
+            cmbGioiTinh.Items.Add("Nữ");
+            cmbGioiTinh.SelectedIndex = 0;
             LoadData();
         }
 
@@ -31,15 +33,17 @@ namespace QuanLyShopBanDoDaBong
 
                 if (dgvtaikhoan.Columns.Count > 0)
                 {
+                    // Đặt tên tiêu đề tiếng Việt
                     if (dgvtaikhoan.Columns.Contains("IDNguoiDung")) dgvtaikhoan.Columns["IDNguoiDung"].HeaderText = "ID";
-                    if (dgvtaikhoan.Columns.Contains("Email")) dgvtaikhoan.Columns["Email"].HeaderText = "Tài khoản";
-                    if (dgvtaikhoan.Columns.Contains("password")) dgvtaikhoan.Columns["password"].HeaderText = "Mật khẩu";
-                    if (dgvtaikhoan.Columns.Contains("VaiTro")) dgvtaikhoan.Columns["VaiTro"].HeaderText = "Vai trò";
+                    if (dgvtaikhoan.Columns.Contains("Email")) dgvtaikhoan.Columns["Email"].HeaderText = "Email (Tài khoản)";
+                    if (dgvtaikhoan.Columns.Contains("sdt")) dgvtaikhoan.Columns["sdt"].HeaderText = "SĐT";
+                    if (dgvtaikhoan.Columns.Contains("DiaChi")) dgvtaikhoan.Columns["DiaChi"].HeaderText = "Địa chỉ";
+                    if (dgvtaikhoan.Columns.Contains("gioitinh")) dgvtaikhoan.Columns["gioitinh"].HeaderText = "Giới tính";
+                    if (dgvtaikhoan.Columns.Contains("AvatarURL")) dgvtaikhoan.Columns["AvatarURL"].HeaderText = "Avatar";
 
-                    if (dgvtaikhoan.Columns.Contains("sdt")) dgvtaikhoan.Columns["sdt"].Visible = false;
-                    if (dgvtaikhoan.Columns.Contains("DiaChi")) dgvtaikhoan.Columns["DiaChi"].Visible = false;
-                    if (dgvtaikhoan.Columns.Contains("AvatarURL")) dgvtaikhoan.Columns["AvatarURL"].Visible = false;
-                    if (dgvtaikhoan.Columns.Contains("gioitinh")) dgvtaikhoan.Columns["gioitinh"].Visible = false;
+                    // ẨN Cột Password và Vai trò theo yêu cầu
+                    if (dgvtaikhoan.Columns.Contains("password")) dgvtaikhoan.Columns["password"].Visible = false;
+                    if (dgvtaikhoan.Columns.Contains("VaiTro")) dgvtaikhoan.Columns["VaiTro"].Visible = false;
                 }
             }
             catch (Exception ex)
@@ -54,16 +58,31 @@ namespace QuanLyShopBanDoDaBong
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = dgvtaikhoan.Rows[e.RowIndex];
-                if (row.Cells["IDNguoiDung"].Value != null) idHienTai = row.Cells["IDNguoiDung"].Value.ToString();
-                if (row.Cells["Email"].Value != null) txtendangnhap.Text = row.Cells["Email"].Value.ToString();
-                if (row.Cells["password"].Value != null) txtmatkhau.Text = row.Cells["password"].Value.ToString();
-                if (row.Cells["VaiTro"].Value != null) cmbvaitro.Text = row.Cells["VaiTro"].Value.ToString();
+
+                // Lấy ID để xử lý Sửa/Xóa
+                if (row.Cells["IDNguoiDung"].Value != null)
+                    idHienTai = row.Cells["IDNguoiDung"].Value.ToString();
+
+                // Đổ dữ liệu lên các ô nhập liệu
+                if (row.Cells["Email"].Value != null)
+                    txtendangnhap.Text = row.Cells["Email"].Value.ToString();
+
+                // Kiểm tra null trước khi gán để tránh lỗi
+                txtSDT.Text = row.Cells["sdt"].Value != null ? row.Cells["sdt"].Value.ToString() : "";
+                txtDiaChi.Text = row.Cells["DiaChi"].Value != null ? row.Cells["DiaChi"].Value.ToString() : "";
+                txtAvatar.Text = row.Cells["AvatarURL"].Value != null ? row.Cells["AvatarURL"].Value.ToString() : "";
+                cmbGioiTinh.Text = row.Cells["gioitinh"].Value != null ? row.Cells["gioitinh"].Value.ToString() : "";
             }
         }
 
         private void btnthem_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtendangnhap.Text)) return;
+            // Kiểm tra các trường bắt buộc (ví dụ Email)
+            if (string.IsNullOrEmpty(txtendangnhap.Text))
+            {
+                MessageBox.Show("Vui lòng nhập Email!");
+                return;
+            }
 
             if (objTK.KiemTraEmail(txtendangnhap.Text))
             {
@@ -71,8 +90,16 @@ namespace QuanLyShopBanDoDaBong
                 return;
             }
 
-            objTK.ThemTK(txtendangnhap.Text, txtmatkhau.Text, cmbvaitro.Text);
-            MessageBox.Show("Thêm thành công!");
+            // Gọi hàm ThemTK với các tham số mới (Bỏ pass và role)
+            objTK.ThemTK(
+                txtendangnhap.Text,
+                txtSDT.Text,
+                txtDiaChi.Text,
+                txtAvatar.Text,
+                cmbGioiTinh.Text
+            );
+
+            MessageBox.Show("Thêm thành công! (Mật khẩu mặc định: 123456)");
             LoadData();
         }
 
@@ -80,12 +107,21 @@ namespace QuanLyShopBanDoDaBong
         {
             if (string.IsNullOrEmpty(idHienTai))
             {
-                MessageBox.Show("Chọn tài khoản cần sửa!");
+                MessageBox.Show("Vui lòng chọn tài khoản cần sửa!");
                 return;
             }
 
-            objTK.SuaTK(idHienTai, txtendangnhap.Text, txtmatkhau.Text, cmbvaitro.Text);
-            MessageBox.Show("Cập nhật thành công!");
+            // Gọi hàm SuaTK với các tham số mới (Giữ nguyên pass và role cũ trong DB)
+            objTK.SuaTK(
+                idHienTai,
+                txtendangnhap.Text,
+                txtSDT.Text,
+                txtDiaChi.Text,
+                txtAvatar.Text,
+                cmbGioiTinh.Text
+            );
+
+            MessageBox.Show("Cập nhật thông tin thành công!");
             LoadData();
         }
 
@@ -97,7 +133,7 @@ namespace QuanLyShopBanDoDaBong
                 return;
             }
 
-            if (MessageBox.Show("Xóa tài khoản này?", "Xác nhận", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show("Bạn có chắc chắn muốn xóa tài khoản này?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
                 objTK.XoaTK(idHienTai);
                 MessageBox.Show("Xóa thành công!");
@@ -108,18 +144,24 @@ namespace QuanLyShopBanDoDaBong
         private void btnxml_Click(object sender, EventArgs e)
         {
             objTK.KhoiTaoXML();
-            MessageBox.Show("Đã đồng bộ dữ liệu từ SQL sang XML!");
-            LoadData();
+            MessageBox.Show("Đã đồng bộ dữ liệu từ SQL sang XML thành công!");
+            LoadData(); // Load lại để đảm bảo hiển thị đúng
         }
 
         private void ResetForm()
         {
-            txtendangnhap.Clear();
-            txtmatkhau.Clear();
-            cmbvaitro.SelectedIndex = -1;
             idHienTai = "";
+            txtendangnhap.Clear();
+            txtSDT.Clear();
+            txtDiaChi.Clear();
+            txtAvatar.Clear();
+            cmbGioiTinh.SelectedIndex = -1;
+
+            // Focus lại vào ô nhập liệu đầu tiên
+            txtendangnhap.Focus();
         }
 
+        // Các event thừa hoặc tự sinh ra, giữ lại để tránh lỗi Designer
         private void btnsua_Click_1(object sender, EventArgs e) { btnsua_Click(sender, e); }
         private void dgvtaikhoan_CellContentClick(object sender, DataGridViewCellEventArgs e) { }
 
@@ -127,5 +169,7 @@ namespace QuanLyShopBanDoDaBong
         {
             this.Close();
         }
+
+        private void label2_Click(object sender, EventArgs e) { }
     }
 }
