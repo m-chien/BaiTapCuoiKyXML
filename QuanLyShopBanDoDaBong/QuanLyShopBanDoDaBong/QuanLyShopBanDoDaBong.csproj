@@ -55,7 +55,7 @@
     <Compile Include="Class\DanhMuc.cs" />
     <Compile Include="Class\HoaDon.cs" />
     <Compile Include="Class\SanPham.cs" />
-    <Compile Include="Class\TaiKhoan.cs" />
+    <Compile Include="Class\KhachHang.cs" />
     <Compile Include="Form_BinhLuan.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -92,11 +92,11 @@
     <Compile Include="Form_QLSanPham.Designer.cs">
       <DependentUpon>Form_QLSanPham.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form_QLTaiKhoan.cs">
+    <Compile Include="Form_QLKhachHang.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form_QLTaiKhoan.Designer.cs">
-      <DependentUpon>Form_QLTaiKhoan.cs</DependentUpon>
+    <Compile Include="Form_QLKhachHang.Designer.cs">
+      <DependentUpon>Form_QLKhachHang.cs</DependentUpon>
     </Compile>
     <Compile Include="Form_QuanLy.cs">
       <SubType>Form</SubType>
@@ -131,8 +131,8 @@
     <EmbeddedResource Include="Form_QLSanPham.resx">
       <DependentUpon>Form_QLSanPham.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form_QLTaiKhoan.resx">
-      <DependentUpon>Form_QLTaiKhoan.cs</DependentUpon>
+    <EmbeddedResource Include="Form_QLKhachHang.resx">
+      <DependentUpon>Form_QLKhachHang.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_QuanLy.resx">
       <DependentUpon>Form_QuanLy.cs</DependentUpon>

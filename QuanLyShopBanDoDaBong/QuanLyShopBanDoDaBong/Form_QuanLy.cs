@@ -39,7 +39,7 @@ namespace QuanLyShopBanDoDaBong
 
         private void quanLyTaiKhoanToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Hienthiformcon(new Form_QLTaiKhoan());
+            Hienthiformcon(new Form_QLKhachHang());
             this.Text = "Hệ thống quản lý - Quản lý Tài Khoản";
         }
 

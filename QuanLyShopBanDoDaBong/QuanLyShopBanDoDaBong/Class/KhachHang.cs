@@ -3,7 +3,7 @@ using System.Data;
 
 namespace QuanLyShopBanDoDaBong.Class
 {
-    class TaiKhoan
+    class KhachHang
     {
         TaoXML db = new TaoXML();
         string fileName = "NguoiDung.xml";
@@ -20,7 +20,6 @@ namespace QuanLyShopBanDoDaBong.Class
             return db.KiemTra(fileName, "Email", email);
         }
 
-        // SỬA: Thêm đầy đủ thông tin, bỏ pass và role ở tham số đầu vào
         public void ThemTK(string email, string sdt, string diaChi, string avatar, string gioitinh)
         {
             DataTable dt = LayDanhSach();
@@ -33,7 +32,6 @@ namespace QuanLyShopBanDoDaBong.Class
                     int max = 0;
                     foreach (DataRow row in dt.Rows)
                     {
-                        // Kiểm tra null hoặc rỗng trước khi parse để tránh lỗi
                         if (row["IDNguoiDung"] != DBNull.Value && !string.IsNullOrEmpty(row["IDNguoiDung"].ToString()))
                         {
                             int currentID = int.Parse(row["IDNguoiDung"].ToString());
@@ -48,18 +46,17 @@ namespace QuanLyShopBanDoDaBong.Class
                 }
             }
 
-            // Vì Database yêu cầu password NOT NULL, ta đặt mật khẩu mặc định
             string defaultPass = "123456";
             string defaultRole = "User";
 
             string xml = "<NguoiDung>" +
                             "<IDNguoiDung>" + nextID + "</IDNguoiDung>" +
                             "<Email>" + email + "</Email>" +
-                            "<password>" + defaultPass + "</password>" + // Lưu mặc định
+                            "<password>" + defaultPass + "</password>" +
                             "<sdt>" + sdt + "</sdt>" +
                             "<DiaChi>" + diaChi + "</DiaChi>" +
                             "<AvatarURL>" + avatar + "</AvatarURL>" +
-                            "<VaiTro>" + defaultRole + "</VaiTro>" +    // Lưu mặc định
+                            "<VaiTro>" + defaultRole + "</VaiTro>" +
                             "<gioitinh>" + gioitinh + "</gioitinh>" +
                          "</NguoiDung>";
 
@@ -67,20 +64,15 @@ namespace QuanLyShopBanDoDaBong.Class
             db.Them_Database(tableName, fileName, "IDNguoiDung");
             KhoiTaoXML();
         }
-
-        // SỬA: Nhận thông tin chi tiết để update, giữ nguyên pass và role cũ
         public void SuaTK(string id, string email, string sdt, string diaChi, string avatar, string gioitinh)
         {
             DataTable dt = LayDanhSach();
             DataRow[] rows = dt.Select($"{colID} = '{id}'");
-
-            // Khởi tạo biến để giữ lại mật khẩu và vai trò cũ
             string oldPass = "";
             string oldRole = "User";
 
             if (rows.Length > 0)
             {
-                // Lấy lại mật khẩu và vai trò cũ từ dòng dữ liệu hiện tại
                 oldPass = rows[0]["password"] != DBNull.Value ? rows[0]["password"].ToString() : "123456";
                 oldRole = rows[0]["VaiTro"] != DBNull.Value ? rows[0]["VaiTro"].ToString() : "User";
             }
@@ -88,11 +80,11 @@ namespace QuanLyShopBanDoDaBong.Class
             string xml = "<NguoiDung>" +
                             "<IDNguoiDung>" + id + "</IDNguoiDung>" +
                             "<Email>" + email + "</Email>" +
-                            "<password>" + oldPass + "</password>" + // Giữ nguyên pass cũ
+                            "<password>" + oldPass + "</password>" +
                             "<sdt>" + sdt + "</sdt>" +
                             "<DiaChi>" + diaChi + "</DiaChi>" +
                             "<AvatarURL>" + avatar + "</AvatarURL>" +
-                            "<VaiTro>" + oldRole + "</VaiTro>" +     // Giữ nguyên role cũ
+                            "<VaiTro>" + oldRole + "</VaiTro>" +
                             "<gioitinh>" + gioitinh + "</gioitinh>" +
                          "</NguoiDung>";
 
@@ -108,7 +100,6 @@ namespace QuanLyShopBanDoDaBong.Class
 
         public void KhoiTaoXML()
         {
-            // Load lại những người dùng có vai trò là User (hoặc load tất cả tùy logic của bạn)
             db.taoXML("SELECT * FROM NguoiDung where VaiTro = N'User'", tableName, fileName);
         }
     }

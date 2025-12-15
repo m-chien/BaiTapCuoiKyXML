@@ -1,6 +1,6 @@
 ﻿namespace QuanLyShopBanDoDaBong
 {
-    partial class Form_QLTaiKhoan
+    partial class Form_QLKhachHang
     {
         private System.ComponentModel.IContainer components = null;
 
@@ -19,6 +19,14 @@
             this.pnlHeader = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBoxInfo = new System.Windows.Forms.GroupBox();
+            this.txtAvatar = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.cmbGioiTinh = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtDiaChi = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtSDT = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.cmbvaitro = new System.Windows.Forms.ComboBox();
             this.txtendangnhap = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -30,14 +38,6 @@
             this.btnxoa = new System.Windows.Forms.Button();
             this.btnthem = new System.Windows.Forms.Button();
             this.dgvtaikhoan = new System.Windows.Forms.DataGridView();
-            this.txtSDT = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtDiaChi = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.cmbGioiTinh = new System.Windows.Forms.ComboBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.txtAvatar = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
             this.pnlHeader.SuspendLayout();
             this.groupBoxInfo.SuspendLayout();
             this.groupBoxActions.SuspendLayout();
@@ -59,11 +59,11 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(450, 20);
+            this.label1.Location = new System.Drawing.Point(531, 19);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(258, 32);
+            this.label1.Size = new System.Drawing.Size(287, 32);
             this.label1.TabIndex = 0;
-            this.label1.Text = "QUẢN LÝ TÀI KHOẢN";
+            this.label1.Text = "QUẢN LÝ KHÁCH HÀNG";
             // 
             // groupBoxInfo
             // 
@@ -87,6 +87,93 @@
             this.groupBoxInfo.TabIndex = 1;
             this.groupBoxInfo.TabStop = false;
             this.groupBoxInfo.Text = "Thông tin tài khoản";
+            // 
+            // txtAvatar
+            // 
+            this.txtAvatar.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtAvatar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtAvatar.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAvatar.Location = new System.Drawing.Point(147, 97);
+            this.txtAvatar.Name = "txtAvatar";
+            this.txtAvatar.Size = new System.Drawing.Size(194, 26);
+            this.txtAvatar.TabIndex = 15;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.Black;
+            this.label8.Location = new System.Drawing.Point(30, 99);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(97, 19);
+            this.label8.TabIndex = 14;
+            this.label8.Text = "Ảnh Đại Diện :";
+            // 
+            // cmbGioiTinh
+            // 
+            this.cmbGioiTinh.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.cmbGioiTinh.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbGioiTinh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmbGioiTinh.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbGioiTinh.FormattingEnabled = true;
+            this.cmbGioiTinh.Location = new System.Drawing.Point(519, 145);
+            this.cmbGioiTinh.Name = "cmbGioiTinh";
+            this.cmbGioiTinh.Size = new System.Drawing.Size(194, 27);
+            this.cmbGioiTinh.TabIndex = 13;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.Black;
+            this.label7.Location = new System.Drawing.Point(402, 148);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(70, 19);
+            this.label7.TabIndex = 12;
+            this.label7.Text = "Giới Tính :";
+            // 
+            // txtDiaChi
+            // 
+            this.txtDiaChi.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtDiaChi.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtDiaChi.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDiaChi.Location = new System.Drawing.Point(519, 95);
+            this.txtDiaChi.Name = "txtDiaChi";
+            this.txtDiaChi.Size = new System.Drawing.Size(194, 26);
+            this.txtDiaChi.TabIndex = 11;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.Black;
+            this.label6.Location = new System.Drawing.Point(402, 97);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(60, 19);
+            this.label6.TabIndex = 10;
+            this.label6.Text = "Địa Chỉ :";
+            // 
+            // txtSDT
+            // 
+            this.txtSDT.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtSDT.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtSDT.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSDT.Location = new System.Drawing.Point(519, 51);
+            this.txtSDT.Name = "txtSDT";
+            this.txtSDT.Size = new System.Drawing.Size(194, 26);
+            this.txtSDT.TabIndex = 9;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Black;
+            this.label2.Location = new System.Drawing.Point(402, 53);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(96, 19);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "Số Điện Thoại:";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // cmbvaitro
             // 
@@ -249,93 +336,6 @@
             this.dgvtaikhoan.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvtaikhoan_CellClick);
             this.dgvtaikhoan.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvtaikhoan_CellContentClick);
             // 
-            // txtSDT
-            // 
-            this.txtSDT.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtSDT.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtSDT.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSDT.Location = new System.Drawing.Point(519, 51);
-            this.txtSDT.Name = "txtSDT";
-            this.txtSDT.Size = new System.Drawing.Size(194, 26);
-            this.txtSDT.TabIndex = 9;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(402, 53);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(96, 19);
-            this.label2.TabIndex = 8;
-            this.label2.Text = "Số Điện Thoại:";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
-            // 
-            // txtDiaChi
-            // 
-            this.txtDiaChi.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtDiaChi.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtDiaChi.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDiaChi.Location = new System.Drawing.Point(519, 95);
-            this.txtDiaChi.Name = "txtDiaChi";
-            this.txtDiaChi.Size = new System.Drawing.Size(194, 26);
-            this.txtDiaChi.TabIndex = 11;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(402, 97);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(60, 19);
-            this.label6.TabIndex = 10;
-            this.label6.Text = "Địa Chỉ :";
-            // 
-            // cmbGioiTinh
-            // 
-            this.cmbGioiTinh.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.cmbGioiTinh.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbGioiTinh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cmbGioiTinh.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbGioiTinh.FormattingEnabled = true;
-            this.cmbGioiTinh.Location = new System.Drawing.Point(519, 145);
-            this.cmbGioiTinh.Name = "cmbGioiTinh";
-            this.cmbGioiTinh.Size = new System.Drawing.Size(194, 27);
-            this.cmbGioiTinh.TabIndex = 13;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.Black;
-            this.label7.Location = new System.Drawing.Point(402, 148);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(70, 19);
-            this.label7.TabIndex = 12;
-            this.label7.Text = "Giới Tính :";
-            // 
-            // txtAvatar
-            // 
-            this.txtAvatar.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtAvatar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtAvatar.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAvatar.Location = new System.Drawing.Point(147, 97);
-            this.txtAvatar.Name = "txtAvatar";
-            this.txtAvatar.Size = new System.Drawing.Size(194, 26);
-            this.txtAvatar.TabIndex = 15;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.Color.Black;
-            this.label8.Location = new System.Drawing.Point(30, 99);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(97, 19);
-            this.label8.TabIndex = 14;
-            this.label8.Text = "Ảnh Đại Diện :";
-            // 
             // Form_QLTaiKhoan
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -347,7 +347,7 @@
             this.Controls.Add(this.pnlHeader);
             this.Name = "Form_QLTaiKhoan";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Quản lý tài khoản";
+            this.Text = "Quản lý khách hàng";
             this.Load += new System.EventHandler(this.Form_QLTaiKhoan_Load);
             this.pnlHeader.ResumeLayout(false);
             this.pnlHeader.PerformLayout();

@@ -64,7 +64,7 @@
             this.quanLyTaiKhoanToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.quanLyTaiKhoanToolStripMenuItem.Name = "quanLyTaiKhoanToolStripMenuItem";
             this.quanLyTaiKhoanToolStripMenuItem.Size = new System.Drawing.Size(152, 40);
-            this.quanLyTaiKhoanToolStripMenuItem.Text = " Quản lý tài khoản";
+            this.quanLyTaiKhoanToolStripMenuItem.Text = " Quản lý khách hàng";
             this.quanLyTaiKhoanToolStripMenuItem.Click += new System.EventHandler(this.quanLyTaiKhoanToolStripMenuItem_Click);
             // 
             // quanLyDanhMucToolStripMenuItem

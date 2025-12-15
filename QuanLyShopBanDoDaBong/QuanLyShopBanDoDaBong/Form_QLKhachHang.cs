@@ -5,12 +5,12 @@ using QuanLyShopBanDoDaBong.Class;
 
 namespace QuanLyShopBanDoDaBong
 {
-    public partial class Form_QLTaiKhoan : Form
+    public partial class Form_QLKhachHang : Form
     {
-        TaiKhoan objTK = new TaiKhoan();
+        KhachHang objTK = new KhachHang();
         string idHienTai = "";
 
-        public Form_QLTaiKhoan()
+        public Form_QLKhachHang()
         {
             InitializeComponent();
         }
