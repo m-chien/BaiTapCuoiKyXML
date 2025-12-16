@@ -2342,7 +2342,7 @@
 									"top": 498,
 									"width": 85,
 									"height": 26,
-									"text": "Duyệt hoặc từ chối bình luận",
+									"text": "Tìm Kiếm Bình Luận",
 									"wordWrap": true
 								}
 							],
@@ -2657,7 +2657,7 @@
 							"left": 368,
 							"top": 432,
 							"width": 1,
-							"height": 225,
+							"height": 337,
 							"nameLabel": {
 								"$ref": "AAAAAAGabp4iD8SUI8k="
 							}
@@ -2821,7 +2821,7 @@
 							"left": 536,
 							"top": 432,
 							"width": 1,
-							"height": 225,
+							"height": 337,
 							"nameLabel": {
 								"$ref": "AAAAAAGabqJ5OsUVUmk="
 							}
@@ -3119,7 +3119,7 @@
 							"left": 864,
 							"top": 432,
 							"width": 1,
-							"height": 225,
+							"height": 337,
 							"nameLabel": {
 								"$ref": "AAAAAAGabqVHQ8V+/ck="
 							}
@@ -3179,7 +3179,7 @@
 									"top": 562,
 									"width": 69,
 									"height": 26,
-									"text": "Sửa TT hóa đơn",
+									"text": "Tìm Kiếm Hóa Đơn",
 									"wordWrap": true
 								}
 							],
@@ -3213,7 +3213,7 @@
 									"top": 642,
 									"width": 69,
 									"height": 26,
-									"text": "Xóa TT hóa đơn",
+									"text": "Xem chi tiết hóa đơn",
 									"wordWrap": true
 								}
 							],
@@ -3285,6 +3285,138 @@
 							"font": "Arial;13;0",
 							"lineStyle": 1,
 							"points": "864:656;904:657"
+						},
+						{
+							"_type": "FreelineEdgeView",
+							"_id": "AAAAAAGbIk0N/UOkAKM=",
+							"_parent": {
+								"$ref": "AAAAAAGabnJpUb7Jyzs="
+							},
+							"font": "Arial;13;0",
+							"lineStyle": 1,
+							"points": "864:728;904:728"
+						},
+						{
+							"_type": "FCProcessView",
+							"_id": "AAAAAAGbIk0hAkOpEHc=",
+							"_parent": {
+								"$ref": "AAAAAAGabnJpUb7Jyzs="
+							},
+							"model": {
+								"$ref": "AAAAAAGbIk0hAUOndiM="
+							},
+							"subViews": [
+								{
+									"_type": "LabelView",
+									"_id": "AAAAAAGbIk0hAkOqpuE=",
+									"_parent": {
+										"$ref": "AAAAAAGbIk0hAkOpEHc="
+									},
+									"font": "Arial;13;0",
+									"left": 914,
+									"top": 706,
+									"width": 77,
+									"height": 39,
+									"text": "Cập nhật trạng thái hóa đơn",
+									"wordWrap": true
+								}
+							],
+							"font": "Arial;13;0",
+							"left": 904,
+							"top": 696,
+							"width": 97,
+							"height": 59,
+							"nameLabel": {
+								"$ref": "AAAAAAGbIk0hAkOqpuE="
+							}
+						},
+						{
+							"_type": "FreelineEdgeView",
+							"_id": "AAAAAAGbIk5L/0PH2UU=",
+							"_parent": {
+								"$ref": "AAAAAAGabnJpUb7Jyzs="
+							},
+							"font": "Arial;13;0",
+							"lineStyle": 1,
+							"points": "368:720;400:720"
+						},
+						{
+							"_type": "FCProcessView",
+							"_id": "AAAAAAGbIk54aUPQfH8=",
+							"_parent": {
+								"$ref": "AAAAAAGabnJpUb7Jyzs="
+							},
+							"model": {
+								"$ref": "AAAAAAGbIk54aUPO6j0="
+							},
+							"subViews": [
+								{
+									"_type": "LabelView",
+									"_id": "AAAAAAGbIk54aUPRdXE=",
+									"_parent": {
+										"$ref": "AAAAAAGbIk54aUPQfH8="
+									},
+									"font": "Arial;13;0",
+									"left": 410,
+									"top": 706,
+									"width": 77,
+									"height": 26,
+									"text": "Tìm Kiếm Danh Mục",
+									"wordWrap": true
+								}
+							],
+							"font": "Arial;13;0",
+							"left": 400,
+							"top": 696,
+							"width": 97,
+							"height": 46,
+							"nameLabel": {
+								"$ref": "AAAAAAGbIk54aUPRdXE="
+							}
+						},
+						{
+							"_type": "FCProcessView",
+							"_id": "AAAAAAGbIk7+LUPipNA=",
+							"_parent": {
+								"$ref": "AAAAAAGabnJpUb7Jyzs="
+							},
+							"model": {
+								"$ref": "AAAAAAGbIk7+LUPggFM="
+							},
+							"subViews": [
+								{
+									"_type": "LabelView",
+									"_id": "AAAAAAGbIk7+LUPjsyo=",
+									"_parent": {
+										"$ref": "AAAAAAGbIk7+LUPipNA="
+									},
+									"font": "Arial;13;0",
+									"left": 578,
+									"top": 714,
+									"width": 69,
+									"height": 26,
+									"text": "Tìm Kiếm Sản Phẩm",
+									"wordWrap": true
+								}
+							],
+							"font": "Arial;13;0",
+							"left": 568,
+							"top": 704,
+							"width": 89,
+							"height": 46,
+							"nameLabel": {
+								"$ref": "AAAAAAGbIk7+LUPjsyo="
+							}
+						},
+						{
+							"_type": "FreelineEdgeView",
+							"_id": "AAAAAAGbIk9Y7EPunok=",
+							"_parent": {
+								"$ref": "AAAAAAGabnJpUb7Jyzs="
+							},
+							"font": "Arial;13;0",
+							"lineStyle": 1,
+							"points": "536:720;568:720"
 						}
 					]
 				},
@@ -3409,7 +3541,7 @@
 					"_parent": {
 						"$ref": "AAAAAAGabnJpUb7Itd0="
 					},
-					"name": "Duyệt hoặc từ chối bình luận"
+					"name": "Tìm Kiếm Bình Luận"
 				},
 				{
 					"_type": "FCProcess",
@@ -3525,7 +3657,7 @@
 					"_parent": {
 						"$ref": "AAAAAAGabnJpUb7Itd0="
 					},
-					"name": "Sửa TT hóa đơn"
+					"name": "Tìm Kiếm Hóa Đơn"
 				},
 				{
 					"_type": "FCProcess",
@@ -3533,7 +3665,31 @@
 					"_parent": {
 						"$ref": "AAAAAAGabnJpUb7Itd0="
 					},
-					"name": "Xóa TT hóa đơn"
+					"name": "Xem chi tiết hóa đơn"
+				},
+				{
+					"_type": "FCProcess",
+					"_id": "AAAAAAGbIk0hAUOndiM=",
+					"_parent": {
+						"$ref": "AAAAAAGabnJpUb7Itd0="
+					},
+					"name": "Cập nhật trạng thái hóa đơn"
+				},
+				{
+					"_type": "FCProcess",
+					"_id": "AAAAAAGbIk54aUPO6j0=",
+					"_parent": {
+						"$ref": "AAAAAAGabnJpUb7Itd0="
+					},
+					"name": "Tìm Kiếm Danh Mục"
+				},
+				{
+					"_type": "FCProcess",
+					"_id": "AAAAAAGbIk7+LUPggFM=",
+					"_parent": {
+						"$ref": "AAAAAAGabnJpUb7Itd0="
+					},
+					"name": "Tìm Kiếm Sản Phẩm"
 				}
 			]
 		},

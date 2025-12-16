@@ -166,7 +166,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\unnamed %283%29.jpg" />
-    <Content Include="ThongKe.xslt" />
+    <Content Include="ThongKe.xslt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -33,7 +33,6 @@ namespace QuanLyShopBanDoDaBong
 
                 if (dgvtaikhoan.Columns.Count > 0)
                 {
-                    // Đặt tên tiêu đề tiếng Việt
                     if (dgvtaikhoan.Columns.Contains("IDNguoiDung")) dgvtaikhoan.Columns["IDNguoiDung"].HeaderText = "ID";
                     if (dgvtaikhoan.Columns.Contains("Email")) dgvtaikhoan.Columns["Email"].HeaderText = "Email (Tài khoản)";
                     if (dgvtaikhoan.Columns.Contains("sdt")) dgvtaikhoan.Columns["sdt"].HeaderText = "SĐT";
@@ -41,7 +40,6 @@ namespace QuanLyShopBanDoDaBong
                     if (dgvtaikhoan.Columns.Contains("gioitinh")) dgvtaikhoan.Columns["gioitinh"].HeaderText = "Giới tính";
                     if (dgvtaikhoan.Columns.Contains("AvatarURL")) dgvtaikhoan.Columns["AvatarURL"].HeaderText = "Avatar";
 
-                    // ẨN Cột Password và Vai trò theo yêu cầu
                     if (dgvtaikhoan.Columns.Contains("password")) dgvtaikhoan.Columns["password"].Visible = false;
                     if (dgvtaikhoan.Columns.Contains("VaiTro")) dgvtaikhoan.Columns["VaiTro"].Visible = false;
                 }
@@ -59,15 +57,12 @@ namespace QuanLyShopBanDoDaBong
             {
                 DataGridViewRow row = dgvtaikhoan.Rows[e.RowIndex];
 
-                // Lấy ID để xử lý Sửa/Xóa
                 if (row.Cells["IDNguoiDung"].Value != null)
                     idHienTai = row.Cells["IDNguoiDung"].Value.ToString();
 
-                // Đổ dữ liệu lên các ô nhập liệu
                 if (row.Cells["Email"].Value != null)
                     txtendangnhap.Text = row.Cells["Email"].Value.ToString();
 
-                // Kiểm tra null trước khi gán để tránh lỗi
                 txtSDT.Text = row.Cells["sdt"].Value != null ? row.Cells["sdt"].Value.ToString() : "";
                 txtDiaChi.Text = row.Cells["DiaChi"].Value != null ? row.Cells["DiaChi"].Value.ToString() : "";
                 txtAvatar.Text = row.Cells["AvatarURL"].Value != null ? row.Cells["AvatarURL"].Value.ToString() : "";
@@ -77,7 +72,6 @@ namespace QuanLyShopBanDoDaBong
 
         private void btnthem_Click(object sender, EventArgs e)
         {
-            // Kiểm tra các trường bắt buộc (ví dụ Email)
             if (string.IsNullOrEmpty(txtendangnhap.Text))
             {
                 MessageBox.Show("Vui lòng nhập Email!");
@@ -90,7 +84,6 @@ namespace QuanLyShopBanDoDaBong
                 return;
             }
 
-            // Gọi hàm ThemTK với các tham số mới (Bỏ pass và role)
             objTK.ThemTK(
                 txtendangnhap.Text,
                 txtSDT.Text,
@@ -111,7 +104,6 @@ namespace QuanLyShopBanDoDaBong
                 return;
             }
 
-            // Gọi hàm SuaTK với các tham số mới (Giữ nguyên pass và role cũ trong DB)
             objTK.SuaTK(
                 idHienTai,
                 txtendangnhap.Text,
@@ -145,7 +137,7 @@ namespace QuanLyShopBanDoDaBong
         {
             objTK.KhoiTaoXML();
             MessageBox.Show("Đã đồng bộ dữ liệu từ SQL sang XML thành công!");
-            LoadData(); // Load lại để đảm bảo hiển thị đúng
+            LoadData();
         }
 
         private void ResetForm()
@@ -157,11 +149,8 @@ namespace QuanLyShopBanDoDaBong
             txtAvatar.Clear();
             cmbGioiTinh.SelectedIndex = -1;
 
-            // Focus lại vào ô nhập liệu đầu tiên
             txtendangnhap.Focus();
         }
-
-        // Các event thừa hoặc tự sinh ra, giữ lại để tránh lỗi Designer
         private void btnsua_Click_1(object sender, EventArgs e) { btnsua_Click(sender, e); }
         private void dgvtaikhoan_CellContentClick(object sender, DataGridViewCellEventArgs e) { }
 

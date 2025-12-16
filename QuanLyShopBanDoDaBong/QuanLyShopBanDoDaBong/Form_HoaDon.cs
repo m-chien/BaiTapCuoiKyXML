@@ -140,7 +140,6 @@ namespace QuanLyShopBanDoDaBong
                 if (cellValue != null && cellValue != DBNull.Value)
                 {
                     int idHoaDon = Convert.ToInt32(cellValue);
-
                     Form_ChiTietHoaDon f = new Form_ChiTietHoaDon(idHoaDon);
                     f.ShowDialog();
                 }
@@ -160,10 +159,8 @@ namespace QuanLyShopBanDoDaBong
             try
             {
                 objHD.KhoiTaoXML();
-
                 ChiTietHoaDon objCTHD = new ChiTietHoaDon();
                 objCTHD.KhoiTaoXML();
-
                 MessageBox.Show("Đã đồng bộ HoaDon và ChiTietHoaDon từ SQL!");
                 LoadData();
             }
@@ -172,7 +169,6 @@ namespace QuanLyShopBanDoDaBong
                 MessageBox.Show("Lỗi tạo XML: " + ex.Message);
             }
         }
-
         private void chkLocNgay_CheckedChanged(object sender, EventArgs e)
         {
             if (dtpNgay != null)
@@ -189,12 +185,65 @@ namespace QuanLyShopBanDoDaBong
             }
         }
 
-        private void dgvHoaDon_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-        }
         private void btnThoat_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+        private void dgvHoaDon_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = dgvHoaDon.Rows[e.RowIndex];
+                string trangThai = row.Cells["TrangThai"].Value?.ToString();
+
+                if (!string.IsNullOrEmpty(trangThai))
+                {
+                    if (cbbTrangThai.Items.Contains(trangThai))
+                    {
+                        cbbTrangThai.SelectedItem = trangThai;
+                    }
+                }
+            }
+        }
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            if (dgvHoaDon.CurrentRow == null || dgvHoaDon.CurrentRow.Index < 0)
+            {
+                MessageBox.Show("Vui lòng chọn hóa đơn cần cập nhật!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string trangThaiMoi = cbbTrangThai.SelectedItem.ToString();
+            if (trangThaiMoi == "Tất cả")
+            {
+                MessageBox.Show("Vui lòng chọn trạng thái cụ thể (Đã thanh toán/Chờ thanh toán...)", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                DataGridViewRow row = dgvHoaDon.CurrentRow;
+                string idHoaDon = row.Cells["IDHoaDon"].Value.ToString();
+                string idUser = row.Cells["IdUser"].Value.ToString();
+                string tongTien = row.Cells["TongTien"].Value.ToString();
+                string diaChi = row.Cells["DiaChiGiaoHang"].Value.ToString();
+
+                DateTime ngayDatDate = Convert.ToDateTime(row.Cells["NgayDat"].Value);
+                string ngayDat = ngayDatDate.ToString("yyyy-MM-dd");
+
+                objHD.SuaHoaDon(idHoaDon, idUser, tongTien, diaChi, ngayDat, trangThaiMoi);
+
+                MessageBox.Show($"Cập nhật hóa đơn {idHoaDon} sang trạng thái: {trangThaiMoi} thành công!", "Thông báo");
+                LoadData();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi cập nhật: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void dgvHoaDon_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
         }
     }
 }

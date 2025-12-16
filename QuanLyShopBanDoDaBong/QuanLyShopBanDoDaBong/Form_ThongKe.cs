@@ -194,144 +194,31 @@ namespace QuanLyShopBanDoDaBong
 
             try
             {
-                // 1. Lấy dữ liệu từ Grid
                 DataTable dtGrid = (DataTable)dataGridView1.DataSource;
-
-                // 2. Tạo một DataSet mới để chứa Table (Để XML có thẻ root <NewDataSet>)
                 DataSet ds = new DataSet("NewDataSet");
-
-                // Copy dữ liệu sang bảng mới để tránh lỗi "Table already belongs to another DataSet"
                 DataTable dtExport = dtGrid.Copy();
-                dtExport.TableName = "Table"; // Đặt tên cố định để XSLT nhận diện
+                dtExport.TableName = "Table";
                 ds.Tables.Add(dtExport);
-
-                // 3. Ghi file XML (Dùng WriteSchema để đảm bảo format số liệu)
                 string xmlPath = Path.Combine(Application.StartupPath, "DataThongKe.xml");
                 ds.WriteXml(xmlPath, XmlWriteMode.WriteSchema);
-
-                // 4. Tạo và chạy XSLT
                 string xsltPath = Path.Combine(Application.StartupPath, "ThongKe.xslt");
-                // Luôn tạo lại file XSLT để đảm bảo code mới nhất
-                TaoFileXSLT(xsltPath);
+                if (!File.Exists(xsltPath))
+                {
+                    MessageBox.Show("Không tìm thấy file ThongKe.xslt!");
+                    return;
+                }
 
                 XslCompiledTransform transform = new XslCompiledTransform();
                 transform.Load(xsltPath);
 
                 string htmlPath = Path.Combine(Application.StartupPath, "BaoCao_" + DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".html");
                 transform.Transform(xmlPath, htmlPath);
-
-                // Mở file HTML
                 Process.Start(new ProcessStartInfo(htmlPath) { UseShellExecute = true });
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Lỗi xuất báo cáo: " + ex.Message);
             }
-        }
-
-        private void TaoFileXSLT(string path)
-        {
-            // Dùng @ ở trước để viết chuỗi nhiều dòng
-            // Lưu ý: Trong chuỗi @, muốn viết dấu " thì phải viết thành ""
-            string content = @"<?xml version='1.0' encoding='UTF-8'?>
-<xsl:stylesheet version='1.0' xmlns:xsl='http://www.w3.org/1999/XSL/Transform'>
-  <xsl:template match='/'>
-    <html>
-      <head>
-        <title>Báo Cáo Thống Kê</title>
-        <script src='https://cdn.jsdelivr.net/npm/chart.js'></script>
-        <style>
-          body { font-family: 'Segoe UI', Arial, sans-serif; padding: 20px; background: #f4f7f6; }
-          .container { max-width: 1000px; margin: 0 auto; background: white; padding: 40px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-          h1 { text-align: center; color: #2c3e50; margin-bottom: 30px; }
-          
-          /* Bảng */
-          table { width: 100%; border-collapse: collapse; margin-top: 30px; }
-          th { background: #3498db; color: white; padding: 12px; text-align: center; }
-          td { border-bottom: 1px solid #ddd; padding: 10px; text-align: center; color: #333; }
-          tr:nth-child(even) { background-color: #f9f9f9; }
-
-          /* Biểu đồ */
-          .chart-container { position: relative; height: 400px; width: 100%; margin-top: 20px; }
-        </style>
-      </head>
-      <body>
-        <div class='container'>
-          <h1>BÁO CÁO THỐNG KÊ CỬA HÀNG</h1>
-          
-          <div class='chart-container'>
-            <canvas id='myChart'></canvas>
-          </div>
-
-          <h3 style='margin-top:40px; color:#34495e;'>Chi tiết số liệu:</h3>
-          <table>
-            <thead>
-                <tr>
-                    <xsl:for-each select='NewDataSet/Table[1]/*'>
-                        <th><xsl:value-of select=""translate(name(), '_', ' ')""/></th>
-                    </xsl:for-each>
-                </tr>
-            </thead>
-            <tbody>
-                <xsl:for-each select='NewDataSet/Table'>
-                  <tr>
-                    <xsl:for-each select='*'>
-                        <td><xsl:value-of select='.'/></td>
-                    </xsl:for-each>
-                  </tr>
-                </xsl:for-each>
-            </tbody>
-          </table>
-        </div>
-
-        <script>
-          // Lấy dữ liệu từ XML vào mảng JS
-          // Cột đầu tiên là Nhãn (Labels), Cột cuối cùng là Dữ liệu (Data)
-          const labels = [
-            <xsl:for-each select='NewDataSet/Table'>
-                ""<xsl:value-of select='*[1]'/>"", 
-            </xsl:for-each>
-          ];
-
-          const dataValues = [
-            <xsl:for-each select='NewDataSet/Table'>
-                <xsl:value-of select='*[last()]'/>, 
-            </xsl:for-each>
-          ];
-
-          // Vẽ biểu đồ
-          const ctx = document.getElementById('myChart');
-          new Chart(ctx, {
-            type: 'bar', // Có thể đổi thành 'line', 'pie'
-            data: {
-              labels: labels,
-              datasets: [{
-                label: 'Thống Kê',
-                data: dataValues,
-                backgroundColor: 'rgba(52, 152, 219, 0.6)',
-                borderColor: 'rgba(52, 152, 219, 1)',
-                borderWidth: 1
-              }]
-            },
-            options: {
-              responsive: true,
-              maintainAspectRatio: false,
-              plugins: {
-                legend: { position: 'top' },
-                title: { display: true, text: 'Biểu đồ trực quan số liệu' }
-              },
-              scales: {
-                y: { beginAtZero: true }
-              }
-            }
-          });
-        </script>
-      </body>
-    </html>
-  </xsl:template>
-</xsl:stylesheet>";
-
-            File.WriteAllText(path, content);
         }
 
         private void cbNam_SelectedIndexChanged(object sender, EventArgs e)

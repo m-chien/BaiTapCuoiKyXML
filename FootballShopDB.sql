@@ -90,42 +90,32 @@ CREATE TABLE BinhLuan (
 			ON DELETE CASCADE,
 );
 
--- =============== THÊM CÁC RÀNG BUỘC CHECK ===============
--- Ràng buộc Vai trò chỉ được Admin hoặc User
 ALTER TABLE NguoiDung
 ADD CONSTRAINT CK_VaiTro CHECK (VaiTro IN (N'Admin', N'User'));
 
--- Ràng buộc Trạng thái hóa đơn
 ALTER TABLE HoaDon
 ADD CONSTRAINT CK_TrangThai CHECK (TrangThai IN (N'Đã thanh toán', N'Chờ thanh toán', N'Hủy thanh toán'));
 
--- Ràng buộc Số lượng tồn kho phải >= 0
 ALTER TABLE SanPham
 ADD CONSTRAINT CK_SoLuongTonKho CHECK (SoLuongTonKho >= 0);
 
--- Ràng buộc Số lượng trong chi tiết hóa đơn phải > 0
 ALTER TABLE ChiTietHoaDon
 ADD CONSTRAINT CK_SoLuong CHECK (SoLuong > 0);
 
--- Ràng buộc Đơn giá phải > 0
 ALTER TABLE ChiTietHoaDon
 ADD CONSTRAINT CK_DonGia CHECK (DonGia > 0);
 
--- Ràng buộc Tổng tiền phải >= 0
 ALTER TABLE HoaDon
 ADD CONSTRAINT CK_TongTien CHECK (TongTien >= 0);
 
--- =============== INSERT DỮ LIỆU MẪU ===============
 
--- Insert dữ liệu vào bảng NguoiDung
 INSERT INTO NguoiDung (Email, password, sdt, DiaChi, AvatarURL, VaiTro, gioitinh) VALUES
-(N'ad', N'1', N'0901234567', N'123 Nguyễn Huệ, Đà Nẵng', N'avatar1.jpg', N'Admin', N'Nam'),
+(N'admin', N'123', N'0901234567', N'123 Nguyễn Huệ, Đà Nẵng', N'avatar1.jpg', N'Admin', N'Nam'),
 (N'user1', N'user123', N'0912345678', N'456 Lê Lợi, Đà Nẵng', N'avatar2.jpg', N'User', N'Nữ'),
 (N'user2', N'user456', N'0923456789', N'789 Trần Phú, Đà Nẵng', N'avatar3.jpg', N'User', N'Nam'),
 (N'user3', N'user789', N'0934567890', N'321 Hùng Vương, Đà Nẵng', N'avatar4.jpg', N'User', N'Nữ'),
 (N'user4', N'user000', N'0945678901', N'654 Hoàng Diệu, Đà Nẵng', N'avatar5.jpg', N'User', N'Nam');
 
--- Insert dữ liệu vào bảng DanhMuc
 INSERT INTO DanhMuc (TenDanhmuc, MoTa, NgayTao) VALUES
 (N'Áo đá banh', N'Các loại áo đá banh CLB và ĐTQG', '2024-01-15'),
 (N'Quần đá banh', N'Quần đá banh nam nữ', '2024-01-16'),
@@ -133,7 +123,6 @@ INSERT INTO DanhMuc (TenDanhmuc, MoTa, NgayTao) VALUES
 (N'Phụ kiện bóng đá', N'Găng tay, tất, bóng', '2024-01-18'),
 (N'Áo khoác thể thao', N'Áo khoác CLB và đội tuyển', '2024-01-19');
 
--- Insert dữ liệu vào bảng SanPham
 INSERT INTO SanPham (IDdanhMuc, Hang, KichThuoc, mausac, mota, hinhanh, SoLuongTonKho, DonViTinh) VALUES
 (1, N'Adidas', N'M', N'Đỏ', N'Áo đá banh Đội tuyển Việt Nam sân nhà', N'aovn1.jpg', 60, N'Cái'),
 (1, N'Nike', N'L', N'Xanh dương', N'Áo đá banh CLB Chelsea mùa 2024', N'chelsea2024.jpg', 45, N'Cái'),
@@ -142,7 +131,6 @@ INSERT INTO SanPham (IDdanhMuc, Hang, KichThuoc, mausac, mota, hinhanh, SoLuongT
 (4, N'Adidas', N'Free', N'Đen', N'Găng tay thủ môn Adidas Pro', N'gangtay1.jpg', 35, N'Cặp'),
 (5, N'Adidas', N'XL', N'Xám', N'Áo khoác thể thao Real Madrid', N'aokhoacRM.jpg', 25, N'Cái');
 
--- Insert dữ liệu vào bảng HoaDon
 INSERT INTO HoaDon (IdUser, TongTien, DiaChiGiaoHang, NgayDat, TrangThai) VALUES
 (2, 1200000, N'456 Lê Lợi, Đà Nẵng', '2024-02-01', N'Đã thanh toán'),
 (3, 850000, N'789 Trần Phú, Đà Nẵng', '2024-02-05', N'Chờ thanh toán'),
@@ -150,7 +138,6 @@ INSERT INTO HoaDon (IdUser, TongTien, DiaChiGiaoHang, NgayDat, TrangThai) VALUES
 (5, 450000, N'654 Hoàng Diệu, Đà Nẵng', '2024-02-20', N'Chờ thanh toán'),
 (2, 900000, N'456 Lê Lợi, Đà Nẵng', '2024-02-20', N'Hủy thanh toán');
 
--- Insert dữ liệu vào bảng ChiTietHoaDon
 INSERT INTO ChiTietHoaDon (IdHoaDon, IdSanPham, SoLuong, DonGia) VALUES
 (1, 1, 2, 250000),
 (2, 2, 1, 300000),
@@ -158,7 +145,6 @@ INSERT INTO ChiTietHoaDon (IdHoaDon, IdSanPham, SoLuong, DonGia) VALUES
 (3, 3, 2, 600000),
 (4, 5, 1, 300000);
 
--- Insert dữ liệu vào bảng BinhLuan
 INSERT INTO BinhLuan (IDNguoiDung, IdSanPham, NoiDung, NgayBinhLuan, TinhTrang) VALUES
 (2, 1, N'Áo Việt Nam chất lượng, mặc đá rất thoải mái', '2024-02-02', N'Đã duyệt'),
 (3, 2, N'Màu đẹp, form chuẩn đúng Nike', '2024-02-06', N'Đã duyệt'),
@@ -166,7 +152,6 @@ INSERT INTO BinhLuan (IDNguoiDung, IdSanPham, NoiDung, NgayBinhLuan, TinhTrang) 
 (5, 4, N'Giày bám sân tốt, đá rất đã', '2024-02-16', N'Chờ duyệt'),
 (2, 6, N'Áo khoác xịn, giữ nhiệt tốt', '2024-02-21', N'Đã duyệt');
 
--- =============== KIỂM TRA DỮ LIỆU ===============
 SELECT * FROM NguoiDung;
 SELECT * FROM DanhMuc;
 SELECT * FROM SanPham;
@@ -174,8 +159,6 @@ SELECT * FROM HoaDon;
 SELECT * FROM ChiTietHoaDon;
 SELECT * FROM BinhLuan;
 
--- =============== KIỂM TRA CÁC RÀNG BUỘC ===============
-PRINT N'Danh sách các ràng buộc CHECK:';
 SELECT 
     TABLE_NAME,
     CONSTRAINT_NAME

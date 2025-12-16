@@ -33,6 +33,7 @@
             this.btnLamMoi = new System.Windows.Forms.Button();
             this.btnTimKiem = new System.Windows.Forms.Button();
             this.dgvHoaDon = new System.Windows.Forms.DataGridView();
+            this.btnUpdate = new System.Windows.Forms.Button();
             this.pnlHeader.SuspendLayout();
             this.grpSearch.SuspendLayout();
             this.grpAction.SuspendLayout();
@@ -73,7 +74,7 @@
             this.grpSearch.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(73)))), ((int)(((byte)(94)))));
             this.grpSearch.Location = new System.Drawing.Point(50, 90);
             this.grpSearch.Name = "grpSearch";
-            this.grpSearch.Size = new System.Drawing.Size(650, 180);
+            this.grpSearch.Size = new System.Drawing.Size(650, 212);
             this.grpSearch.TabIndex = 1;
             this.grpSearch.TabStop = false;
             this.grpSearch.Text = "Tiêu chí tìm kiếm";
@@ -156,6 +157,7 @@
             // 
             // grpAction
             // 
+            this.grpAction.Controls.Add(this.btnUpdate);
             this.grpAction.Controls.Add(this.btnThoat);
             this.grpAction.Controls.Add(this.btnXuatXML);
             this.grpAction.Controls.Add(this.btnXemChiTiet);
@@ -165,7 +167,7 @@
             this.grpAction.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(73)))), ((int)(((byte)(94)))));
             this.grpAction.Location = new System.Drawing.Point(730, 90);
             this.grpAction.Name = "grpAction";
-            this.grpAction.Size = new System.Drawing.Size(320, 180);
+            this.grpAction.Size = new System.Drawing.Size(320, 212);
             this.grpAction.TabIndex = 2;
             this.grpAction.TabStop = false;
             this.grpAction.Text = "Chức năng";
@@ -260,15 +262,30 @@
             this.dgvHoaDon.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvHoaDon.ColumnHeadersHeight = 35;
             this.dgvHoaDon.EnableHeadersVisualStyles = false;
-            this.dgvHoaDon.Location = new System.Drawing.Point(50, 300);
+            this.dgvHoaDon.Location = new System.Drawing.Point(50, 336);
             this.dgvHoaDon.Name = "dgvHoaDon";
             this.dgvHoaDon.RowHeadersWidth = 51;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgvHoaDon.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvHoaDon.RowTemplate.Height = 24;
-            this.dgvHoaDon.Size = new System.Drawing.Size(1000, 350);
+            this.dgvHoaDon.Size = new System.Drawing.Size(1000, 314);
             this.dgvHoaDon.TabIndex = 3;
             this.dgvHoaDon.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvHoaDon_CellContentClick);
+            // 
+            // btnUpdate
+            // 
+            this.btnUpdate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(171)))), ((int)(((byte)(227)))));
+            this.btnUpdate.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUpdate.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdate.ForeColor = System.Drawing.Color.White;
+            this.btnUpdate.Location = new System.Drawing.Point(20, 151);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(280, 45);
+            this.btnUpdate.TabIndex = 6;
+            this.btnUpdate.Text = "Cập nhật trạng thái";
+            this.btnUpdate.UseVisualStyleBackColor = false;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // Form_HoaDon
             // 
@@ -312,5 +329,6 @@
         private System.Windows.Forms.CheckBox chkLocNgay;
         private System.Windows.Forms.Button btnXuatXML;
         private System.Windows.Forms.Button btnThoat;
+        private System.Windows.Forms.Button btnUpdate;
     }
 }
