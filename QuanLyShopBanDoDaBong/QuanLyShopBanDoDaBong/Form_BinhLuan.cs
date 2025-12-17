@@ -68,35 +68,27 @@ namespace QuanLyShopBanDoDaBong
         {
             try
             {
-                DataTable dt = objBL.LayDanhSach();
-                DataView dv = new DataView(dt);
+                string tinhTrang = cbbTinhTrang.SelectedItem?.ToString() ?? "Tất cả";
 
-                string filter = "";
-
-                string trangThai = cbbTinhTrang.SelectedItem?.ToString() ?? "Tất cả";
-                if (trangThai != "Tất cả")
-                {
-                    filter = $"TinhTrang = '{trangThai}'";
-                }
-
+                DateTime? ngayBinhLuan = null;
                 if (chkLocNgay != null && chkLocNgay.Checked)
-                {
-                    string ngayChon = dtpNgay.Value.ToString("yyyy-MM-dd");
-                    if (!string.IsNullOrEmpty(filter))
-                        filter += " AND ";
-                    filter += $"NgayBinhLuan = '{ngayChon}'";
-                }
+                    ngayBinhLuan = dtpNgay.Value.Date;
 
-                dv.RowFilter = filter;
-                dgvBinhLuan.DataSource = dv.ToTable();
+                DataTable ketQua = objBL.TimKiem(
+                    tinhTrang,
+                    ngayBinhLuan
+                );
 
-                this.Text = $"Quản lý bình luận - Tìm thấy {dv.Count} kết quả";
+                dgvBinhLuan.DataSource = ketQua;
+
+                this.Text = $"Quản lý bình luận - Tìm thấy {ketQua.Rows.Count} kết quả";
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Lỗi tìm kiếm: " + ex.Message);
             }
         }
+
 
         private void btnLamMoi_Click(object sender, EventArgs e)
         {

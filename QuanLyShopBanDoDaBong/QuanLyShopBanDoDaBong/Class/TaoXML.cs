@@ -225,5 +225,40 @@ namespace QuanLyShopBanDoDaBong
                 MessageBox.Show("Lỗi đồng bộ xóa SQL: " + ex.Message);
             }
         }
+        public DataTable TimKiemNhieuDieuKien(
+                        string fileXML,
+                        string cotTrangThai = null,
+                        string giaTriTrangThai = null,
+                        string cotNgay = null,
+                        DateTime? ngay = null,
+                        string cotSoTien = null,
+                        decimal? soTienMin = null)
+        {
+            DataTable dt = loadDataGridView(fileXML);
+            DataView dv = new DataView(dt);
+            string filter = "";
+            if (!string.IsNullOrEmpty(cotTrangThai)
+                && !string.IsNullOrEmpty(giaTriTrangThai)
+                && giaTriTrangThai != "Tất cả")
+            {
+                filter += $"{cotTrangThai} = '{giaTriTrangThai}'";
+            }
+            if (ngay.HasValue && !string.IsNullOrEmpty(cotNgay))
+            {
+                if (!string.IsNullOrEmpty(filter))
+                    filter += " AND ";
+                DateTime start = ngay.Value.Date;
+                DateTime end = start.AddDays(1);
+                filter += $"{cotNgay} >= #{start:MM/dd/yyyy}# AND {cotNgay} < #{end:MM/dd/yyyy}#";
+            }
+            if (soTienMin.HasValue && !string.IsNullOrEmpty(cotSoTien))
+            {
+                if (!string.IsNullOrEmpty(filter))
+                    filter += " AND ";
+                filter += $"{cotSoTien} >= {soTienMin.Value}";
+            }
+            dv.RowFilter = filter;
+            return dv.ToTable();
+        }
     }
 }

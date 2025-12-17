@@ -71,33 +71,17 @@ namespace QuanLyShopBanDoDaBong
         {
             try
             {
-                DataTable dt = objHD.LayDanhSach();
-                DataView dv = new DataView(dt);
-
-                string filter = "";
-
                 string trangThai = cbbTrangThai.SelectedItem?.ToString() ?? "Tất cả";
-                if (trangThai != "Tất cả")
-                {
-                    filter = $"TrangThai = '{trangThai}'";
-                }
 
+                DateTime? ngayDat = null;
                 if (chkLocNgay != null && chkLocNgay.Checked)
-                {
-                    string ngayChon = dtpNgay.Value.ToString("yyyy-MM-dd");
-                    if (!string.IsNullOrEmpty(filter))
-                        filter += " AND ";
-                    filter += $"NgayDat = '{ngayChon}'";
-                }
+                    ngayDat = dtpNgay.Value.Date;
 
+                decimal? tongTienMin = null;
                 if (!string.IsNullOrWhiteSpace(txtTongTien.Text))
                 {
-                    if (decimal.TryParse(txtTongTien.Text, out decimal tienChon))
-                    {
-                        if (!string.IsNullOrEmpty(filter))
-                            filter += " AND ";
-                        filter += $"TongTien >= {tienChon}";
-                    }
+                    if (decimal.TryParse(txtTongTien.Text, out decimal tien))
+                        tongTienMin = tien;
                     else
                     {
                         MessageBox.Show("Số tiền không hợp lệ!");
@@ -105,19 +89,25 @@ namespace QuanLyShopBanDoDaBong
                     }
                 }
 
-                dv.RowFilter = filter;
-                dgvHoaDon.DataSource = dv.ToTable();
+                DataTable ketQua = objHD.TimKiem(
+                    trangThai,
+                    ngayDat,
+                    tongTienMin
+                );
+
+                dgvHoaDon.DataSource = ketQua;
 
                 if (dgvHoaDon.Columns.Contains("TongTien"))
                     dgvHoaDon.Columns["TongTien"].DefaultCellStyle.Format = "#,### VNĐ";
 
-                this.Text = $"Quản lý hóa đơn - Tìm thấy {dv.Count} kết quả";
+                this.Text = $"Quản lý hóa đơn - Tìm thấy {ketQua.Rows.Count} kết quả";
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Lỗi tìm kiếm: " + ex.Message);
             }
         }
+
 
         private void btnLamMoi_Click_1(object sender, EventArgs e)
         {
@@ -188,22 +178,6 @@ namespace QuanLyShopBanDoDaBong
         private void btnThoat_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-        private void dgvHoaDon_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0)
-            {
-                DataGridViewRow row = dgvHoaDon.Rows[e.RowIndex];
-                string trangThai = row.Cells["TrangThai"].Value?.ToString();
-
-                if (!string.IsNullOrEmpty(trangThai))
-                {
-                    if (cbbTrangThai.Items.Contains(trangThai))
-                    {
-                        cbbTrangThai.SelectedItem = trangThai;
-                    }
-                }
-            }
         }
         private void btnUpdate_Click(object sender, EventArgs e)
         {

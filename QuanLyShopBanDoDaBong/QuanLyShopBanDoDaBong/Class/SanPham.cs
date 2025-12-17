@@ -96,10 +96,7 @@ namespace QuanLyShopBanDoDaBong.Class
 
         public DataTable TimKiem(string tuKhoa)
         {
-            DataTable dt = db.loadDataGridView(fileName);
-            DataView dv = new DataView(dt);
-            dv.RowFilter = $"mota LIKE '%{tuKhoa}%' OR Hang LIKE '%{tuKhoa}%'";
-            return dv.ToTable();
+            return db.TimKiem(fileName, "mota", tuKhoa);
         }
 
         public void KhoiTaoXML()

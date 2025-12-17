@@ -11,12 +11,6 @@ namespace QuanLyShopBanDoDaBong
         SanPham objSP = new SanPham();
         private int idHoaDonCanXem = 0;
 
-        public Form_ChiTietHoaDon()
-        {
-            InitializeComponent();
-            this.idHoaDonCanXem = 0;
-        }
-
         public Form_ChiTietHoaDon(int id)
         {
             InitializeComponent();
@@ -25,14 +19,7 @@ namespace QuanLyShopBanDoDaBong
 
         private void Form_ChiTietHoaDon_Load(object sender, EventArgs e)
         {
-            if (idHoaDonCanXem > 0)
-            {
                 LoadChiTiet();
-            }
-            else
-            {
-                LoadTatCaChiTiet();
-            }
         }
 
         private void LoadChiTiet()
@@ -95,71 +82,6 @@ namespace QuanLyShopBanDoDaBong
             catch (Exception ex)
             {
                 MessageBox.Show("Lỗi load chi tiết: " + ex.Message + "\n\nChi tiết: " + ex.StackTrace);
-            }
-        }
-
-        private void LoadTatCaChiTiet()
-        {
-            try
-            {
-                DataTable dtChiTiet = objCTHD.LayDanhSach();
-                DataTable dtSanPham = objSP.LayDanhSach();
-
-                if (dtChiTiet.Rows.Count == 0)
-                {
-                    MessageBox.Show("Chưa có chi tiết hóa đơn nào!");
-                    dgvChiTiet.DataSource = null;
-                    return;
-                }
-
-                string colIdHoaDon = GetColumnName(dtChiTiet, new[] { "IdHoaDon", "IDHoaDon" });
-                string colIdSanPham = GetColumnName(dtChiTiet, new[] { "IdSanPham", "IDSanPham" });
-
-                DataTable dtHienThi = new DataTable();
-                dtHienThi.Columns.Add("Mã HĐ", typeof(string));
-                dtHienThi.Columns.Add("Tên Sản Phẩm", typeof(string));
-                dtHienThi.Columns.Add("Số Lượng", typeof(int));
-                dtHienThi.Columns.Add("Đơn Giá", typeof(decimal));
-                dtHienThi.Columns.Add("Thành Tiền", typeof(decimal));
-
-                foreach (DataRow rowCT in dtChiTiet.Rows)
-                {
-                    string idSP = rowCT[colIdSanPham]?.ToString() ?? "";
-
-                    DataRow[] rowsSP = dtSanPham.Select($"IDSanPham = '{idSP}'");
-                    string tenSP = "Không rõ";
-
-                    if (rowsSP.Length > 0)
-                    {
-                        string hang = rowsSP[0]["Hang"] != DBNull.Value ? rowsSP[0]["Hang"].ToString() : "";
-                        string mauSac = rowsSP[0]["mausac"] != DBNull.Value ? rowsSP[0]["mausac"].ToString() : "";
-                        tenSP = string.IsNullOrEmpty(hang) && string.IsNullOrEmpty(mauSac)
-                            ? "Không rõ"
-                            : $"{hang} - {mauSac}";
-                    }
-
-                    int soLuong = Convert.ToInt32(rowCT["SoLuong"]);
-                    decimal donGia = Convert.ToDecimal(rowCT["DonGia"]);
-                    decimal thanhTien = soLuong * donGia;
-
-                    dtHienThi.Rows.Add(
-                        rowCT[colIdHoaDon]?.ToString() ?? "",
-                        tenSP,
-                        soLuong,
-                        donGia,
-                        thanhTien
-                    );
-                }
-
-                DataView dv = new DataView(dtHienThi);
-                dv.Sort = "Mã HĐ DESC";
-                dgvChiTiet.DataSource = dv.ToTable();
-                FormatDataGridView();
-                this.Text = "Chi tiết tất cả hóa đơn";
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi load tất cả chi tiết: " + ex.Message + "\n\nChi tiết: " + ex.StackTrace);
             }
         }
 

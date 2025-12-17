@@ -119,9 +119,6 @@ namespace QuanLyShopBanDoDaBong
             DataTable dtChiTiet = objCTHD.LayDanhSach();
             DataTable dtSanPham = objSP.LayDanhSach();
 
-            string colIdHoaDon = dtChiTiet.Columns.Contains("IdHoaDon") ? "IdHoaDon" : "IDHoaDon";
-            string colIdSanPham = dtChiTiet.Columns.Contains("IdSanPham") ? "IdSanPham" : "IDSanPham";
-
             var hoaDonNam = dtHoaDon.AsEnumerable()
                 .Where(row => row["NgayDat"] != DBNull.Value &&
                              Convert.ToDateTime(row["NgayDat"]).Year == nam)
@@ -129,10 +126,10 @@ namespace QuanLyShopBanDoDaBong
                 .ToHashSet();
 
             var chiTietNam = dtChiTiet.AsEnumerable()
-                .Where(row => hoaDonNam.Contains(row[colIdHoaDon].ToString()));
+                .Where(row => hoaDonNam.Contains(row["IdHoaDon"].ToString()));
 
             var thongKe = chiTietNam
-                .GroupBy(row => row[colIdSanPham].ToString())
+                .GroupBy(row => row["IdSanPham"].ToString())
                 .Select(g => new
                 {
                     IdSanPham = g.Key,
@@ -180,8 +177,10 @@ namespace QuanLyShopBanDoDaBong
 
                 dtResult.Rows.Add(tenSP, tonKho);
             }
+            var sorted = dtResult.AsEnumerable()
+                        .OrderByDescending(row => row.Field<int>("Tồn_Kho"));
 
-            return dtResult;
+            return sorted.CopyToDataTable();
         }
 
         private void xuatbaocao_Click(object sender, EventArgs e)

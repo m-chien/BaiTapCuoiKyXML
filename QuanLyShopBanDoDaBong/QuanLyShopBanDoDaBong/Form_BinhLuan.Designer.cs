@@ -53,7 +53,7 @@
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(450, 20);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(262, 32);
+            this.label1.Size = new System.Drawing.Size(257, 32);
             this.label1.TabIndex = 0;
             this.label1.Text = "QUẢN LÝ BÌNH LUẬN";
             // 
@@ -68,7 +68,7 @@
             this.grpSearch.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(73)))), ((int)(((byte)(94)))));
             this.grpSearch.Location = new System.Drawing.Point(50, 90);
             this.grpSearch.Name = "grpSearch";
-            this.grpSearch.Size = new System.Drawing.Size(650, 180);
+            this.grpSearch.Size = new System.Drawing.Size(650, 177);
             this.grpSearch.TabIndex = 1;
             this.grpSearch.TabStop = false;
             this.grpSearch.Text = "Tiêu chí tìm kiếm";
@@ -113,7 +113,7 @@
             this.label2.ForeColor = System.Drawing.Color.Black;
             this.label2.Location = new System.Drawing.Point(30, 40);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(80, 19);
+            this.label2.Size = new System.Drawing.Size(79, 19);
             this.label2.TabIndex = 1;
             this.label2.Text = "Ngày bình :";
             // 
@@ -137,7 +137,7 @@
             this.grpAction.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(73)))), ((int)(((byte)(94)))));
             this.grpAction.Location = new System.Drawing.Point(730, 90);
             this.grpAction.Name = "grpAction";
-            this.grpAction.Size = new System.Drawing.Size(320, 180);
+            this.grpAction.Size = new System.Drawing.Size(320, 177);
             this.grpAction.TabIndex = 2;
             this.grpAction.TabStop = false;
             this.grpAction.Text = "Chức năng";
@@ -217,13 +217,13 @@
             this.dgvBinhLuan.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvBinhLuan.ColumnHeadersHeight = 35;
             this.dgvBinhLuan.EnableHeadersVisualStyles = false;
-            this.dgvBinhLuan.Location = new System.Drawing.Point(50, 300);
+            this.dgvBinhLuan.Location = new System.Drawing.Point(50, 293);
             this.dgvBinhLuan.Name = "dgvBinhLuan";
             this.dgvBinhLuan.RowHeadersWidth = 51;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgvBinhLuan.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvBinhLuan.RowTemplate.Height = 24;
-            this.dgvBinhLuan.Size = new System.Drawing.Size(1000, 320);
+            this.dgvBinhLuan.Size = new System.Drawing.Size(1000, 332);
             this.dgvBinhLuan.TabIndex = 3;
             this.dgvBinhLuan.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBinhLuan_CellContentClick);
             // 

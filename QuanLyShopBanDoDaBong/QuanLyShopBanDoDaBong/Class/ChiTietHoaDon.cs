@@ -9,75 +9,10 @@ namespace QuanLyShopBanDoDaBong.Class
         TaoXML db = new TaoXML();
         string fileName = "ChiTietHoaDon.xml";
         string tableName = "ChiTietHoaDon";
-        string colID = "IDChiTietHoaDon";
 
         public DataTable LayDanhSach()
         {
             return db.loadDataGridView(fileName);
-        }
-
-        public DataTable LayDanhSachHoaDon()
-        {
-            return db.loadDataGridView("HoaDon.xml");
-        }
-
-        public DataTable LayDanhSachSanPham()
-        {
-            return db.loadDataGridView("SanPham.xml");
-        }
-
-        public void ThemChiTiet(string idHoaDon, string idSanPham, string soLuong, string donGia)
-        {
-            DataTable dt = LayDanhSach();
-            int nextID = 1;
-            if (dt.Rows.Count > 0)
-            {
-                try
-                {
-                    int max = 0;
-                    foreach (DataRow row in dt.Rows)
-                    {
-                        if (row[colID] != DBNull.Value && int.TryParse(row[colID].ToString(), out int currentID))
-                        {
-                            if (currentID > max) max = currentID;
-                        }
-                    }
-                    nextID = max + 1;
-                }
-                catch { nextID = new Random().Next(1000, 9999); }
-            }
-
-            string xml = "<ChiTietHoaDon>" +
-                            "<IDChiTietHoaDon>" + nextID + "</IDChiTietHoaDon>" +
-                            "<IdHoaDon>" + idHoaDon + "</IdHoaDon>" +
-                            "<IdSanPham>" + idSanPham + "</IdSanPham>" +
-                            "<SoLuong>" + soLuong + "</SoLuong>" +
-                            "<DonGia>" + donGia + "</DonGia>" +
-                         "</ChiTietHoaDon>";
-
-            db.Them(fileName, xml);
-            db.Them_Database(tableName, fileName, "IDChiTietHoaDon");
-            KhoiTaoXML();
-        }
-
-        public void SuaChiTiet(string id, string idHoaDon, string idSanPham, string soLuong, string donGia)
-        {
-            string xml = "<ChiTietHoaDon>" +
-                            "<IDChiTietHoaDon>" + id + "</IDChiTietHoaDon>" +
-                            "<IdHoaDon>" + idHoaDon + "</IdHoaDon>" +
-                            "<IdSanPham>" + idSanPham + "</IdSanPham>" +
-                            "<SoLuong>" + soLuong + "</SoLuong>" +
-                            "<DonGia>" + donGia + "</DonGia>" +
-                         "</ChiTietHoaDon>";
-
-            db.Sua(fileName, tableName, colID, id, xml);
-            db.Sua_Database(tableName, fileName, colID, id);
-        }
-
-        public void XoaChiTiet(string id)
-        {
-            db.Xoa(fileName, tableName, colID, id);
-            db.Xoa_Database(tableName, colID, id);
         }
 
         public DataTable LayChiTietTheoHoaDon(string idHoaDon)
